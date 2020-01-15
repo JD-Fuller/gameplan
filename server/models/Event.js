@@ -33,4 +33,4 @@ Event.pre("findOneAndRemove", function(next) {
     .catch(err => next(err));
 });
 
-export default event;
+export default Event;

@@ -19,6 +19,7 @@ class AdminService {
     //CREATE THE USER
     let admin = await _repository.create(body);
     //REMOVE THE PASSWORD BEFORE RETURNING
+    // @ts-ignore
     delete admin._doc.hash;
     return admin;
   }
@@ -34,6 +35,7 @@ class AdminService {
       throw new ApiError("Invalid Admin name Or Password");
     }
     //ALWAYS REMOVE THE PASSWORD FROM THE USER OBJECT
+    // @ts-ignore
     delete admin._doc.hash;
     return admin;
   }
@@ -43,6 +45,7 @@ class AdminService {
     if (!admin) {
       throw new ApiError("Please login to continue", 401);
     }
+    // @ts-ignore
     delete admin._doc.hash;
     return admin;
   }

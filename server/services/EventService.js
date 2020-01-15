@@ -8,6 +8,13 @@ class EventService {
   async getAllEvents() {
     return await _repository.find({});
   }
+  async getById(id, userId) {
+    let data = await _repository.findOne({ _id: id, authorId: userId });
+    if (!data) {
+      throw new ApiError("Invalid ID or you do not own this board", 400);
+    }
+    return data;
+  }
 
   async create(eventData) {
     let data = await _repository.create(eventData);
