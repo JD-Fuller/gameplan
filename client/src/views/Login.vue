@@ -47,25 +47,27 @@
         <button class="btn btn-danger btn-block my-4" type="submit">Sign in</button>
 
         <!-- Register -->
-        <div class="d-none d-lg-block">
-          <p>
-            Not a member?
-            <a href class="text-danger">Register</a>
-          </p>
+        <div>
+          <div class="action d-none d-lg-block" @click="loginForm = !loginForm">
+            <p v-if="loginForm">
+              Not a member?
+              <a class="text-danger">Register</a>
+            </p>
+          </div>
 
           <!-- Social login -->
-          <p class="login-link">or sign in with:</p>
+          <p class="login-link d-lg-block d-none">or sign in with:</p>
 
-          <a href="#" class="mx-2" role="button">
+          <a href="https://www.facebook.com" class="mx-2" role="button">
             <i class="fab fa-facebook-f text-primary"></i>
           </a>
-          <a href="#" class="mx-2" role="button">
+          <a href="https://www.twitter.com" class="mx-2" role="button">
             <i class="fab fa-twitter text-primary"></i>
           </a>
-          <a href="#" class="mx-2" role="button">
+          <a href="https://www.linkedin.com" class="mx-2" role="button">
             <i class="fab fa-linkedin-in text-primary"></i>
           </a>
-          <a href="#" class="mx-2" role="button">
+          <a href="https://www.github.com" class="mx-2" role="button">
             <i class="fab fa-github text-dark"></i>
           </a>
         </div>
@@ -159,7 +161,7 @@ export default {
 }
 .form-for-login {
   background-color: lightgrey;
-  margin-left: 9px;
+  margin-left: 8px;
 }
 .login {
   font-family: "Montserrat", sans-serif;
