@@ -48,7 +48,7 @@
 
         <!-- Register -->
         <div>
-          <div class="action d-none d-lg-block" @click="loginForm = !loginForm">
+          <div class="action d-lg-block" @click="loginForm = !loginForm">
             <p v-if="loginForm">
               Not a member?
               <a class="text-danger">Register</a>
