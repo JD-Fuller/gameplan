@@ -18,6 +18,9 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
+    posts: [],
+    roster: [],
+    notes: [],
     boards: [],
     activeBoard: {}
   },
@@ -32,10 +35,11 @@ export default new Vuex.Store({
       state.user = {}
       state.boards = []
       state.activeBoard = {}
+    },
+    addPost(state, post) {
+      state.posts.push(post);
     }
     
-
-
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -82,12 +86,16 @@ export default new Vuex.Store({
         .then(serverBoard => {
           dispatch('getBoards')
         })
-    }
+    },
     //#endregion
 
 
     //#region -- LISTS --
+    async addPost({commit, dispatch}, post) {
+      let res = await api.post("/posts", post);
+      commit("addPost", res.data.data)
 
+    }
 
 
     //#endregion

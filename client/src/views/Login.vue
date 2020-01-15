@@ -1,7 +1,12 @@
 <template>
-  <div
+  <div class="login row container-fluid pr-0 pl-0">
+    <div class="col-12 pr-0 pl-0">
+      <navbar/>
+    
+    <div
     class="login row-container d-flex align-items-center justify-content-center login-background"
   >
+      
     <div class="col-lg-4 login-form pr-0 ml-4">
       <!-- Default form login -->
       <form
@@ -156,13 +161,14 @@
         class="login-picture d-none d-lg-block"
       />
     </div>
-    <!-- <p v-else>Already have an account? Click here to Login</p>
-    </div>-->
+  </div>
+  </div>
   </div>
 </template>
 
 <script>
-import router from "@/router/index.js";
+import router from "@/router/index.js"
+import navbar from "@/components/Nav.vue"
 export default {
   name: "login",
   data() {
@@ -191,8 +197,12 @@ export default {
     loginUser() {
       this.$store.dispatch("login", this.creds);
     }
-  }
-};
+  },
+
+  components:
+{
+navbar
+}};
 </script>
 
 <style>
