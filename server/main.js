@@ -37,8 +37,12 @@ server.use("/account", new AdminController().router);
 
 //YOUR ROUTES HERE!!!!!!
 import PostController from "./controllers/PostController";
+import RosterController from "./controllers/RosterController";
+import EventController from "./controllers/EventController";
 
 server.use("/api/posts", new PostController().router);
+server.use("/api/events", new EventController().router);
+server.use("/api/roster", new RosterController().router);
 
 //NOTE Default error handler, catches all routes with an error attached
 server.use((error, req, res, next) => {
