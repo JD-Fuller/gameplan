@@ -88,9 +88,7 @@
         class="login-picture d-none d-lg-block"
       />
     </div>
-    <!-- <div class="action" @click="loginForm = !loginForm">
-      <p v-if="loginForm">No account? Click here to Register</p>
-      <p v-else>Already have an account? Click here to Login</p>
+    <!-- <p v-else>Already have an account? Click here to Login</p>
     </div>-->
   </div>
 </template>
