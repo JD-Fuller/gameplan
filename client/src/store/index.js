@@ -27,7 +27,15 @@ export default new Vuex.Store({
     },
     setBoards(state, boards) {
       state.boards = boards
+    },
+    resetState(state) {
+      state.user = {}
+      state.boards = []
+      state.activeBoard = {}
     }
+    
+
+
   },
   actions: {
     //#region -- AUTH STUFF --
