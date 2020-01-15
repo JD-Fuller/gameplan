@@ -27,7 +27,7 @@
       <div class="col-md-8">Bulletin
 <div class="container-fluid row">
   <div class="col-md-12">
-    <ul v-for="post in posts" :key="post.id">
+    <ul v-for="post in posts" :key="post.id" class="d-flex justify-content-start">
     <li>{{post.content}}</li>
     </ul>
   </div>

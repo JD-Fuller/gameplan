@@ -104,9 +104,7 @@ export default new Vuex.Store({
 
     async getPosts({commit, dispatch}) {
       let res = await api.get("posts");
-      debugger;
       commit("allPosts", res.data)
-      debugger;
     }
     //#endregion
   }
