@@ -159,7 +159,7 @@ export default {
 }
 .form-for-login {
   background-color: lightgrey;
-  margin-left: 12px;
+  margin-left: 9px;
 }
 .login {
   font-family: "Montserrat", sans-serif;
