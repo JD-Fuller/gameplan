@@ -27,13 +27,13 @@
       <div class="col-md-8">Bulletin
 <div class="container-fluid row">
   <div class="col-md-12">
-    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, suscipit?</li>
-    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, suscipit?</li>
-    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, suscipit?</li>
+    <ul v-for="post in posts" :key="post.id">
+    <li>{{post.content}}</li>
+    </ul>
   </div>
   <div class="container-fluid row">
     <div class="col-md-12 d-flex justify-content-center">
-      <input type="text" class="d-block  chat-row" placeholder="comments here">
+      <input v-model="newPost.content" type="text" class="d-block chat-row" placeholder="comments here" required>      
       <button @click="addPost()">ADD COMMENT</button>
     </div>
   </div>
@@ -48,6 +48,9 @@
 import boardnav from "@/components/BoardNav.vue"
   export default {
     name: "boards",
+    mounted() {
+this.$store.dispatch("getPosts")
+    },
     data() {
       return {
         newPost: {
@@ -65,8 +68,8 @@ import boardnav from "@/components/BoardNav.vue"
       }
     },
     computed: {
-      post() {
-        return this.$store.state.post;
+      posts() {
+        return this.$store.state.posts;
       }
     },
 

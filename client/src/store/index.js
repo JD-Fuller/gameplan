@@ -38,6 +38,9 @@ export default new Vuex.Store({
     },
     addPost(state, post) {
       state.posts.push(post);
+    },
+    allPosts(state, data) {
+      state.posts = data
     }
     
   },
@@ -92,12 +95,19 @@ export default new Vuex.Store({
 
     //#region -- LISTS --
     async addPost({commit, dispatch}, post) {
+      console.log(post)
       let res = await api.post("/posts", post);
-      commit("addPost", res.data.data)
+      commit("addPost", res.data)
+      // dispatch("getPosts")
 
+    },
+
+    async getPosts({commit, dispatch}) {
+      let res = await api.get("posts");
+      debugger;
+      commit("allPosts", res.data)
+      debugger;
     }
-
-
     //#endregion
   }
 })
