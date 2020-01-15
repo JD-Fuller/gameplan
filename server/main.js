@@ -30,10 +30,10 @@ server.use(
 );
 
 //REGISTER YOUR SESSION, OTHERWISE YOU WILL NEVER GET LOGGED IN
-import UserController from "./controllers/UserController";
+import AdminController from "./controllers/AdminController";
 import Session from "./middleware/session";
 server.use(new Session().express);
-server.use("/account", new UserController().router);
+server.use("/account", new AdminController().router);
 
 //YOUR ROUTES HERE!!!!!!
 import BoardController from "./controllers/BoardController";
