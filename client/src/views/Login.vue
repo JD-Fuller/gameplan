@@ -74,11 +74,79 @@
 
         <!-- Default form login -->
       </form>
-      <form v-else @submit.prevent="register">
-        <input type="text" v-model="newUser.name" placeholder="name" />
-        <input type="email" v-model="newUser.email" placeholder="email" />
-        <input type="password" v-model="newUser.password" placeholder="password" />
-        <button class="btn btn-warning" type="submit">Create Account</button>
+
+      <form
+        v-else @submit.prevent="register"
+        class="text-center border border-light p-5 form-for-login"
+      >
+        <p class="h4 mb-4 sign-login">Register</p>
+        <input type="userName"
+        v-model="newUser.name"
+        id="defaultRegisterFormName"
+        class="form-control mb-4"
+        placeholder="User Name">
+        <!-- Email -->
+        <input
+          type="email"
+          v-model="newUser.email"
+          id="defaultLoginFormEmail"
+          class="form-control mb-4"
+          placeholder="E-mail"
+        />
+
+        <!-- Password -->
+        <input
+          type="password"
+          v-model="newUser.password"
+          id="defaultLoginFormPassword"
+          class="form-control mb-4"
+          placeholder="Password"
+        />
+
+        <div class="d-flex justify-content-around">
+          <div>
+            <!-- Remember me -->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember" />
+              <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+            </div>
+          </div>
+          <div>
+            <!-- Forgot password -->
+            <p class="text-danger">Forgot password?</p>
+          </div>
+        </div>
+
+        <!-- Sign in button -->
+        <button class="btn btn-danger btn-block my-4" type="submit">Register</button>
+
+        <!-- Register -->
+        <div>
+          <div class="action d-lg-block" @click="loginForm = !loginForm">
+            <p v-if="loginForm">
+              Not a member?
+              <a class="text-danger">Register</a>
+            </p>
+          </div>
+
+          <!-- Social login -->
+          <p class="login-link d-lg-block d-none">or sign in with:</p>
+
+          <a href="https://www.facebook.com" class="mx-2" role="button">
+            <i class="fab fa-facebook-f text-primary"></i>
+          </a>
+          <a href="https://www.twitter.com" class="mx-2" role="button">
+            <i class="fab fa-twitter text-primary"></i>
+          </a>
+          <a href="https://www.linkedin.com" class="mx-2" role="button">
+            <i class="fab fa-linkedin-in text-primary"></i>
+          </a>
+          <a href="https://www.github.com" class="mx-2" role="button">
+            <i class="fab fa-github text-dark"></i>
+          </a>
+        </div>
+
+        <!-- Default form login -->
       </form>
     </div>
     <div class="col-lg-4 d-flex align-items-center pl-0">
