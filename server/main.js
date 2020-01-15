@@ -36,9 +36,9 @@ server.use(new Session().express);
 server.use("/account", new AdminController().router);
 
 //YOUR ROUTES HERE!!!!!!
-import BoardController from "./controllers/BoardController";
+import PostController from "./controllers/PostController";
 
-server.use("/api/boards", new BoardController().router);
+server.use("/api/posts", new PostController().router);
 
 //NOTE Default error handler, catches all routes with an error attached
 server.use((error, req, res, next) => {
