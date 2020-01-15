@@ -1,9 +1,9 @@
-import _boardService from "../services/BoardService";
+import _postService from "../services/PostService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 
 //PUBLIC
-export default class BoardController {
+export default class PostController {
   constructor() {
     this.router = express
       .Router()
@@ -16,16 +16,14 @@ export default class BoardController {
       .use(this.defaultRoute);
   }
 
-  // this is pretty neat
-
   defaultRoute(req, res, next) {
     next({ status: 404, message: "No Such Route" });
   }
 
   async getAll(req, res, next) {
     try {
-      //only gets boards by user who is logged in
-      let data = await _boardService.getAll(req.session.uid);
+      //only gets posts by user who is logged in
+      let data = await _postService.getAll(req.session.uid);
       return res.send(data);
     } catch (err) {
       next(err);
@@ -34,7 +32,7 @@ export default class BoardController {
 
   async getById(req, res, next) {
     try {
-      let data = await _boardService.getById(req.params.id, req.session.uid);
+      let data = await _postService.getById(req.params.id, req.session.uid);
       return res.send(data);
     } catch (error) {
       next(error);
@@ -44,7 +42,7 @@ export default class BoardController {
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid;
-      let data = await _boardService.create(req.body);
+      let data = await _postService.create(req.body);
       return res.status(201).send(data);
     } catch (error) {
       next(error);
@@ -53,7 +51,7 @@ export default class BoardController {
 
   async edit(req, res, next) {
     try {
-      let data = await _boardService.edit(
+      let data = await _postService.edit(
         req.params.id,
         req.session.uid,
         req.body
@@ -66,7 +64,7 @@ export default class BoardController {
 
   async delete(req, res, next) {
     try {
-      await _boardService.delete(req.params.id, req.session.uid);
+      await _postService.delete(req.params.id, req.session.uid);
       return res.send("Successfully deleted");
     } catch (error) {
       next(error);
