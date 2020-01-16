@@ -21,7 +21,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     posts: [],
-    roster: [],
+    teams: [],
     notes: [],
     activePost: {},
     events: []
@@ -47,6 +47,9 @@ export default new Vuex.Store({
     setEvents(state, events) {
       debugger;
       state.events = events;
+    },
+    setTeams(state, teams) {
+      state.teams = teams;
     }
   },
   actions: {
@@ -123,8 +126,18 @@ export default new Vuex.Store({
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
       commit("setEvents", res.data);
-    }
+    },
 
     //#endregion - events
+    // #region Teams
+    async getTeams({ commit, dispatch }) {
+      let res = await api.get("teams");
+      commit("setTeams", res.data);
+    },
+    async createTeam({ commit, dispatch }, teamData) {
+      let res = await api.post("/team", teamData);
+      commit("setTeams", res.data);
+    }
+    // #endregion
   }
 });
