@@ -1,4 +1,4 @@
-(https://github.com/gameplan/Screen Shot 2020-01-16 at 4.38.34 PM.png)
+(Screen Shot 2020-01-16 at 4.38.34 PM.png)
 
 # GamePlan
 
