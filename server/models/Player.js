@@ -2,14 +2,17 @@ import mongoose from "mongoose";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
-const Roster = new Schema(
+const Player = new Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     position: { type: String, required: true },
-    age: { type: Number },
+    grade: { type: Number || String, required: true },
     jerseyNumber: { type: Number },
-    authorId: { type: ObjectId, ref: "Admin", required: true }
+    homeCity: { type: String, default: "City" },
+    homeState: { type: String, default: "State" },
+    authorId: { type: ObjectId, ref: "Admin", required: true },
+    imgURL: { type: String }
   },
   { timestamps: true }
 );
@@ -24,4 +27,4 @@ const Roster = new Schema(
 //     .catch(err => next(err))
 // })
 
-export default Roster;
+export default Player;

@@ -37,13 +37,13 @@ server.use("/account", new AdminController().router);
 
 //YOUR ROUTES HERE!!!!!!
 import PostController from "./controllers/PostController";
-import RosterController from "./controllers/RosterController";
+import PlayerController from "./controllers/PlayerController";
 import EventController from "./controllers/EventController";
 import NoteController from "./controllers/NoteController";
 
 server.use("/api/posts", new PostController().router);
 server.use("/api/events", new EventController().router);
-server.use("/api/roster", new RosterController().router);
+server.use("/api/roster", new PlayerController().router);
 server.use("/api/notes", new NoteController().router);
 
 //NOTE Default error handler, catches all routes with an error attached

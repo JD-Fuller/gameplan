@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import Roster from "../models/Roster";
+import Player from "../models/Player";
 import ApiError from "../utils/ApiError";
 
-const _repository = mongoose.model("Roster", Roster);
+const _repository = mongoose.model("Player", Player);
 
-class RosterService {
+class PlayerService {
   async getAll(adminId) {
     return await _repository.find({ authorId: adminId });
   }
@@ -45,5 +45,5 @@ class RosterService {
   }
 }
 
-const _rosterService = new RosterService();
-export default _rosterService;
+const _playerService = new PlayerService();
+export default _playerService;
