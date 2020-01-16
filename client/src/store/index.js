@@ -45,7 +45,7 @@ export default new Vuex.Store({
       state.posts = data;
     },
     setEvents(state, events) {
-      debugger;
+     
       state.events = events;
     }
   },
@@ -122,7 +122,12 @@ export default new Vuex.Store({
     },
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
-      commit("setEvents", res.data);
+      debugger
+      dispatch("getEvents");
+    },
+    async deleteEvent({commit, dispatch}, eventId) {
+      let res= await api.delete("events/"+ eventId);
+      dispatch("getEvents")
     }
 
     //#endregion - events
