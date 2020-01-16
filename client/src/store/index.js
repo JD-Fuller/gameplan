@@ -21,23 +21,25 @@ export default new Vuex.Store({
     posts: [],
     roster: [],
     notes: [],
-    boards: [],
     activeBoard: {}
   },
   mutations: {
     setUser(state, user) {
       state.user = user
     },
-    setBoards(state, boards) {
-      state.boards = boards
+    setPosts(state, posts) {
+      state.posts = posts
     },
     resetState(state) {
       state.user = {}
-      state.boards = []
+      state.posts = []
       state.activeBoard = {}
     },
     addPost(state, post) {
       state.posts.push(post);
+    },
+    allPosts(state, data) {
+      state.posts = data
     }
     
   },
@@ -75,28 +77,38 @@ export default new Vuex.Store({
 
 
     //#region -- BOARDS --
-    getBoards({ commit, dispatch }) {
-      api.get('boards')
+    getPosts({ commit, dispatch }) {
+      api.get('posts')
         .then(res => {
-          commit('setBoards', res.data)
+          commit('setPosts', res.data)
         })
     },
-    addBoard({ commit, dispatch }, boardData) {
-      api.post('boards', boardData)
-        .then(serverBoard => {
-          dispatch('getBoards')
-        })
-    },
-    //#endregion
+    // addPost({ commit, dispatch }, postData) {
+    //   api.post('posts', postData)
+    //     .then(serverBoard => {
+    //       dispatch('getPosts')
+    //     })
+    // },
+    // //#endregion
 
 
     //#region -- LISTS --
-    async addPost({commit, dispatch}, post) {
-      let res = await api.post("/posts", post);
-      commit("addPost", res.data.data)
+    async addPost({commit, dispatch}, postData) {
+      console.log(postData)
+      let res = await api.post("posts", postData);
+      commit("addPost", res.data)
+      // dispatch("getPosts")
 
+    },
+
+    async getPosts({commit, dispatch}) {
+      let res = await api.get("posts");
+      commit("allPosts", res.data)
+    },
+    async deletePost({commit, dispatch}, id) {
+      let res = await api.delete(`posts/${id}`)
+      dispatch("getPosts")
     }
-
 
     //#endregion
   }
