@@ -1,4 +1,4 @@
-<img src="https://github.com/JD-Fuller/gameplan/wireframe_gamplan.png" />
+<img src="gameplan/wireframe_gamplan.png" />
 
 # GamePlan
 
