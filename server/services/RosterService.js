@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import Player from "../models/Player";
+import Roster from "../models/Roster";
 import ApiError from "../utils/ApiError";
 
-const _repository = mongoose.model("Player", Player);
+const _repository = mongoose.model("Roster", Roster);
 
-class PlayerService {
+class RosterService {
   async getAll(adminId) {
     return await _repository.find({ authorId: adminId });
   }
@@ -12,7 +12,7 @@ class PlayerService {
   async getById(id, adminId) {
     let data = await _repository.findOne({ _id: id, authorId: adminId });
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this player", 400);
+      throw new ApiError("Invalid ID or you do not own this roster", 400);
     }
     return data;
   }
@@ -29,7 +29,7 @@ class PlayerService {
       { new: true }
     );
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this player", 400);
+      throw new ApiError("Invalid ID or you do not own this roster", 400);
     }
     return data;
   }
@@ -40,10 +40,10 @@ class PlayerService {
       authorId: adminId
     });
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this player", 400);
+      throw new ApiError("Invalid ID or you do not own this roster", 400);
     }
   }
 }
 
-const _playerService = new PlayerService();
-export default _playerService;
+const _rosterService = new RosterService();
+export default _rosterService;
