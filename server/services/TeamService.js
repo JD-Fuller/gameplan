@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Roster from "../models/Roster";
+import Roster from "../models/Team";
 import ApiError from "../utils/ApiError";
 
 const _repository = mongoose.model("Roster", Roster);

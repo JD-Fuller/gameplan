@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
-const Roster = new Schema(
+const Team = new Schema(
   {
     title: { type: String, required: true },
 
@@ -21,4 +21,4 @@ const Roster = new Schema(
 //     .catch(err => next(err))
 // })
 
-export default Roster;
+export default Team;

@@ -1,4 +1,4 @@
-import _rosterService from "../services/RosterService";
+import _rosterService from "../services/TeamService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 
