@@ -12,7 +12,9 @@ const Player = new Schema(
     homeCity: { type: String, default: "City" },
     homeState: { type: String, default: "State" },
     authorId: { type: ObjectId, ref: "Admin", required: true },
-    imgURL: { type: String }
+    imgURL: { type: String },
+    phoneNumber: { type: String },
+    email: { type: String, required: true }
   },
   { timestamps: true }
 );

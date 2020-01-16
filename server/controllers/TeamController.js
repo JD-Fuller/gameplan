@@ -1,9 +1,9 @@
-import _rosterService from "../services/TeamService";
+import _teamService from "../services/TeamService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 
 //PUBLIC
-export default class RosterController {
+export default class TeamController {
   constructor() {
     this.router = express
       .Router()
@@ -22,8 +22,8 @@ export default class RosterController {
 
   async getAll(req, res, next) {
     try {
-      //only gets rosters by user who is logged in
-      let data = await _rosterService.getAll(req.session.uid);
+      //only gets teams by user who is logged in
+      let data = await _teamService.getAll(req.session.uid);
       return res.send(data);
     } catch (err) {
       next(err);
@@ -32,7 +32,7 @@ export default class RosterController {
 
   async getById(req, res, next) {
     try {
-      let data = await _rosterService.getById(req.params.id, req.session.uid);
+      let data = await _teamService.getById(req.params.id, req.session.uid);
       return res.send(data);
     } catch (error) {
       next(error);
@@ -42,7 +42,7 @@ export default class RosterController {
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid;
-      let data = await _rosterService.create(req.body);
+      let data = await _teamService.create(req.body);
       return res.status(201).send(data);
     } catch (error) {
       next(error);
@@ -51,7 +51,7 @@ export default class RosterController {
 
   async edit(req, res, next) {
     try {
-      let data = await _rosterService.edit(
+      let data = await _teamService.edit(
         req.params.id,
         req.session.uid,
         req.body
@@ -64,7 +64,7 @@ export default class RosterController {
 
   async delete(req, res, next) {
     try {
-      await _rosterService.delete(req.params.id, req.session.uid);
+      await _teamService.delete(req.params.id, req.session.uid);
       return res.send("Successfully deleted");
     } catch (error) {
       next(error);
