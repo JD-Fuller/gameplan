@@ -27,10 +27,11 @@
       <div class="col-md-8">Bulletin
 <div class="container-fluid row">
   <div class="col-md-12">
-    <ul v-for="post in posts" :key="post.id" class="d-flex justify-content-start">
-    <li>{{post.content}}</li>
+    <ul v-for="post in posts" :key="post._id" class="d-flex justify-content-start">
+    <li>{{post.content}}</li> 
+    <button @submit.prevent="deletePost()" class="btn-danger" type="submit" @click="deletePost(post._id)">x</button>
     </ul>
-  </div>
+  </div> 
   <div class="container-fluid row">
     <div class="col-md-12 d-flex justify-content-center">
       <input v-model="newPost.content" type="text" class="d-block chat-row" placeholder="comments here" required>      
@@ -49,7 +50,7 @@ import boardnav from "@/components/BoardNav.vue"
   export default {
     name: "boards",
     mounted() {
-this.$store.dispatch("getPosts")
+    this.$store.dispatch("getPosts")
     },
     data() {
       return {
@@ -65,6 +66,10 @@ this.$store.dispatch("getPosts")
         this.newPost = {
           content: "",
         }
+      },
+      deletePost(postId) {
+       
+      this.$store.dispatch("deletePost", postId)
       }
     },
     computed: {
