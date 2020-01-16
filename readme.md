@@ -1,3 +1,5 @@
+(https://github.com/gameplan/Screen Shot 2020-01-16 at 4.38.34 PM.png)
+
 # GamePlan
 
 Gameplan is a collaboration app for groups and sports teams that serves as an answer to mutliple issues associated with conventional apps. The Gameplan serves as a single source for instand communication and document uploads for temporary groups (i.e. Seasonal Sports Teams, Weekend Excursions, Traveling school teams, etc).
