@@ -1,32 +1,32 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Boards from '../views/Boards.vue'
-import Board from '../views/Board.vue'
-import Login from '../views/Login.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import Boards from "../views/Boards.vue";
+import Event from "../views/Event.vue";
+import Login from "../views/Login.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'boards',
+      path: "/",
+      name: "boards",
       component: Boards
     },
     {
-      path: '/boards/:boardId',
-      name: 'board',
+      path: "/events",
+      name: "event",
       props: true,
-      component: Board
+      component: Event
     },
     {
-      path: '/login',
-      name: 'login',
+      path: "/login",
+      name: "login",
       component: Login
     },
     {
       path: "*",
-      redirect: '/'
+      redirect: "/"
     }
   ]
-})
+});
