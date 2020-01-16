@@ -1,4 +1,4 @@
-<img href="https://github.com/JD-Fuller/gameplan/Screen Shot 2020-01-16 at 4.38.34 PM.png" />
+<img src="https://github.com/JD-Fuller/gameplan/wireframe_gamplan.png" />
 
 # GamePlan
 
