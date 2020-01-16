@@ -11,6 +11,7 @@ const Player = new Schema(
     jerseyNumber: { type: Number },
     homeCity: { type: String, default: "City" },
     homeState: { type: String, default: "State" },
+    teamId: { type: ObjectId, ref: "Team", required: true },
     authorId: { type: ObjectId, ref: "Admin", required: true },
     imgURL: { type: String },
     phoneNumber: { type: String },
