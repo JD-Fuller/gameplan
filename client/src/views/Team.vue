@@ -10,7 +10,11 @@
         </div>
       </div>
       <div class="row container-fluid">
-        <div class="col-md-5">{{team}}</div>
+        <div class="col-md-5 ml-5">
+          <ul v-for="team in teams" :key="team._id" class="d-flex justify-content-start">
+            <li>{{team.title}}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -27,8 +31,8 @@ export default {
     navbar
   },
   computed: {
-    team() {
-      return this.$store.teams;
+    teams() {
+      return this.$store.state.teams;
     }
   }
 };
