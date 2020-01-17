@@ -125,7 +125,13 @@ export default new Vuex.Store({
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
     },
+    async editEvent({commit, dispatch}, eventData) {
+      let res = await api.put("events/" + eventData.id, eventData)
+      dispatch("getEvents")
+    },
     //#endregion - events
+
+
     // #region Teams
     async getTeams({ commit, dispatch }) {
       let res = await api.get("team");

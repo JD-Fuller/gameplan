@@ -47,4 +47,38 @@ export default class NotificationService {
       return false;
     }
   }
+
+  static async editEvent(title = "Enter Inputs", description="Enter Desc", location="Enter locale") {
+    try {
+      const {value: formValues} = await Swal.fire({
+        title: "Edit Form...",
+        html: `<input id="title" class="swal2-input">`+
+              `<input id="description" class="swal2-input">`+
+              `<input id="location" class="swal2-input">`,
+        focusConfirm: false,
+        
+        preConfirm: () => {
+          
+          return[
+            document.getElementById("title").value,
+            document.getElementById("description").value,
+            document.getElementById("location").value
+          ]
+        }
+      })
+      
+      if(formValues){
+        return {
+          title: formValues[0],
+          description: formValues[1],
+          location: formValues[2]
+        }
+      }
+      else {
+        console.log("formValues is false")
+      }
+    } catch (error) {
+      return false
+    }
+  }
 }
