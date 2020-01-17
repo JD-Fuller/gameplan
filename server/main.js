@@ -44,9 +44,9 @@ import TeamController from "./controllers/TeamController";
 
 server.use("/api/posts", new PostController().router);
 server.use("/api/events", new EventController().router);
-server.use("/api/player", new PlayerController().router);
+server.use("/api/players", new PlayerController().router);
 server.use("/api/notes", new NoteController().router);
-server.use("/api/team", new TeamController().router);
+server.use("/api/teams", new TeamController().router);
 
 //NOTE Default error handler, catches all routes with an error attached
 server.use((error, req, res, next) => {

@@ -45,7 +45,6 @@ export default new Vuex.Store({
       state.posts = data;
     },
     setEvents(state, events) {
-      debugger;
       state.events = events;
     },
     setTeams(state, teams) {
@@ -125,9 +124,7 @@ export default new Vuex.Store({
     },
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
-      commit("setEvents", res.data);
     },
-
     //#endregion - events
     // #region Teams
     async getTeams({ commit, dispatch }) {
