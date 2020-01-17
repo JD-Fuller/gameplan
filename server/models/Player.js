@@ -7,7 +7,7 @@ const Player = new Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     position: { type: String, required: true },
-    grade: { type: Number || String, required: true },
+    grade: { type: String, required: true },
     jerseyNumber: { type: Number },
     homeCity: { type: String, default: "City" },
     homeState: { type: String, default: "State" },
