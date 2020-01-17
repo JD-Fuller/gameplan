@@ -48,37 +48,63 @@ export default class NotificationService {
     }
   }
 
-  static async editEvent(title = "Enter Inputs", description="Enter Desc", location="Enter locale") {
+  static async editEvent(
+    title = "Enter Inputs",
+    description = "Enter Desc",
+    location = "Enter locale"
+  ) {
     try {
-      const {value: formValues} = await Swal.fire({
+      const { value: formValues } = await Swal.fire({
         title: "Edit Event...",
-        html: `<h3>Title</h3><input id="title" class="swal2-input" placeholder="Title...">`+
-              `<h3>Description</h3><input id="description" class="swal2-input" placeholder="Description...">`+
-              `<h3>Location</h3><input id="location" class="swal2-input" placeholder="Location...">`,
+        html:
+          `<h3>Title</h3><input id="title" class="swal2-input" placeholder="Title...">` +
+          `<h3>Description</h3><input id="description" class="swal2-input" placeholder="Description...">` +
+          `<h3>Location</h3><input id="location" class="swal2-input" placeholder="Location...">`,
         focusConfirm: false,
-        
+
         preConfirm: () => {
-          
-          return[
+          return [
             document.getElementById("title").value,
             document.getElementById("description").value,
             document.getElementById("location").value
-          ]
+          ];
         }
-      })
-      
-      if(formValues){
+      });
+
+      if (formValues) {
         return {
           title: formValues[0],
           description: formValues[1],
           location: formValues[2]
-        }
-      }
-      else {
-        console.log("formValues is false")
+        };
+      } else {
+        console.log("formValues is false");
       }
     } catch (error) {
-      return false
+      return false;
+    }
+  }
+
+  static async editPost(content = "Enter Content") {
+    try {
+      const { value: formValues } = await Swal.fire({
+        title: "Edit Post",
+        html: `<h3>Content</h3><input id="content" class="swal2-input" placeholder="Post...">`,
+        focusConfirm: false,
+        preConfirm: () => {
+          return [document.getElementById("content").value];
+        }
+      });
+
+      if (formValues) {
+        return {
+          content: formValues[0]
+        };
+      } else {
+        console.log("formValues is false");
+      }
+    } catch (error) {
+      return false;
     }
   }
 }

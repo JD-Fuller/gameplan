@@ -91,7 +91,7 @@
 </template>
 
 <script>
-  import NotificationService from "../NotificationService.js";
+import NotificationService from "../NotificationService.js";
 export default {
   name: "Events",
   data() {
@@ -114,17 +114,16 @@ export default {
       this.newEvent = { title: "", description: "", date: "", location: "" };
     },
     deleteEvent(eventId) {
-      debugger
+      debugger;
       this.$store.dispatch("deleteEvent", eventId);
     },
     async editEvent(eventId) {
-      
-    let eventInfo = await NotificationService.editEvent()
-    eventInfo.id = eventId
-    
-        this.$store.dispatch("editEvent", eventInfo)
-      }
-    },
+      let eventInfo = await NotificationService.editEvent();
+      eventInfo.id = eventId;
+
+      this.$store.dispatch("editEvent", eventInfo);
+    }
+  },
   computed: {
     events() {
       return this.$store.state.events;

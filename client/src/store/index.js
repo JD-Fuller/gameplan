@@ -114,6 +114,10 @@ export default new Vuex.Store({
       let res = await api.delete(`posts/${id}`);
       dispatch("getPosts");
     },
+    async editPost({ commit, dispatch }, postData) {
+      let res = await api.put("posts/" + postData.id, postData);
+      dispatch("getPosts");
+    },
 
     //#endregion
 

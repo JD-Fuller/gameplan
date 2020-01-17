@@ -22,10 +22,10 @@ class PostService {
     return data;
   }
 
-  async edit(id, adminId, update) {
+  async edit(postData) {
     let data = await _repository.findOneAndUpdate(
-      { _id: id, authorId: adminId },
-      update,
+      { _id: postData.id, authorId: postData.authorId },
+      { content: postData.content },
       { new: true }
     );
     if (!data) {
