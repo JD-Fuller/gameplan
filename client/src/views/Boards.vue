@@ -99,7 +99,6 @@ export default {
     async editPost(postId) {
       let postInfo = await NotificationService.editPost();
       postInfo.id = postId;
-
       this.$store.dispatch("editPost", postInfo);
     }
   },
