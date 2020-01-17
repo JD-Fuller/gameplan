@@ -24,7 +24,8 @@ export default new Vuex.Store({
     teams: [],
     notes: [],
     activePost: {},
-    events: []
+    events: [],
+    players: []
   },
   mutations: {
     setUser(state, user) {
@@ -49,6 +50,9 @@ export default new Vuex.Store({
     },
     setTeams(state, teams) {
       state.teams = teams;
+    },
+    setPlayers(state, players) {
+      state.players = players;
     }
   },
   actions: {
@@ -128,13 +132,20 @@ export default new Vuex.Store({
     //#endregion - events
     // #region Teams
     async getTeams({ commit, dispatch }) {
-      let res = await api.get("team");
+      let res = await api.get("teams");
       commit("setTeams", res.data);
     },
     async createTeam({ commit, dispatch }, teamData) {
-      let res = await api.post("/team", teamData);
+      let res = await api.post("/teams", teamData);
       commit("setTeams", res.data);
-    }
+    },
     // #endregion
+
+    //#region Players
+    async getPlayers({ commit, dispatch }) {
+      let res = await api.get("players");
+      commit("setPlayers", res.data);
+    }
+    //#endregion
   }
 });
