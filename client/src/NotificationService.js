@@ -52,9 +52,9 @@ export default class NotificationService {
     try {
       const {value: formValues} = await Swal.fire({
         title: "Edit Event...",
-        html: `<input id="title" class="swal2-input" placeholder="Title...">`+
-              `<input id="description" class="swal2-input" placeholder="Description...">`+
-              `<input id="location" class="swal2-input" placeholder="Location...">`,
+        html: `<h3>Title</h3><input id="title" class="swal2-input" placeholder="Title...">`+
+              `<h3>Description</h3><input id="description" class="swal2-input" placeholder="Description...">`+
+              `<h3>Location</h3><input id="location" class="swal2-input" placeholder="Location...">`,
         focusConfirm: false,
         
         preConfirm: () => {
