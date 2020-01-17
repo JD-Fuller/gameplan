@@ -114,6 +114,7 @@ export default {
       this.newEvent = { title: "", description: "", date: "", location: "" };
     },
     deleteEvent(eventId) {
+      debugger
       this.$store.dispatch("deleteEvent", eventId);
     },
     async editEvent(eventId) {
