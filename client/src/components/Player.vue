@@ -14,17 +14,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="player in players" :key="player._id">
           <th>
             <input type="checkbox" />
           </th>
-          <th>1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>Attack</td>
-          <td>Sophomore</td>
-          <td>Boise, Idaho</td>
-          <td>marcel@mima.com / 208-XXX-XXXX</td>
+          <th>{{player.jerseyNumber}}</th>
+          <td>{{player.firstName}}</td>
+          <td>{{player.lastName}}</td>
+          <td>{{player.position}}</td>
+          <td>{{player.grade}}</td>
+          <td>{{player.homeCity}}, {{player.homeState}}</td>
+          <td>{{player.email}} / {{player.phoneNumber}}</td>
         </tr>
       </tbody>
     </table>
@@ -36,6 +36,11 @@ export default {
   name: "player",
   mounted() {
     this.$store.dispatch("getPlayers");
+  },
+  computed: {
+    players() {
+      return this.$store.state.players;
+    }
   }
 };
 </script>

@@ -33,9 +33,11 @@ import player from "@/components/Player.vue";
 import navbar from "@/components/BoardNav.vue";
 export default {
   name: "team",
+  props: ["teamData", "playerData"],
 
   mounted() {
     this.$store.dispatch("getTeams");
+    this.$store.dispatch("getPlayers");
   },
   components: {
     navbar,
@@ -45,8 +47,8 @@ export default {
     teams() {
       return this.$store.state.teams;
     },
-    team() {
-      return this.$store.state.teams;
+    player() {
+      return this.$store.state.players;
     }
   }
 };
