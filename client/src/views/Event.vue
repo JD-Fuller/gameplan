@@ -77,7 +77,7 @@
                       class="btn btn-danger mr-4"
                     >
                       x</button
-                    ><button>Edit</button>
+                    ><button @click="editEvent(event._id)">Edit</button>
                   </td>
                 </tr>
               </tbody>
@@ -91,6 +91,7 @@
 </template>
 
 <script>
+  import NotificationService from "../NotificationService.js";
 export default {
   name: "Events",
   data() {
@@ -114,8 +115,15 @@ export default {
     },
     deleteEvent(eventId) {
       this.$store.dispatch("deleteEvent", eventId);
-    }
-  },
+    },
+    async editEvent(eventId) {
+      
+    let eventInfo = await NotificationService.editEvent()
+    eventInfo.id = eventId
+    
+        this.$store.dispatch("editEvent", eventInfo)
+      }
+    },
   computed: {
     events() {
       return this.$store.state.events;

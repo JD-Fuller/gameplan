@@ -53,7 +53,7 @@ export default class EventController {
 
   async edit(req, res, next) {
     try {
-      let data = await _eventService.edit(req.params.id);
+      let data = await _eventService.edit(req.body);
       return res.send(data);
     } catch (error) {
       next(error);
