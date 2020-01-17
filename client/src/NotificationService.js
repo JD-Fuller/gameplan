@@ -51,10 +51,10 @@ export default class NotificationService {
   static async editEvent(title = "Enter Inputs", description="Enter Desc", location="Enter locale") {
     try {
       const {value: formValues} = await Swal.fire({
-        title: "Edit Form...",
-        html: `<input id="title" class="swal2-input">`+
-              `<input id="description" class="swal2-input">`+
-              `<input id="location" class="swal2-input">`,
+        title: "Edit Event...",
+        html: `<input id="title" class="swal2-input" placeholder="Title...">`+
+              `<input id="description" class="swal2-input" placeholder="Description...">`+
+              `<input id="location" class="swal2-input" placeholder="Location...">`,
         focusConfirm: false,
         
         preConfirm: () => {

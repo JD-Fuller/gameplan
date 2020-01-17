@@ -34,7 +34,7 @@ class EventService {
   async edit(eventData) {
     let data = await _repository.findOneAndUpdate(
       { _id: eventData.id },
-      { title: eventData.title, description: eventData.description },
+      { title: eventData.title, description: eventData.description, location: eventData.location},
       { new: true }
       //Check requirements for findoneandupdate in mongoose docs
     );
