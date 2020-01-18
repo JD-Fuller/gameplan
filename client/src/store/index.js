@@ -141,6 +141,7 @@ export default new Vuex.Store({
     async createTeam({ commit, dispatch }, teamData) {
       let res = await api.post("/teams", teamData);
       commit("setTeams", res.data);
+      console.log(teamData);
     },
     // #endregion
 
@@ -154,6 +155,7 @@ export default new Vuex.Store({
     async addPlayer({ commit, dispatch }, playerData) {
       let res = await api.post("players", playerData);
       commit("createPlayer", res.data);
+      console.log(playerData);
     }
     //#endregion
   }

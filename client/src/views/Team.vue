@@ -8,7 +8,12 @@
         <div class="col-md-9">
           <div class="d-flex">
             <h1>TEAM ROSTER</h1>
-            <button class="btn btn-sm bg-danger addButton" @click="show = !show">Add Player</button>
+            <button
+              class="btn btn-sm bg-danger addButton"
+              data-toggle="modal"
+              data-target="#addPlayerForm"
+              @click="show = !show"
+            >Add Player</button>
           </div>
         </div>
       </div>
@@ -27,61 +32,121 @@
     </div>
     <div class="row container-fluid">
       <div class="col-md-6">
-        <form v-if="show" class="playerForm">
+        <form id="addPlayerForm" @submit.prevent="addPlayer" v-if="show" class="playerForm">
           <div class="text-center addHeader text-light">
             <h1>Add Player</h1>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputEmail4">First Name</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="first" />
+              <input
+                type="text"
+                class="form-control"
+                id="inputEmail4"
+                placeholder="first"
+                v-model="newPlayer.firstName"
+                required
+              />
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Last Name</label>
-              <input type="text" class="form-control" id="inputPassword4" placeholder="last" />
+              <input
+                type="text"
+                class="form-control"
+                id="inputPassword4"
+                placeholder="last"
+                v-model="newPlayer.lastName"
+                required
+              />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="inputCity">Position</label>
-              <input type="text" class="form-control" id="inputCity" placeholder="position" />
+              <input
+                type="text"
+                class="form-control"
+                id="inputCity"
+                placeholder="position"
+                v-model="newPlayer.position"
+                required
+              />
             </div>
             <div class="form-group col-md-4">
               <label for="inputState">Grade</label>
-              <input id="inputState" class="form-control" placeholder="11th" />
+              <input
+                id="inputState"
+                class="form-control"
+                placeholder="11th"
+                v-model="newPlayer.grade"
+                required
+              />
             </div>
             <div class="form-group col-md-4">
-              <label for="inputZip">Jersey Number</label>
-              <input type="text" class="form-control" id="inputZip" placeholder="#" />
+              <label for="jerseyNumber">Jersey Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="jerseyNumber"
+                placeholder="#"
+                v-model="newPlayer.jerseyNumber"
+              />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">City</label>
-              <input type="text" class="form-control" id="inputCity" placeholder="City" />
+              <input
+                type="text"
+                class="form-control"
+                id="inputCity"
+                placeholder="City"
+                v-model="newPlayer.homeCity"
+              />
             </div>
             <div class="form-group col-md-6">
               <label for="inputState">State</label>
-              <input id="inputState" class="form-control" placeholder="State" />
+              <input
+                id="inputState"
+                class="form-control"
+                placeholder="State"
+                v-model="newPlayer.homeState"
+              />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">Email</label>
-              <input type="email" class="form-control" id="inputCity" placeholder="john@doe.com" />
+              <input
+                type="email"
+                class="form-control"
+                id="inputCity"
+                placeholder="john@doe.com"
+                v-model="newPlayer.email"
+                required
+              />
             </div>
             <div class="form-group col-md-6">
               <label for="inputState" type="tel">Phone</label>
-              <input id="inputState" class="form-control" placeholder="(123) 456-7890" />
+              <input
+                id="inputState"
+                class="form-control"
+                placeholder="(123) 456-7890"
+                v-model="newPlayer.phoneNumber"
+              />
             </div>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="gridCheck" />
-              <label class="form-check-label" for="gridCheck">Check me out</label>
+              <label class="form-check-label" for="gridCheck">Coach</label>
             </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Sign in</button>
+            <div>
+              <input class="form-check-input" type="checkbox" id="gridCheck" />
+              <label class="form-check-label" for="gridCheck">Player</label>
+            </div>
+          </div>-->
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
     </div>
@@ -93,12 +158,44 @@ import player from "@/components/Player.vue";
 import navbar from "@/components/BoardNav.vue";
 export default {
   name: "team",
+  props: ["teamData", "playerData"],
   data() {
     return {
+      newPlayer: {
+        firstName: "",
+        lastName: "",
+        position: "",
+        grade: "",
+        jerseyNumber: "",
+        homeCity: "",
+        homeState: "",
+        email: "",
+        phoneNumber: "",
+        authorId: this.authorId,
+        teamId: this.authorId
+      },
       show: false
     };
   },
-  props: ["teamData", "playerData"],
+  methods: {
+    addPlayer() {
+      let player = { ...this.newPlayer };
+      this.$store.dispatch("addPlayer", player);
+      this.newPlayer = {
+        firstName: "",
+        lastName: "",
+        position: "",
+        grade: "",
+        jerseyNumber: Number,
+        homeCity: "",
+        homeState: "",
+        email: "",
+        phoneNumber: "",
+        authorId: this.authorId,
+        teamId: this.authorId
+      };
+    }
+  },
 
   mounted() {
     this.$store.dispatch("getTeams");
@@ -129,6 +226,6 @@ export default {
 }
 .playerForm {
   position: absolute;
-  z-index: 1;
+  z-index: -1;
 }
 </style>
