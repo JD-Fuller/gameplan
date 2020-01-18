@@ -24,7 +24,8 @@ export default new Vuex.Store({
     teams: [],
     notes: [],
     activePost: {},
-    events: []
+    events: [],
+    activeAdmin: {}
   },
   mutations: {
     setUser(state, user) {

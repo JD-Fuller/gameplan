@@ -26,15 +26,17 @@
         </div>
       </div>
       <div class="col-md-8">
-        Bulletin
-        <div class="container-fluid row">
+        <h1 style="font-variant: all-small-caps">Bulletin Board</h1>
+        <div class="container-fluid row border p-4 shadow">
           <div class="col-md-12">
             <ul
               v-for="post in posts"
               :key="post._id"
               class="d-flex justify-content-start"
             >
-              <li>{{ post.content }}</li>
+              <h4 class="mr-3">{{ post.content }}</h4>
+              <p>Coach: {{ user.name }}</p>
+
               <a
                 @submit.prevent="deletePost()"
                 class="mx-3"
@@ -105,6 +107,9 @@ export default {
   computed: {
     posts() {
       return this.$store.state.posts;
+    },
+    user() {
+      return this.$store.state.user;
     }
   },
 
@@ -113,8 +118,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-.chat-row {
-  min-width: 200px;
-}
-</style>
+<style scoped></style>
