@@ -15,7 +15,17 @@ Vue.filter("formatDate", function(value) {
 
 Vue.filter("eventDate", function(value) {
   if (value) {
-    return moment(String(value)).format("ddd, MMM Do YYYY - hh:mm a");
+    return moment(String(value)).format("ddd, MMM Do YYYY, hh:mm a");
+  }
+});
+Vue.filter("eventTime", function(value) {
+  if (value) {
+    return moment(String(value)).format("hh:mm a");
+  }
+});
+Vue.filter("postFormat", function(value) {
+  if (value) {
+    return moment(String(value)).fromNow();
   }
 });
 

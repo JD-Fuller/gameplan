@@ -67,7 +67,7 @@
                 aria-expanded="false"
                 style="color: red; text-align: left"
               >
-                Event:
+                Event: {{ date.date | eventDate }}
                 <i class="fa fa-chevron-down float-right"></i>
               </a>
             </h5>
@@ -104,7 +104,9 @@
               class="d-flex justify-content-start"
             >
               <h4 class="mr-3">{{ post.content }}</h4>
-              <p>Coach: {{ user.name }}</p>
+              <p class="text-secondary">
+                {{ user.name }}, {{ user.updatedAt | postFormat }}
+              </p>
               <div class="event-edits">
                 <a
                   @submit.prevent="deletePost()"

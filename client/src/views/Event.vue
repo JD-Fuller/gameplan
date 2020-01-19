@@ -25,6 +25,11 @@
                 placeholder="Date..."
                 v-model="newEvent.date"
               />
+              <!-- <input
+                type="time"
+                placeholder="Time..."
+                v-model="newEvent.time"
+              /> -->
               <input
                 type="text"
                 placeholder="Location..."
@@ -62,6 +67,8 @@
                   <th>Title</th>
                   <th>Description</th>
                   <th>Location</th>
+                  <th>Date</th>
+                  <!-- <th>Time</th> -->
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -73,6 +80,8 @@
                   <td>{{ event.title }}</td>
                   <td>{{ event.description }}</td>
                   <td>{{ event.location }}</td>
+                  <td>{{ event.date | formatDate }}</td>
+                  <!-- <td>{{ event.time | formatTime }}</td> -->
                   <td>
                     <button
                       @click="deleteEvent(event._id)"
