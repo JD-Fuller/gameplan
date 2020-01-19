@@ -51,11 +51,8 @@ export default class PostController {
 
   async edit(req, res, next) {
     try {
-      let data = await _postService.edit(
-        req.params.id,
-        req.session.uid,
-        req.body
-      );
+      req.body.authorId = req.session.uid;
+      let data = await _postService.edit(req.body);
       return res.send(data);
     } catch (error) {
       next(error);
