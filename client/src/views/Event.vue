@@ -3,6 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col" style=" margin-bottom: 50px;">
+          <boardnav />
           <h1>EVENTS PAGE</h1>
           <div>
             <form @submit.prevent="createEvent">
@@ -91,6 +92,7 @@
 </template>
 
 <script>
+import boardnav from "../components/BoardNav";
 import NotificationService from "../NotificationService.js";
 export default {
   name: "Events",
@@ -128,6 +130,9 @@ export default {
     events() {
       return this.$store.state.events;
     }
+  },
+  components: {
+    boardnav
   }
 };
 </script>
