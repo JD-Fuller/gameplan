@@ -14,9 +14,15 @@
     <div class="container-fluid row">
       <div class="col-md-4">
         <h2>Upcoming Events</h2>
-
-        <div id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="card">
+        <div
+          id="accordion"
+          role="tablist"
+          aria-multiselectable="true"
+          v-for="date in dates"
+          :key="date._id"
+          class="justify-content-start"
+        >
+          <!-- <div class="card">
             <h5 class="card-header" role="tab" id="headingOne">
               <a
                 data-toggle="collapse"
@@ -50,74 +56,38 @@
                 haven't heard of them accusamus labore sustainable VHS.
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="card">
-            <h5 class="card-header" role="tab" id="headingTwo">
+            <h5 class="card-header" role="tab" id="heading">
               <a
-                class="collapsed d-block"
+                class="collapsed d-block font-weight-bold"
                 data-toggle="collapse"
                 data-parent="#accordion"
-                href="#collapseTwo"
+                href="#collapse"
                 aria-expanded="false"
-                aria-controls="collapseTwo"
                 style="color: red; text-align: left"
               >
-                Event 2
+                Event:
                 <i class="fa fa-chevron-down float-right"></i>
               </a>
             </h5>
-            <div
-              id="collapseTwo"
-              class="collapse"
-              role="tabpanel"
-              aria-labelledby="headingTwo"
-            >
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life
-                accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                non cupidatat skateboard dolor brunch. Food truck quinoa
-                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
-                put a bird on it squid single-origin coffee nulla assumenda
-                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-                wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                excepteur butcher vice lomo. Leggings occaecat craft beer
-                farm-to-table, raw denim aesthetic synth nesciunt you probably
-                haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <h5 class="card-header" role="tab" id="headingThree">
-              <a
-                class="collapsed d-block"
-                data-toggle="collapse"
-                data-parent="#accordion"
-                href="#collapseThree"
-                aria-expanded="false"
-                aria-controls="collapseThree"
-                style="color: red; text-align: left"
-              >
-                Event 3
-                <i class="fa fa-chevron-down float-right"></i>
-              </a>
-            </h5>
-            <div
-              id="collapseThree"
-              class="collapse"
-              role="tabpanel"
-              aria-labelledby="headingThree"
-            >
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life
-                accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                non cupidatat skateboard dolor brunch. Food truck quinoa
-                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
-                put a bird on it squid single-origin coffee nulla assumenda
-                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-                wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                excepteur butcher vice lomo. Leggings occaecat craft beer
-                farm-to-table, raw denim aesthetic synth nesciunt you probably
-                haven't heard of them accusamus labore sustainable VHS.
+            <div id="collapse" class="collapse" role="tabpanel">
+              <div class="card-body pb-5">
+                <h3
+                  class="font-weight-bold"
+                  style="text-align: left; font-variant: all-small-caps"
+                >
+                  {{ date.title }}
+                </h3>
+                <p style="text-align: left">
+                  <i class="fas fa-map-marker-alt mr-2"></i>{{ date.location }}
+                </p>
+                <p style="text-align: left">
+                  <i class="far fa-calendar-alt mr-2"></i>{{ date.date }}
+                </p>
+                <p class="card-text mb-0 float-left">
+                  <i class="fas fa-info-circle mr-2"></i>{{ date.description }}
+                </p>
               </div>
             </div>
           </div>
@@ -178,6 +148,7 @@ export default {
   name: "boards",
   mounted() {
     this.$store.dispatch("getPosts");
+    this.$store.dispatch("getEvents");
   },
   data() {
     return {
@@ -209,6 +180,15 @@ export default {
     },
     user() {
       return this.$store.state.user;
+    },
+    dates() {
+      let dateArray = this.$store.state.events;
+      let newArray = dateArray
+        .sort(function(a, b) {
+          return new Date(a.date) - new Date(b.date);
+        })
+        .slice(0, 3);
+      return newArray;
     }
   },
 
