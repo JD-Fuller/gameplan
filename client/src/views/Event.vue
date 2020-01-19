@@ -19,8 +19,9 @@
                 v-model="newEvent.description"
                 required
               />
+
               <input
-                type="text"
+                type="date"
                 placeholder="Date..."
                 v-model="newEvent.date"
               />

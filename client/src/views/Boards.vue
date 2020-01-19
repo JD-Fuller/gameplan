@@ -25,6 +25,7 @@
                 aria-expanded="true"
                 aria-controls="collapseOne"
                 class="d-block"
+                style="color: red; text-align: left;"
                 >Event 1
                 <i class="fa fa-chevron-down float-right"></i>
               </a>
@@ -59,6 +60,7 @@
                 href="#collapseTwo"
                 aria-expanded="false"
                 aria-controls="collapseTwo"
+                style="color: red; text-align: left"
               >
                 Event 2
                 <i class="fa fa-chevron-down float-right"></i>
@@ -93,6 +95,7 @@
                 href="#collapseThree"
                 aria-expanded="false"
                 aria-controls="collapseThree"
+                style="color: red; text-align: left"
               >
                 Event 3
                 <i class="fa fa-chevron-down float-right"></i>
@@ -119,17 +122,6 @@
             </div>
           </div>
         </div>
-
-        <div class="container-fluid row">
-          <div class="col-md-12">
-            <ul>
-              <strong>Next Game</strong>
-              <li>-Details</li>
-              <li>-Start Time</li>
-              <li>-Location</li>
-            </ul>
-          </div>
-        </div>
       </div>
       <div class="col-md-8">
         <h2 style="font-variant: all-small-caps">Bulletin Board</h2>
@@ -142,22 +134,23 @@
             >
               <h4 class="mr-3">{{ post.content }}</h4>
               <p>Coach: {{ user.name }}</p>
-
-              <a
-                @submit.prevent="deletePost()"
-                class="mx-3"
-                style="color: red"
-                type="submit"
-                @click="deletePost(post._id)"
-              >
-                <i class="fas fa-minus-circle"></i></a
-              ><a
-                @submit.prevent="editPost()"
-                type="submit"
-                @click="editPost(post._id)"
-              >
-                <i class="far fa-edit" style="color: grey"></i>
-              </a>
+              <div class="event-edits">
+                <a
+                  @submit.prevent="deletePost()"
+                  class="mx-3"
+                  style="color: red;"
+                  type="submit"
+                  @click="deletePost(post._id)"
+                >
+                  <i class="fas fa-minus-circle"></i></a
+                ><a
+                  @submit.prevent="editPost()"
+                  type="submit"
+                  @click="editPost(post._id)"
+                >
+                  <i class="far fa-edit" style="color: grey"></i>
+                </a>
+              </div>
             </ul>
           </div>
           <div class="container-fluid row">
