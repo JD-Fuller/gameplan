@@ -1,9 +1,9 @@
 <template>
   <div class="register">
-    <div class="row container-fluid">
-      <div class="col-md-12">
+    <div class="row container-fluid register-background pb-5 m-0">
+      <div class="col-md-12 pr-5 m-0">
         <navbar />
-        <div class="row container-fluid">
+        <div class="row container-fluid d-flex justify-content-center mt-4">
           <div class="col-md-5">
             <form
               @submit.prevent="register"
@@ -125,4 +125,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.register-background {
+  background: url("https://images.unsplash.com/photo-1578134260566-d4083893996a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  padding-left: 0px;
+  margin-right: 0px;
+}
+</style>
