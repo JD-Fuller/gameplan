@@ -96,21 +96,20 @@
       </div>
       <div class="col-md-8">
         <h2 style="font-variant: all-small-caps">Bulletin Board</h2>
-        <div class="container-fluid row border p-4 shadow">
-          <div class="col-md-12">
-            <ul
-              v-for="post in posts"
-              :key="post._id"
-              class="d-flex justify-content-start"
-            >
-              <h4 class="mr-3">{{ post.content }}</h4>
-              <p class="text-secondary">
-                {{ user.name }}, {{ user.updatedAt | postFormat }}
-              </p>
-              <div class="event-edits">
+        <div class="container-fluid">
+          <div class="row border p-4 shadow">
+            <div class="col-md-12">
+              <div v-for="post in posts" :key="post._id">
+                <p class="mr-3" style="text-align: left">
+                  {{ post.content }}
+                </p>
+                <p class="text-secondary float-right" style="text-align: right">
+                  {{ user.name }}, {{ post.createdAt | postFormat }}
+                </p>
+
                 <a
                   @submit.prevent="deletePost()"
-                  class="mx-3"
+                  class="mx-1 float-right"
                   style="color: red;"
                   type="submit"
                   @click="deletePost(post._id)"
@@ -119,23 +118,24 @@
                 ><a
                   @submit.prevent="editPost()"
                   type="submit"
+                  class="mx-1 float-right"
                   @click="editPost(post._id)"
                 >
                   <i class="far fa-edit" style="color: grey"></i>
                 </a>
               </div>
-            </ul>
-          </div>
-          <div class="container-fluid row">
-            <div class="col-md-12 d-flex justify-content-center">
-              <input
-                v-model="newPost.content"
-                type="text"
-                class="d-block chat-row"
-                placeholder="comments here"
-                required
-              />
-              <button @click="addPost()">ADD COMMENT</button>
+            </div>
+            <div class="container-fluid row">
+              <div class="col-md-12 d-flex justify-content-center">
+                <input
+                  v-model="newPost.content"
+                  type="text"
+                  class="d-block chat-row mr-3"
+                  placeholder="Add post here..."
+                  required
+                />
+                <button @click="addPost()"><i class="fas fa-plus"></i></button>
+              </div>
             </div>
           </div>
         </div>
