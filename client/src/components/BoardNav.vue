@@ -25,7 +25,9 @@
               </button>
             </li>
             <li class="nav-item active">
+              <router-link :to="{name: 'events'}">
               <button class="btn btn-none">Events</button>
+              </router-link>
             </li>
             <li class="nav-item ml-4">
               <button class="btn btn-none">Notes</button>
