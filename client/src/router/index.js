@@ -9,6 +9,9 @@ import Login from "../views/Login.vue";
 // @ts-ignore
 import Team from "../views/Team.vue";
 
+// @ts-ignore
+import Register from "../views/Register.vue";
+
 Vue.use(Router);
 
 export default new Router({
@@ -37,6 +40,11 @@ export default new Router({
       path: "/team",
       name: "team",
       component: Team
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register
     }
   ]
 });
