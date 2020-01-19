@@ -83,7 +83,8 @@
                   <i class="fas fa-map-marker-alt mr-2"></i>{{ date.location }}
                 </p>
                 <p style="text-align: left">
-                  <i class="far fa-calendar-alt mr-2"></i>{{ date.date }}
+                  <i class="far fa-calendar-alt mr-2"></i
+                  >{{ date.date | eventDate }}
                 </p>
                 <p class="card-text mb-0 float-left">
                   <i class="fas fa-info-circle mr-2"></i>{{ date.description }}
