@@ -13,7 +13,113 @@
 
     <div class="container-fluid row">
       <div class="col-md-4">
-        Events
+        <h2>Upcoming Events</h2>
+
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="card">
+            <h5 class="card-header" role="tab" id="headingOne">
+              <a
+                data-toggle="collapse"
+                data-parent="#accordion"
+                href="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+                class="d-block"
+                >Event 1
+                <i class="fa fa-chevron-down float-right"></i>
+              </a>
+            </h5>
+
+            <div
+              id="collapseOne"
+              class="collapse show"
+              role="tabpanel"
+              aria-labelledby="headingOne"
+            >
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life
+                accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                non cupidatat skateboard dolor brunch. Food truck quinoa
+                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
+                put a bird on it squid single-origin coffee nulla assumenda
+                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                excepteur butcher vice lomo. Leggings occaecat craft beer
+                farm-to-table, raw denim aesthetic synth nesciunt you probably
+                haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h5 class="card-header" role="tab" id="headingTwo">
+              <a
+                class="collapsed d-block"
+                data-toggle="collapse"
+                data-parent="#accordion"
+                href="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                Event 2
+                <i class="fa fa-chevron-down float-right"></i>
+              </a>
+            </h5>
+            <div
+              id="collapseTwo"
+              class="collapse"
+              role="tabpanel"
+              aria-labelledby="headingTwo"
+            >
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life
+                accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                non cupidatat skateboard dolor brunch. Food truck quinoa
+                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
+                put a bird on it squid single-origin coffee nulla assumenda
+                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                excepteur butcher vice lomo. Leggings occaecat craft beer
+                farm-to-table, raw denim aesthetic synth nesciunt you probably
+                haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h5 class="card-header" role="tab" id="headingThree">
+              <a
+                class="collapsed d-block"
+                data-toggle="collapse"
+                data-parent="#accordion"
+                href="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                Event 3
+                <i class="fa fa-chevron-down float-right"></i>
+              </a>
+            </h5>
+            <div
+              id="collapseThree"
+              class="collapse"
+              role="tabpanel"
+              aria-labelledby="headingThree"
+            >
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life
+                accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                non cupidatat skateboard dolor brunch. Food truck quinoa
+                nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
+                put a bird on it squid single-origin coffee nulla assumenda
+                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                excepteur butcher vice lomo. Leggings occaecat craft beer
+                farm-to-table, raw denim aesthetic synth nesciunt you probably
+                haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="container-fluid row">
           <div class="col-md-12">
             <ul>
@@ -26,7 +132,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <h1 style="font-variant: all-small-caps">Bulletin Board</h1>
+        <h2 style="font-variant: all-small-caps">Bulletin Board</h2>
         <div class="container-fluid row border p-4 shadow">
           <div class="col-md-12">
             <ul
@@ -118,4 +224,11 @@ export default {
   }
 };
 </script>
-<style scoped></style>
+<style scoped>
+.card-header .fa {
+  transition: 0.3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
+</style>
