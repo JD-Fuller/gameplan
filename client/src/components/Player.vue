@@ -27,7 +27,7 @@
           <td>{{ player.homeCity }}, {{ player.homeState }}</td>
           <td>{{ player.email }} / {{ player.phoneNumber }}</td>
           <td>
-            <button>Edit</button>
+            <button @click="editPlayer(player._id)">Edit</button>
             <button @click="deletePlayer(player._id)">Delete</button>
           </td>
         </tr>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import NotificationService from "../NotificationService";
+import Swal from "sweetalert2";
 export default {
   name: "player",
   mounted() {
@@ -50,6 +52,12 @@ export default {
   methods: {
     deletePlayer(playerId) {
       this.$store.dispatch("deletePlayer", playerId);
+    },
+    async editPlayer(playerId) {
+      let playerInfo = await NotificationService.editPlayer();
+      playerInfo.id = playerId;
+
+      this.$store.dispatch("editPlayer", playerInfo);
     }
   }
 };
