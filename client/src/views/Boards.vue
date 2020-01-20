@@ -97,32 +97,55 @@
       <div class="col-md-8">
         <h2 style="font-variant: all-small-caps">Bulletin Board</h2>
         <div class="container-fluid">
-          <div class="row border p-4 shadow">
+          <div class="row border p-3 shadow">
             <div class="col-md-12">
               <div v-for="post in posts" :key="post._id">
                 <p class="mr-3" style="text-align: left">
                   {{ post.content }}
                 </p>
-                <p class="text-secondary float-right" style="text-align: right">
-                  {{ user.name }}, {{ post.createdAt | postFormat }}
+                <p class="text-secondary float-right">
+                  <i
+                    >Coach {{ user.name }},
+                    <small>{{ post.createdAt | postFormat }}</small></i
+                  >
                 </p>
-
-                <a
-                  @submit.prevent="deletePost()"
-                  class="mx-1 float-right"
-                  style="color: red;"
-                  type="submit"
-                  @click="deletePost(post._id)"
-                >
-                  <i class="fas fa-minus-circle"></i></a
-                ><a
-                  @submit.prevent="editPost()"
-                  type="submit"
-                  class="mx-1 float-right"
-                  @click="editPost(post._id)"
-                >
-                  <i class="far fa-edit" style="color: grey"></i>
-                </a>
+                <div class="dropdown">
+                  <button
+                    class="btn p-0 mr-1 float-right"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <div
+                      @submit.prevent="editPost()"
+                      type="submit"
+                      class="dropdown-item mx-1 float-right"
+                      @click="editPost(post._id)"
+                    >
+                      Edit
+                      <i class="far fa-edit" style="color: grey"></i>
+                    </div>
+                    <div
+                      @submit.prevent="deletePost()"
+                      class="dropdown-item mx-1 float-right"
+                      style="color: red;"
+                      type="submit"
+                      @click="deletePost(post._id)"
+                    >
+                      Delete
+                      <i class="fas fa-minus-circle"></i>
+                    </div>
+                  </div>
+                  <br />
+                </div>
               </div>
             </div>
             <div class="container-fluid row">
