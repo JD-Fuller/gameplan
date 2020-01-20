@@ -1,6 +1,6 @@
 <template>
   <div class="team">
-    <div class="row container-fluid">
+    <div class="row">
       <div class="col-md-12">
         <navbar />
       </div>
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="row container-fluid d-flex justify-content-center">
-      <div class="col-md-10">
+      <div class="col-md-10 justify-content-center">
         <player />
       </div>
     </div>
@@ -180,7 +180,7 @@ export default {
         email: "",
         phoneNumber: "",
         authorId: this.authorId,
-        teamId: this.authorId
+        teamId: this.teamId
       },
       show: false
     };
@@ -200,7 +200,7 @@ export default {
         email: "",
         phoneNumber: "",
         authorId: this.authorId,
-        teamId: this.authorId
+        teamId: this.teamId
       };
     }
   },
