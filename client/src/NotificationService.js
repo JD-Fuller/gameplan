@@ -1,5 +1,17 @@
 import Swal from "sweetalert2";
 
+function formatDate(date) {
+  var d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [year, month, day].join("-");
+}
+
 export default class NotificationService {
   static async inputData(title = "Enter Inputs") {
     try {
@@ -48,22 +60,19 @@ export default class NotificationService {
     }
   }
 
-  static async editEvent(
-    // @ts-ignore
-    title = "Enter Inputs",
-    // @ts-ignore
-    description = "Enter Desc",
-    // @ts-ignore
-    location = "Enter locale"
-  ) {
+  static async editEvent(event) {
     try {
+      debugger;
       const { value: formValues } = await Swal.fire({
         title: "Edit Event...",
         html:
-          `<h3>Title</h3><input id="title" class="swal2-input" placeholder="Title..." required>` +
-          `<h3>Description</h3><input id="description" class="swal2-input" placeholder="Description..." required>` +
-          `<h3>Location</h3><input id="location" class="swal2-input" placeholder="Location..." required>` +
-          `<h3>Date</h3><input id="date" type="date" class="swal2-input" placeholder="Date..." required>`,
+          `<h3>Title</h3><input id="title" value="${event.title}" class="swal2-input" placeholder="Title..." required>` +
+          `<h3>Description</h3><input id="description" value="${event.description}" class="swal2-input" placeholder="Description..." required>` +
+          `<h3>Location</h3><input id="location" class="swal2-input" value="${event.location ||
+            ""}" placeholder="Location..." required>` +
+          `<h3>Date</h3><input id="date" type="date" value="${formatDate(
+            event.date
+          )}" class="swal2-input" placeholder="Date..." required>`,
         focusConfirm: false,
 
         preConfirm: () => {
@@ -82,6 +91,7 @@ export default class NotificationService {
 
       if (formValues) {
         return {
+          _id: event._id,
           title: formValues[0],
           description: formValues[1],
           location: formValues[2],
