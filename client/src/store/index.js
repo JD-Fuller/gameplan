@@ -49,6 +49,10 @@ export default new Vuex.Store({
     setEvents(state, events) {
       state.events = events;
     },
+    putEvent(state, event) {
+      state.events.push(event);
+    },
+
     setTeams(state, teams) {
       state.teams = teams;
     },
@@ -56,7 +60,6 @@ export default new Vuex.Store({
       state.players = data;
     },
     createPlayer(state, players) {
-      debugger;
       state.players.push(players);
     }
   },
@@ -127,13 +130,13 @@ export default new Vuex.Store({
     },
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
+      commit("putEvent", res.data);
     },
     async editEvent({ commit, dispatch }, eventData) {
       let res = await api.put("events/" + eventData.id, eventData);
       dispatch("getEvents");
     },
     async deleteEvent({ commit, dispatch }, eventId) {
-      debugger;
       let res = await api.delete("events/" + eventId);
       dispatch("getEvents");
     },
