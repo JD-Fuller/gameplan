@@ -26,9 +26,9 @@
           <td>{{ player.grade }}</td>
           <td>{{ player.homeCity }}, {{ player.homeState }}</td>
           <td>{{ player.email }} / {{ player.phoneNumber }}</td>
-          <td>
-            <button @click="editPlayer(player._id)">Edit</button>
-            <button @click="deletePlayer(player._id)">Delete</button>
+          <td class="d-flex justify-content-between">
+            <i class="far fa-edit text-success" @click="editPlayer(player._id)"></i>
+            <i class="fas fa-trash-alt text-danger" @click="deletePlayer(player._id)"></i>
           </td>
         </tr>
       </tbody>
@@ -51,7 +51,20 @@ export default {
   },
   methods: {
     deletePlayer(playerId) {
-      this.$store.dispatch("deletePlayer", playerId);
+      Swal.fire({
+        title: "Delete this player?",
+        text: "You won't be able to undo this delete!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete player!"
+      }).then(result => {
+        if (result.value) {
+          this.$store.dispatch("deletePlayer", playerId);
+          Swal.fire("Deleted!", "Your post has been deleted.", "success");
+        }
+      });
     },
     async editPlayer(playerId) {
       let playerInfo = await NotificationService.editPlayer();
@@ -67,6 +80,10 @@ export default {
 .checkBox {
   height: 20px;
   width: 20px;
+}
+i:hover {
+  color: red;
+  cursor: pointer;
 }
 /* .tableBoarder {
   border-radius: 10%;

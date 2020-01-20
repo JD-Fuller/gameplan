@@ -114,8 +114,8 @@ export default class NotificationService {
     position = "position",
     grade = "grade",
     jerseyNumber = "jersey",
-    city = "city",
-    state = "state",
+    homeCity = "city",
+    homeState = "state",
     email = "email",
     phoneNumber = "phone"
   ) {
@@ -128,10 +128,10 @@ export default class NotificationService {
           `<h3>Position</h3><input id="position" class="swal2-input" placeholder="Position...">` +
           `<h3>Grade</h3><input id="grade" class="swal2-input" placeholder="Grade...">` +
           `<h3>Jersey Number</h3><input id="jersey" class="swal2-input" placeholder="Jersey Number...">` +
-          `<h3>City</h3><input id="city" class="swal2-input" placeholder="City...">` +
-          `<h3>State</h3><input id="state" class="swal2-input" placeholder="State...">` +
+          `<h3>City</h3><input id="homeCity" class="swal2-input" placeholder="City...">` +
+          `<h3>State</h3><input id="homeState" class="swal2-input" placeholder="State...">` +
           `<h3>Email</h3><input id="email" class="swal2-input" placeholder="Email...">` +
-          `<h3>Phone Number</h3><input id="phone" class="swal2-input" placeholder="Phone...">`,
+          `<h3>Phone Number</h3><input id="phoneNumber" class="swal2-input" placeholder="Phone...">`,
         focusConfirm: false,
 
         preConfirm: () => {
@@ -141,10 +141,10 @@ export default class NotificationService {
             document.getElementById("position").value,
             document.getElementById("grade").value,
             document.getElementById("jersey").value,
-            document.getElementById("city").value,
-            document.getElementById("state").value,
+            document.getElementById("homeCity").value,
+            document.getElementById("homeState").value,
             document.getElementById("email").value,
-            document.getElementById("phone").value
+            document.getElementById("phoneNumber").value
           ];
         }
       });
@@ -155,11 +155,11 @@ export default class NotificationService {
           lastName: formValues[1],
           position: formValues[2],
           grade: formValues[3],
-          jersey: formValues[4],
-          city: formValues[5],
-          state: formValues[6],
+          jerseyNumber: formValues[4],
+          homeCity: formValues[5],
+          homeState: formValues[6],
           email: formValues[7],
-          phone: formValues[8]
+          phoneNumber: formValues[8]
         };
       } else {
         console.log("formValues is false");
