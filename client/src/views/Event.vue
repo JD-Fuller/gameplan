@@ -83,12 +83,43 @@
                   <td>{{ event.date | formatDate }}</td>
                   <!-- <td>{{ event.time | formatTime }}</td> -->
                   <td>
-                    <button
-                      @click="deleteEvent(event._id)"
-                      class="btn btn-danger mr-4"
-                    >
-                      x</button
-                    ><button @click="editEvent(event._id)">Edit</button>
+                    <div class="dropdown">
+                      <button
+                        class="btn p-0 mr-1"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <i class="fas fa-ellipsis-h"></i>
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        <div
+                          @submit.prevent="editEvent()"
+                          class="dropdown-item mx-1 float-right"
+                          type="submit"
+                          @click="editEvent(event._id)"
+                        >
+                          Edit
+                          <i class="far fa-edit" style="color: grey"></i>
+                        </div>
+                        <div
+                          @submit.prevent="deleteEvent()"
+                          class="mx-1 dropdown-item float-right"
+                          style="color: red;"
+                          type="submit"
+                          @click="deleteEvent(event._id)"
+                        >
+                          Delete
+                          <i class="fas fa-minus-circle"></i>
+                        </div>
+                      </div>
+                      <br />
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -104,6 +135,7 @@
 <script>
 import boardnav from "../components/BoardNav";
 import NotificationService from "../NotificationService.js";
+import Swal from "sweetalert2";
 export default {
   name: "Events",
   data() {
@@ -126,8 +158,20 @@ export default {
       this.newEvent = { title: "", description: "", date: "", location: "" };
     },
     deleteEvent(eventId) {
-      debugger;
-      this.$store.dispatch("deleteEvent", eventId);
+      Swal.fire({
+        title: "Are you sure you want to delete this event?",
+        text: "You will not be able to undo this delete.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085D6",
+        cancelButtonColor: "#D33",
+        confirmButtonText: "Yes, Delete Event"
+      }).then(result => {
+        if (result.value) {
+          this.$store.dispatch("deleteEvent", eventId);
+          Swal.fire("Deleted!", "Your post has been deleted.", "Success");
+        }
+      });
     },
     async editEvent(eventId) {
       let eventInfo = await NotificationService.editEvent();
