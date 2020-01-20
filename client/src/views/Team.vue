@@ -9,22 +9,22 @@
           <div class="d-flex">
             <h1>TEAM ROSTER</h1>
             <button
-              class="btn bg-info addButton"
+              class="btn bg-info addButton py-0"
               data-toggle="modal"
               data-target="#addPlayerForm"
               @click="show = !show"
             >
-              <p><i class="fas fa-user-plus"> Add Player</i></p>
+              <i class="fas fa-user-plus"> Add Player</i>
             </button>
           </div>
         </div>
       </div>
       <div class="row container-fluid">
-        <div class="col-md-12 d-flex mt-4">
+        <div class="col-md-12 d-flex justify-content-center mt-4">
           <p>Team(s):</p>
-          <ul v-for="team in teams" :key="team._id" class="text-center">
-            <li class="text-center li">{{ team.title }}</li>
-          </ul>
+          <dl v-for="team in teams" :key="team._id" class="text-center">
+            <dt class="text-center li mx-1">{{ team.title }} |</dt>
+          </dl>
         </div>
       </div>
     </div>
@@ -227,9 +227,9 @@ export default {
 <style>
 .addButton {
   justify-content: end;
-  /* margin-left: auto; */
+  margin-left: auto;
   display: inline-block;
-  padding-bottom: -15px;
+  max-height: 45px;
 }
 .addHeader {
   background-color: #3e3f3a;
@@ -237,8 +237,5 @@ export default {
 .playerForm {
   position: absolute;
   z-index: -1;
-}
-li {
-  font-size: 22;
 }
 </style>

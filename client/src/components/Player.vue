@@ -16,7 +16,7 @@
       <tbody>
         <tr v-for="player in players" :key="player._id">
           <th>
-            <input type="checkbox" />
+            <input type="checkbox" class="checkBox" />
           </th>
           <th>{{ player.jerseyNumber }}</th>
           <td>{{ player.firstName }}</td>
@@ -46,6 +46,10 @@ export default {
 </script>
 
 <style>
+.checkBox {
+  height: 20px;
+  width: 20px;
+}
 /* .tableBoarder {
   border-radius: 10%;
 } */
