@@ -27,8 +27,14 @@
           <td>{{ player.homeCity }}, {{ player.homeState }}</td>
           <td>{{ player.email }} / {{ player.phoneNumber }}</td>
           <td class="d-flex justify-content-between">
-            <i class="far fa-edit text-success" @click="editPlayer(player._id)"></i>
-            <i class="fas fa-trash-alt text-danger" @click="deletePlayer(player._id)"></i>
+            <i
+              class="far fa-edit text-success"
+              @click="editPlayer(player._id)"
+            ></i>
+            <i
+              class="fas fa-trash-alt text-danger"
+              @click="deletePlayer(player._id)"
+            ></i>
           </td>
         </tr>
       </tbody>
@@ -84,11 +90,5 @@ export default {
 i:hover {
   color: red;
   cursor: pointer;
-}
-/* .tableBoarder {
-
-.tableBoarder {
-
-  border-radius: 10%;
 }
 </style>

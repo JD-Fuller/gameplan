@@ -49,8 +49,11 @@ export default class NotificationService {
   }
 
   static async editEvent(
+    // @ts-ignore
     title = "Enter Inputs",
+    // @ts-ignore
     description = "Enter Desc",
+    // @ts-ignore
     location = "Enter locale"
   ) {
     try {
@@ -65,9 +68,13 @@ export default class NotificationService {
 
         preConfirm: () => {
           return [
+            // @ts-ignore
             document.getElementById("title").value,
+            // @ts-ignore
             document.getElementById("description").value,
+            // @ts-ignore
             document.getElementById("location").value,
+            // @ts-ignore
             document.getElementById("date").value
           ];
         }
@@ -88,6 +95,7 @@ export default class NotificationService {
     }
   }
 
+  // @ts-ignore
   static async editPost(content = "Enter Content") {
     try {
       const { value: formValues } = await Swal.fire({
@@ -95,6 +103,7 @@ export default class NotificationService {
         html: `<h3>Content</h3><input id="content" class="swal2-input" placeholder="Post...">`,
         focusConfirm: false,
         preConfirm: () => {
+          // @ts-ignore
           return [document.getElementById("content").value];
         }
       });
@@ -112,14 +121,23 @@ export default class NotificationService {
   }
 
   static async editPlayer(
+    // @ts-ignore
     firstName = "firstName",
+    // @ts-ignore
     lastName = "lastName",
+    // @ts-ignore
     position = "position",
+    // @ts-ignore
     grade = "grade",
+    // @ts-ignore
     jerseyNumber = "jersey",
+    // @ts-ignore
     homeCity = "city",
+    // @ts-ignore
     homeState = "state",
+    // @ts-ignore
     email = "email",
+    // @ts-ignore
     phoneNumber = "phone"
   ) {
     try {
@@ -139,14 +157,23 @@ export default class NotificationService {
 
         preConfirm: () => {
           return [
+            // @ts-ignore
             document.getElementById("firstName").value,
+            // @ts-ignore
             document.getElementById("lastName").value,
+            // @ts-ignore
             document.getElementById("position").value,
+            // @ts-ignore
             document.getElementById("grade").value,
+            // @ts-ignore
             document.getElementById("jersey").value,
+            // @ts-ignore
             document.getElementById("homeCity").value,
+            // @ts-ignore
             document.getElementById("homeState").value,
+            // @ts-ignore
             document.getElementById("email").value,
+            // @ts-ignore
             document.getElementById("phoneNumber").value
           ];
         }
