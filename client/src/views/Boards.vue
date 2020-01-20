@@ -75,6 +75,8 @@
 <script>
 import NotificationService from "../NotificationService.js";
 import boardnav from "@/components/BoardNav.vue";
+import Swal from 'sweetalert2'
+
 export default {
   name: "boards",
   mounted() {
@@ -96,7 +98,24 @@ export default {
       };
     },
     deletePost(postId) {
+      Swal.fire({
+      title: 'Delete this post?',
+      text: "You won't be able to undo this delete!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete post!'
+  }).then((result) => {
+      if (result.value) {
       this.$store.dispatch("deletePost", postId);
+      Swal.fire(
+      'Deleted!',
+      'Your post has been deleted.',
+      'success'
+    )
+  }
+})
     },
     async editPost(postId) {
       let postInfo = await NotificationService.editPost();
