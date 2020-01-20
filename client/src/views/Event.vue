@@ -174,6 +174,7 @@ export default {
     async editEvent(event) {
       let eventInfo = await NotificationService.editEvent(event);
       // eventInfo.id = eventId;
+      debugger;
       this.$store.dispatch("editEvent", eventInfo);
     }
   },

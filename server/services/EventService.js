@@ -33,7 +33,7 @@ class EventService {
 
   async edit(eventData) {
     let data = await _repository.findOneAndUpdate(
-      { _id: eventData.id },
+      { _id: eventData._id },
       {
         title: eventData.title,
         description: eventData.description,

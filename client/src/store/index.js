@@ -134,7 +134,8 @@ export default new Vuex.Store({
       commit("putEvent", res.data);
     },
     async editEvent({ commit, dispatch }, eventData) {
-      let res = await api.put("events/" + eventData.id, eventData);
+      debugger;
+      let res = await api.put("events/" + eventData._id, eventData);
       dispatch("getEvents");
     },
     async deleteEvent({ commit, dispatch }, eventId) {
