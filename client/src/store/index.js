@@ -168,6 +168,14 @@ export default new Vuex.Store({
       debugger;
       commit("createPlayer", res.data);
       console.log(playerData);
+    },
+    async deletePlayer({ commit, dispatch }, playerId) {
+      let res = await api.delete("players/" + playerId);
+      dispatch("getPlayers");
+    },
+    async editPlayer({ commit, dispatch }, playerData) {
+      let res = await api.put("players/" + playerData.id, playerData);
+      dispatch("getPlayers");
     }
     //#endregion
   }

@@ -11,6 +11,7 @@
           <th scope="col">Grade</th>
           <th scope="col">Home Town</th>
           <th scope="col">Contact Info</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,10 @@
           <td>{{ player.grade }}</td>
           <td>{{ player.homeCity }}, {{ player.homeState }}</td>
           <td>{{ player.email }} / {{ player.phoneNumber }}</td>
+          <td class="d-flex justify-content-between">
+            <i class="far fa-edit text-success" @click="editPlayer(player._id)"></i>
+            <i class="fas fa-trash-alt text-danger" @click="deletePlayer(player._id)"></i>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -32,6 +37,8 @@
 </template>
 
 <script>
+import NotificationService from "../NotificationService";
+import Swal from "sweetalert2";
 export default {
   name: "player",
   mounted() {
@@ -40,6 +47,30 @@ export default {
   computed: {
     players() {
       return this.$store.state.players;
+    }
+  },
+  methods: {
+    deletePlayer(playerId) {
+      Swal.fire({
+        title: "Delete this player?",
+        text: "You won't be able to undo this delete!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete player!"
+      }).then(result => {
+        if (result.value) {
+          this.$store.dispatch("deletePlayer", playerId);
+          Swal.fire("Deleted!", "Your post has been deleted.", "success");
+        }
+      });
+    },
+    async editPlayer(playerId) {
+      let playerInfo = await NotificationService.editPlayer();
+      playerInfo.id = playerId;
+
+      this.$store.dispatch("editPlayer", playerInfo);
     }
   }
 };
@@ -50,7 +81,14 @@ export default {
   height: 20px;
   width: 20px;
 }
+i:hover {
+  color: red;
+  cursor: pointer;
+}
+/* .tableBoarder {
+
 .tableBoarder {
+
   border-radius: 10%;
 }
 </style>
