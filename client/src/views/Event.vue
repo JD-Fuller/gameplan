@@ -3,6 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col" style=" margin-bottom: 50px;">
+          <boardnav />
           <h1>EVENTS PAGE</h1>
           <div>
             <form @submit.prevent="createEvent">
@@ -18,11 +19,17 @@
                 v-model="newEvent.description"
                 required
               />
+
               <input
-                type="text"
+                type="date"
                 placeholder="Date..."
                 v-model="newEvent.date"
               />
+              <!-- <input
+                type="time"
+                placeholder="Time..."
+                v-model="newEvent.time"
+              /> -->
               <input
                 type="text"
                 placeholder="Location..."
@@ -60,6 +67,8 @@
                   <th>Title</th>
                   <th>Description</th>
                   <th>Location</th>
+                  <th>Date</th>
+                  <!-- <th>Time</th> -->
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -71,6 +80,8 @@
                   <td>{{ event.title }}</td>
                   <td>{{ event.description }}</td>
                   <td>{{ event.location }}</td>
+                  <td>{{ event.date | formatDate }}</td>
+                  <!-- <td>{{ event.time | formatTime }}</td> -->
                   <td>
                     <button
                       @click="deleteEvent(event._id)"
@@ -91,6 +102,7 @@
 </template>
 
 <script>
+import boardnav from "../components/BoardNav";
 import NotificationService from "../NotificationService.js";
 export default {
   name: "Events",
@@ -128,6 +140,9 @@ export default {
     events() {
       return this.$store.state.events;
     }
+  },
+  components: {
+    boardnav
   }
 };
 </script>

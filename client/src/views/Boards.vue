@@ -13,57 +13,117 @@
 
     <div class="container-fluid row">
       <div class="col-md-4">
-        Events
-        <div class="container-fluid row">
-          <div class="col-md-12">
-            <ul>
-              <strong>Next Game</strong>
-              <li>-Details</li>
-              <li>-Start Time</li>
-              <li>-Location</li>
-            </ul>
+        <h2>Upcoming Events</h2>
+        <div
+          id="accordion"
+          role="tablist"
+          aria-multiselectable="true"
+          v-for="(date, [i]) in dates"
+          :key="date._id"
+          class="justify-content-start"
+        >
+          <div class="card">
+            <h5 class="card-header" role="tab" id="heading">
+              <a
+                class="collapsed d-block font-weight-bold"
+                data-toggle="collapse"
+                data-parent="#accordion"
+                href="#collapse"
+                aria-expanded="false"
+                style="color: red; text-align: left"
+              >
+                Event: {{ date.date | eventDate }}
+                <i class="fa fa-chevron-down float-right"></i>
+              </a>
+            </h5>
+            <div id="collapse" class="collapse" role="tabpanel">
+              <div class="card-body pb-5">
+                <h3
+                  class="font-weight-bold"
+                  style="text-align: left; font-variant: all-small-caps"
+                >
+                  {{ date.title }}
+                </h3>
+                <p style="text-align: left">
+                  <i class="fas fa-map-marker-alt mr-2"></i>{{ date.location }}
+                </p>
+                <p style="text-align: left">
+                  <i class="far fa-calendar-alt mr-2"></i
+                  >{{ date.date | eventDate }}
+                </p>
+                <p class="card-text mb-0 float-left">
+                  <i class="fas fa-info-circle mr-2"></i>{{ date.description }}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-md-8">
-        <h1 style="font-variant: all-small-caps">Bulletin Board</h1>
-        <div class="container-fluid row border p-4 shadow">
-          <div class="col-md-12">
-            <ul
-              v-for="post in posts"
-              :key="post._id"
-              class="d-flex justify-content-start"
-            >
-              <h4 class="mr-3">{{ post.content }}</h4>
-              <p>Coach: {{ user.name }}</p>
-
-              <a
-                @submit.prevent="deletePost()"
-                class="mx-3"
-                style="color: red"
-                type="submit"
-                @click="deletePost(post._id)"
-              >
-                <i class="fas fa-minus-circle"></i></a
-              ><a
-                @submit.prevent="editPost()"
-                type="submit"
-                @click="editPost(post._id)"
-              >
-                <i class="far fa-edit" style="color: grey"></i>
-              </a>
-            </ul>
-          </div>
-          <div class="container-fluid row">
-            <div class="col-md-12 d-flex justify-content-center">
-              <input
-                v-model="newPost.content"
-                type="text"
-                class="d-block chat-row"
-                placeholder="comments here"
-                required
-              />
-              <button @click="addPost()">ADD COMMENT</button>
+        <h2 style="font-variant: all-small-caps">Bulletin Board</h2>
+        <div class="container-fluid">
+          <div class="row border p-3 shadow">
+            <div class="col-md-12">
+              <div v-for="post in posts" :key="post._id">
+                <p class="mr-3" style="text-align: left">
+                  {{ post.content }}
+                </p>
+                <p class="text-secondary float-right">
+                  <i
+                    >Coach {{ user.name }},
+                    <small>{{ post.createdAt | postFormat }}</small></i
+                  >
+                </p>
+                <div class="dropdown">
+                  <button
+                    class="btn p-0 mr-1 float-right"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <div
+                      @submit.prevent="editPost()"
+                      type="submit"
+                      class="dropdown-item mx-1 float-right"
+                      @click="editPost(post._id)"
+                    >
+                      Edit
+                      <i class="far fa-edit" style="color: grey"></i>
+                    </div>
+                    <div
+                      @submit.prevent="deletePost()"
+                      class="dropdown-item mx-1 float-right"
+                      style="color: red;"
+                      type="submit"
+                      @click="deletePost(post._id)"
+                    >
+                      Delete
+                      <i class="fas fa-minus-circle"></i>
+                    </div>
+                  </div>
+                  <br />
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid row">
+              <div class="col-md-12 d-flex justify-content-center">
+                <input
+                  v-model="newPost.content"
+                  type="text"
+                  class="d-block chat-row mr-3"
+                  placeholder="Add post here..."
+                  required
+                />
+                <button @click="addPost()"><i class="fas fa-plus"></i></button>
+              </div>
             </div>
           </div>
         </div>
@@ -81,6 +141,7 @@ export default {
   name: "boards",
   mounted() {
     this.$store.dispatch("getPosts");
+    this.$store.dispatch("getEvents");
   },
   data() {
     return {
@@ -129,6 +190,15 @@ export default {
     },
     user() {
       return this.$store.state.user;
+    },
+    dates() {
+      let dateArray = this.$store.state.events;
+      let newArray = dateArray
+        .sort(function(a, b) {
+          return new Date(a.date) - new Date(b.date);
+        })
+        .slice(0, 3);
+      return newArray;
     }
   },
 
@@ -137,4 +207,11 @@ export default {
   }
 };
 </script>
-<style scoped></style>
+<style scoped>
+.card-header .fa {
+  transition: 0.3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
+</style>
