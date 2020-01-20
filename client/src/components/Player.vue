@@ -1,5 +1,5 @@
 <template>
-  <div class="table">
+  <div class="table shadow">
     <table class="table table-hover table-striped">
       <thead class="thead-dark">
         <tr>
