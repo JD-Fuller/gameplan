@@ -11,6 +11,7 @@
           <th scope="col">Grade</th>
           <th scope="col">Home Town</th>
           <th scope="col">Contact Info</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,10 @@
           <td>{{ player.grade }}</td>
           <td>{{ player.homeCity }}, {{ player.homeState }}</td>
           <td>{{ player.email }} / {{ player.phoneNumber }}</td>
+          <td>
+            <button>Edit</button>
+            <button @click="deletePlayer(player._id)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -40,6 +45,11 @@ export default {
   computed: {
     players() {
       return this.$store.state.players;
+    }
+  },
+  methods: {
+    deletePlayer(playerId) {
+      this.$store.dispatch("deletePlayer", playerId);
     }
   }
 };

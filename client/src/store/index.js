@@ -135,7 +135,6 @@ export default new Vuex.Store({
       debugger;
       let res = await api.delete("events/" + eventId);
       dispatch("getEvents");
-
     },
     //#endregion - events
 
@@ -162,6 +161,10 @@ export default new Vuex.Store({
       let res = await api.post("players", playerData);
       commit("createPlayer", res.data);
       console.log(playerData);
+    },
+    async deletePlayer({ commit, dispatch }, playerId) {
+      let res = await api.delete("players/" + playerId);
+      dispatch("getPlayers");
     }
     //#endregion
   }
