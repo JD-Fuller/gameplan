@@ -56,6 +56,7 @@ export default new Vuex.Store({
       state.players = data;
     },
     createPlayer(state, players) {
+      debugger;
       state.players.push(players);
     }
   },
@@ -135,7 +136,6 @@ export default new Vuex.Store({
       debugger;
       let res = await api.delete("events/" + eventId);
       dispatch("getEvents");
-
     },
     //#endregion - events
 
@@ -159,7 +159,9 @@ export default new Vuex.Store({
       console.log("players in store", res.data);
     },
     async addPlayer({ commit, dispatch }, playerData) {
+      debugger;
       let res = await api.post("players", playerData);
+      debugger;
       commit("createPlayer", res.data);
       console.log(playerData);
     }

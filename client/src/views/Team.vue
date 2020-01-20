@@ -180,7 +180,7 @@ export default {
         email: "",
         phoneNumber: "",
         authorId: this.authorId,
-        teamId: this.authorId
+        teamId: this.teamId
       },
       show: false
     };
@@ -200,7 +200,7 @@ export default {
         email: "",
         phoneNumber: "",
         authorId: this.authorId,
-        teamId: this.authorId
+        teamId: this.teamId
       };
     }
   },
