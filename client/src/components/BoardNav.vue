@@ -2,9 +2,11 @@
   <div class="row container-fluid">
     <div class="col-12">
       <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-        <a class="navbar-brand" href="#">
-          <i class="fas fa-running mr-3"></i>GamePlan
-        </a>
+        <router-link :to="{ name: 'boards' }">
+          <a class="navbar-brand" href="#">
+            <i class="fas fa-running mr-3"></i>GamePlan
+          </a>
+        </router-link>
 
         <button
           class="navbar-toggler"
@@ -25,7 +27,9 @@
               </button>
             </li>
             <li class="nav-item active">
-              <button class="btn btn-none">Events</button>
+              <router-link :to="{ name: 'events' }">
+                <button class="btn btn-none">Events</button>
+              </router-link>
             </li>
             <li class="nav-item ml-4">
               <button class="btn btn-none">Notes</button>

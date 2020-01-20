@@ -3,6 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col" style=" margin-bottom: 50px;">
+          <boardnav />
           <h1>EVENTS PAGE</h1>
           <div>
             <form @submit.prevent="createEvent">
@@ -18,11 +19,17 @@
                 v-model="newEvent.description"
                 required
               />
+
               <input
-                type="text"
+                type="date"
                 placeholder="Date..."
                 v-model="newEvent.date"
               />
+              <!-- <input
+                type="time"
+                placeholder="Time..."
+                v-model="newEvent.time"
+              /> -->
               <input
                 type="text"
                 placeholder="Location..."
@@ -60,6 +67,8 @@
                   <th>Title</th>
                   <th>Description</th>
                   <th>Location</th>
+                  <th>Date</th>
+                  <!-- <th>Time</th> -->
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -71,6 +80,8 @@
                   <td>{{ event.title }}</td>
                   <td>{{ event.description }}</td>
                   <td>{{ event.location }}</td>
+                  <td>{{ event.date | formatDate }}</td>
+                  <!-- <td>{{ event.time | formatTime }}</td> -->
                   <td>
                     <button
                       @click="deleteEvent(event._id)"
@@ -91,7 +102,8 @@
 </template>
 
 <script>
-  import NotificationService from "../NotificationService.js";
+import boardnav from "../components/BoardNav";
+import NotificationService from "../NotificationService.js";
 export default {
   name: "Events",
   data() {
@@ -114,20 +126,23 @@ export default {
       this.newEvent = { title: "", description: "", date: "", location: "" };
     },
     deleteEvent(eventId) {
+      debugger;
       this.$store.dispatch("deleteEvent", eventId);
     },
     async editEvent(eventId) {
-      
-    let eventInfo = await NotificationService.editEvent()
-    eventInfo.id = eventId
-    
-        this.$store.dispatch("editEvent", eventInfo)
-      }
-    },
+      let eventInfo = await NotificationService.editEvent();
+      eventInfo.id = eventId;
+
+      this.$store.dispatch("editEvent", eventInfo);
+    }
+  },
   computed: {
     events() {
       return this.$store.state.events;
     }
+  },
+  components: {
+    boardnav
   }
 };
 </script>

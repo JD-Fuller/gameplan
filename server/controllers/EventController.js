@@ -53,6 +53,7 @@ export default class EventController {
 
   async edit(req, res, next) {
     try {
+      req.body.authorId = req.session.uid;
       let data = await _eventService.edit(req.body);
       return res.send(data);
     } catch (error) {

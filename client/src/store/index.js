@@ -25,6 +25,7 @@ export default new Vuex.Store({
     notes: [],
     activePost: {},
     events: [],
+    activeAdmin: {},
     players: []
   },
   mutations: {
@@ -111,6 +112,10 @@ export default new Vuex.Store({
       let res = await api.delete(`posts/${id}`);
       dispatch("getPosts");
     },
+    async editPost({ commit, dispatch }, postData) {
+      let res = await api.put("posts/" + postData.id, postData);
+      dispatch("getPosts");
+    },
 
     //#endregion
 
@@ -125,6 +130,12 @@ export default new Vuex.Store({
     async editEvent({ commit, dispatch }, eventData) {
       let res = await api.put("events/" + eventData.id, eventData);
       dispatch("getEvents");
+    },
+    async deleteEvent({ commit, dispatch }, eventId) {
+      debugger;
+      let res = await api.delete("events/" + eventId);
+      dispatch("getEvents");
+
     },
     //#endregion - events
 
