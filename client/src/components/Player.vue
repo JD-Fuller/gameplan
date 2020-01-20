@@ -16,15 +16,15 @@
       <tbody>
         <tr v-for="player in players" :key="player._id">
           <th>
-            <input type="checkbox" />
+            <input type="checkbox" class="checkBox" />
           </th>
-          <th>{{player.jerseyNumber}}</th>
-          <td>{{player.firstName}}</td>
-          <td>{{player.lastName}}</td>
-          <td>{{player.position}}</td>
-          <td>{{player.grade}}</td>
-          <td>{{player.homeCity}}, {{player.homeState}}</td>
-          <td>{{player.email}} / {{player.phoneNumber}}</td>
+          <th>{{ player.jerseyNumber }}</th>
+          <td>{{ player.firstName }}</td>
+          <td>{{ player.lastName }}</td>
+          <td>{{ player.position }}</td>
+          <td>{{ player.grade }}</td>
+          <td>{{ player.homeCity }}, {{ player.homeState }}</td>
+          <td>{{ player.email }} / {{ player.phoneNumber }}</td>
         </tr>
       </tbody>
     </table>
@@ -46,4 +46,11 @@ export default {
 </script>
 
 <style>
+.checkBox {
+  height: 20px;
+  width: 20px;
+}
+/* .tableBoarder {
+  border-radius: 10%;
+} */
 </style>

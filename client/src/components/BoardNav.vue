@@ -76,5 +76,6 @@ export default {
 <style>
 .btn:hover {
   background-color: red;
+  cursor: pointer;
 }
 </style>

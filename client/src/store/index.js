@@ -93,17 +93,7 @@ export default new Vuex.Store({
     //#endregion
 
     //#region -- BOARDS --
-    // getPosts({ commit, dispatch }) {
-    //   api.get("posts").then(res => {
-    //     commit("setPosts", res.data);
-    //   });
-    // },
-    // addPost({ commit, dispatch }, postData) {
-    //   api.post('posts', postData)
-    //     .then(serverBoard => {
-    //       dispatch('getPosts')
-    //     })
-    // },
+
     // //#endregion
 
     //#region -- LISTS --
@@ -145,6 +135,7 @@ export default new Vuex.Store({
       debugger;
       let res = await api.delete("events/" + eventId);
       dispatch("getEvents");
+
     },
     //#endregion - events
 
