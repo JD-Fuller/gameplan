@@ -7,7 +7,12 @@
           <h1>EVENTS PAGE</h1>
           <div>
             <form @submit.prevent="createEvent">
-              <input type="text" placeholder="Title..." v-model="newEvent.title" required />
+              <input
+                type="text"
+                placeholder="Title..."
+                v-model="newEvent.title"
+                required
+              />
               <input
                 type="text"
                 placeholder="Description..."
@@ -15,14 +20,24 @@
                 required
               />
 
-              <input type="date" placeholder="Date..." v-model="newEvent.date" />
+              <input
+                type="date"
+                placeholder="Date..."
+                v-model="newEvent.date"
+              />
               <!-- <input
                 type="time"
                 placeholder="Time..."
                 v-model="newEvent.time"
               />-->
-              <input type="text" placeholder="Location..." v-model="newEvent.location" />
-              <button class="btn btn-primary" style="margin:5px;">Submit</button>
+              <input
+                type="text"
+                placeholder="Location..."
+                v-model="newEvent.location"
+              />
+              <button class="btn btn-primary" style="margin:5px;">
+                Submit
+              </button>
             </form>
           </div>
         </div>
@@ -84,10 +99,9 @@
                         aria-labelledby="dropdownMenuButton"
                       >
                         <div
-                          @submit.prevent="editEvent()"
                           class="dropdown-item mx-1 float-right"
                           type="submit"
-                          @click="editEvent(event._id)"
+                          @click="editEvent(event)"
                         >
                           Edit
                           <i class="far fa-edit" style="color: grey"></i>
@@ -157,9 +171,9 @@ export default {
         }
       });
     },
-    async editEvent(eventId) {
-      let eventInfo = await NotificationService.editEvent();
-      eventInfo.id = eventId;
+    async editEvent(event) {
+      let eventInfo = await NotificationService.editEvent(event);
+      // eventInfo.id = eventId;
       this.$store.dispatch("editEvent", eventInfo);
     }
   },
