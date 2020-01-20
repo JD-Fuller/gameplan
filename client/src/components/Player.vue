@@ -50,7 +50,7 @@ export default {
   height: 20px;
   width: 20px;
 }
-/* .tableBoarder {
+.tableBoarder {
   border-radius: 10%;
-} */
+}
 </style>
