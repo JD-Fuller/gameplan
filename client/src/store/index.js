@@ -49,6 +49,10 @@ export default new Vuex.Store({
     setEvents(state, events) {
       state.events = events;
     },
+    putEvent(state, event) {
+      state.events.push(event);
+    },
+
     setTeams(state, teams) {
       state.teams = teams;
     },
@@ -122,17 +126,18 @@ export default new Vuex.Store({
     //#region EVENTS
     async getEvents({ commit, dispatch }) {
       let res = await api.get("events");
+
       commit("setEvents", res.data);
     },
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
+      commit("putEvent", res.data);
     },
     async editEvent({ commit, dispatch }, eventData) {
       let res = await api.put("events/" + eventData.id, eventData);
       dispatch("getEvents");
     },
     async deleteEvent({ commit, dispatch }, eventId) {
-      debugger;
       let res = await api.delete("events/" + eventId);
       dispatch("getEvents");
     },
@@ -158,7 +163,9 @@ export default new Vuex.Store({
       console.log("players in store", res.data);
     },
     async addPlayer({ commit, dispatch }, playerData) {
+      debugger;
       let res = await api.post("players", playerData);
+      debugger;
       commit("createPlayer", res.data);
       console.log(playerData);
     },

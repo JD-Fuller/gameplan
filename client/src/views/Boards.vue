@@ -1,42 +1,71 @@
 <template>
   <div class="boards">
     <boardnav />
-    <!-- WELCOME TO THE BOARDS!!!
-    <form @submit.prevent="addBoard">
-      <input type="text" placeholder="title" v-model="newBoard.title" required>
-      <input type="text" placeholder="description" v-model="newBoard.description">
-      <button type="submit">Create Board</button>
-    </form>
-    <div v-for="board in boards" :key="board._id">
-      <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
-    </div> -->
-
     <div class="container-fluid row">
       <div class="col-md-4">
         <h2>Upcoming Events</h2>
         <div
-          id="accordion"
-          role="tablist"
-          aria-multiselectable="true"
-          v-for="(date, [i]) in dates"
-          :key="date._id"
+          v-for="mainEvent in mainEvents"
+          :key="mainEvent._id"
           class="justify-content-start"
         >
           <div class="card">
-            <h5 class="card-header" role="tab" id="heading">
-              <a
-                class="collapsed d-block font-weight-bold"
-                data-toggle="collapse"
-                data-parent="#accordion"
-                href="#collapse"
-                aria-expanded="false"
-                style="color: red; text-align: left"
-              >
-                Event: {{ date.date | eventDate }}
-                <i class="fa fa-chevron-down float-right"></i>
-              </a>
+            <h5
+              class="card-header"
+              role="tab"
+              id="heading"
+              style="text-align: left"
+            >
+              Event: {{ mainEvent.date | eventDate }}
             </h5>
-            <div id="collapse" class="collapse" role="tabpanel">
+            <div>
+              <div class="card-body pb-5">
+                <h3
+                  class="font-weight-bold"
+                  style="text-align: left; font-variant: all-small-caps"
+                >
+                  {{ mainEvent.title }}
+                </h3>
+                <p style="text-align: left">
+                  <i class="fas fa-map-marker-alt mr-2"></i
+                  >{{ mainEvent.location }}
+                </p>
+                <p style="text-align: left">
+                  <i class="far fa-calendar-alt mr-2"></i
+                  >{{ mainEvent.date | eventDate }}
+                </p>
+                <p class="card-text mb-0 float-left">
+                  <i class="fas fa-info-circle mr-2"></i
+                  >{{ mainEvent.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h5 class="card-header" role="tab" id="heading">
+            <a
+              class="collapsed d-block font-weight-bold"
+              data-toggle="collapse"
+              data-parent="#accordion"
+              href="#collapse"
+              aria-expanded="false"
+              style="color: red; text-align: left; font-variant: all-small-caps; font-size: 22px"
+            >
+              On deck events
+              <i class="fa fa-chevron-down float-right"></i>
+            </a>
+          </h5>
+          <div id="collapse" class="collapse" role="tabpanel">
+            <div
+              id="accordion"
+              role="tablist"
+              aria-multiselectable="true"
+              v-for="date in dates"
+              :key="date._id"
+              class="justify-content-start"
+            >
               <div class="card-body pb-5">
                 <h3
                   class="font-weight-bold"
@@ -135,7 +164,7 @@
 <script>
 import NotificationService from "../NotificationService.js";
 import boardnav from "@/components/BoardNav.vue";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 export default {
   name: "boards",
@@ -160,23 +189,19 @@ export default {
     },
     deletePost(postId) {
       Swal.fire({
-      title: 'Delete this post?',
-      text: "You won't be able to undo this delete!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete post!'
-  }).then((result) => {
-      if (result.value) {
-      this.$store.dispatch("deletePost", postId);
-      Swal.fire(
-      'Deleted!',
-      'Your post has been deleted.',
-      'success'
-    )
-  }
-})
+        title: "Delete this post?",
+        text: "You won't be able to undo this delete!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete post!"
+      }).then(result => {
+        if (result.value) {
+          this.$store.dispatch("deletePost", postId);
+          Swal.fire("Deleted!", "Your post has been deleted.", "success");
+        }
+      });
     },
     async editPost(postId) {
       let postInfo = await NotificationService.editPost();
@@ -197,7 +222,16 @@ export default {
         .sort(function(a, b) {
           return new Date(a.date) - new Date(b.date);
         })
-        .slice(0, 3);
+        .slice(1, 3);
+      return newArray;
+    },
+    mainEvents() {
+      let dateArray = this.$store.state.events;
+      let newArray = dateArray
+        .sort(function(a, b) {
+          return new Date(a.date) - new Date(b.date);
+        })
+        .slice(0, 1);
       return newArray;
     }
   },

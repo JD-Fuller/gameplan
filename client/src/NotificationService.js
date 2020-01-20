@@ -57,16 +57,18 @@ export default class NotificationService {
       const { value: formValues } = await Swal.fire({
         title: "Edit Event...",
         html:
-          `<h3>Title</h3><input id="title" class="swal2-input" placeholder="Title...">` +
-          `<h3>Description</h3><input id="description" class="swal2-input" placeholder="Description...">` +
-          `<h3>Location</h3><input id="location" class="swal2-input" placeholder="Location...">`,
+          `<h3>Title</h3><input id="title" class="swal2-input" placeholder="Title..." required>` +
+          `<h3>Description</h3><input id="description" class="swal2-input" placeholder="Description..." required>` +
+          `<h3>Location</h3><input id="location" class="swal2-input" placeholder="Location..." required>` +
+          `<h3>Date</h3><input id="date" type="date" class="swal2-input" placeholder="Date..." required>`,
         focusConfirm: false,
 
         preConfirm: () => {
           return [
             document.getElementById("title").value,
             document.getElementById("description").value,
-            document.getElementById("location").value
+            document.getElementById("location").value,
+            document.getElementById("date").value
           ];
         }
       });
@@ -75,7 +77,8 @@ export default class NotificationService {
         return {
           title: formValues[0],
           description: formValues[1],
-          location: formValues[2]
+          location: formValues[2],
+          date: formValues[3]
         };
       } else {
         console.log("formValues is false");

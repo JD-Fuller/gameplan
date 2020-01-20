@@ -1,5 +1,5 @@
 <template>
-  <div class="row container-fluid">
+  <div class="row ">
     <div class="col-12">
       <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <router-link :to="{ name: 'boards' }">
