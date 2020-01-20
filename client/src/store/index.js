@@ -126,6 +126,7 @@ export default new Vuex.Store({
     //#region EVENTS
     async getEvents({ commit, dispatch }) {
       let res = await api.get("events");
+
       commit("setEvents", res.data);
     },
     async createEvent({ commit, dispatch }, eventData) {
