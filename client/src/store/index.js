@@ -92,17 +92,7 @@ export default new Vuex.Store({
     //#endregion
 
     //#region -- BOARDS --
-    // getPosts({ commit, dispatch }) {
-    //   api.get("posts").then(res => {
-    //     commit("setPosts", res.data);
-    //   });
-    // },
-    // addPost({ commit, dispatch }, postData) {
-    //   api.post('posts', postData)
-    //     .then(serverBoard => {
-    //       dispatch('getPosts')
-    //     })
-    // },
+
     // //#endregion
 
     //#region -- LISTS --
@@ -132,12 +122,11 @@ export default new Vuex.Store({
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
     },
-    async editEvent({commit, dispatch}, eventData) {
-      let res = await api.put("events/" + eventData.id, eventData)
-      dispatch("getEvents")
+    async editEvent({ commit, dispatch }, eventData) {
+      let res = await api.put("events/" + eventData.id, eventData);
+      dispatch("getEvents");
     },
     //#endregion - events
-
 
     // #region Teams
     async getTeams({ commit, dispatch }) {

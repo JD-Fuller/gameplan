@@ -18,13 +18,13 @@
           <th>
             <input type="checkbox" />
           </th>
-          <th>{{player.jerseyNumber}}</th>
-          <td>{{player.firstName}}</td>
-          <td>{{player.lastName}}</td>
-          <td>{{player.position}}</td>
-          <td>{{player.grade}}</td>
-          <td>{{player.homeCity}}, {{player.homeState}}</td>
-          <td>{{player.email}} / {{player.phoneNumber}}</td>
+          <th>{{ player.jerseyNumber }}</th>
+          <td>{{ player.firstName }}</td>
+          <td>{{ player.lastName }}</td>
+          <td>{{ player.position }}</td>
+          <td>{{ player.grade }}</td>
+          <td>{{ player.homeCity }}, {{ player.homeState }}</td>
+          <td>{{ player.email }} / {{ player.phoneNumber }}</td>
         </tr>
       </tbody>
     </table>
@@ -46,4 +46,7 @@ export default {
 </script>
 
 <style>
+/* .tableBoarder {
+  border-radius: 10%;
+} */
 </style>

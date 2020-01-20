@@ -31,7 +31,7 @@
               <button class="btn btn-none">Notes</button>
             </li>
             <li class="nav-item ml-4">
-              <router-link :to="{name: 'team'}">
+              <router-link :to="{ name: 'team' }">
                 <button class="btn btn-none">Roster</button>
               </router-link>
             </li>
@@ -72,5 +72,6 @@ export default {
 <style>
 .btn:hover {
   background-color: red;
+  cursor: pointer;
 }
 </style>

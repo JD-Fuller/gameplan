@@ -4,23 +4,26 @@
       <div class="col-md-12">
         <navbar />
       </div>
-      <div class="row container-fluid mt-5 ml-5 d-flex justify-content-center">
+      <div class="row container-fluid mt-5 ml-5 justify-content-center">
         <div class="col-md-9">
           <div class="d-flex">
             <h1>TEAM ROSTER</h1>
             <button
-              class="btn btn-sm bg-danger addButton"
+              class="btn bg-info addButton"
               data-toggle="modal"
               data-target="#addPlayerForm"
               @click="show = !show"
-            >Add Player</button>
+            >
+              <p><i class="fas fa-user-plus"> Add Player</i></p>
+            </button>
           </div>
         </div>
       </div>
       <div class="row container-fluid">
-        <div class="col-md-12 ml-5 d-flex mt-4">
-          <ul v-for="team in teams" :key="team._id">
-            <li>{{team.title}}</li>
+        <div class="col-md-12 d-flex mt-4">
+          <p>Team(s):</p>
+          <ul v-for="team in teams" :key="team._id" class="text-center">
+            <li class="text-center li">{{ team.title }}</li>
           </ul>
         </div>
       </div>
@@ -32,7 +35,12 @@
     </div>
     <div class="row container-fluid">
       <div class="col-md-6">
-        <form id="addPlayerForm" @submit.prevent="addPlayer" v-if="show" class="playerForm">
+        <form
+          id="addPlayerForm"
+          @submit.prevent="addPlayer"
+          v-if="show"
+          class="playerForm"
+        >
           <div class="text-center addHeader text-light">
             <h1>Add Player</h1>
           </div>
@@ -219,7 +227,9 @@ export default {
 <style>
 .addButton {
   justify-content: end;
-  margin-left: auto;
+  /* margin-left: auto; */
+  display: inline-block;
+  padding-bottom: -15px;
 }
 .addHeader {
   background-color: #3e3f3a;
@@ -227,5 +237,8 @@ export default {
 .playerForm {
   position: absolute;
   z-index: -1;
+}
+li {
+  font-size: 22;
 }
 </style>
