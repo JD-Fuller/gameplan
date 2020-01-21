@@ -41,7 +41,7 @@
           id="addPlayerForm"
           @submit.prevent="addPlayer"
           v-if="show"
-          class="playerForm bg-light formPad"
+          class="playerForm bg-light formPad justify-content-center"
         >
           <div class="text-center addHeader text-light">
             <h1>Add Player</h1>
