@@ -21,9 +21,6 @@
           <button class="btn btn-primary" style="margin: 5px">+ Fan</button>
         </form>
       </div>
-
-      <div v-for="fan in fans" :key="fan._id"></div>
-      {{ fan }}
     </div>
   </div>
 </template>
@@ -44,6 +41,7 @@ export default {
   },
   methods: {
     createFan() {
+      // TODO PUSH FAN INFO TO TEAM GROUP ARRAY
       let fan = { ...this.newFan };
       this.store.dispatch("createFan", fan);
       this.newFan = { name: "", email: "" };
