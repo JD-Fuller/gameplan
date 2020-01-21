@@ -26,7 +26,8 @@ export default new Vuex.Store({
     activePost: {},
     events: [],
     activeAdmin: {},
-    players: []
+    players: [],
+    fans: []
   },
   mutations: {
     setUser(state, user) {
@@ -43,6 +44,7 @@ export default new Vuex.Store({
       state.players = [];
       state.notes = [];
       state.teams = [];
+      state.fans = [];
     },
     addPost(state, post) {
       state.posts.push(post);
@@ -65,6 +67,12 @@ export default new Vuex.Store({
     },
     createPlayer(state, players) {
       state.players.push(players);
+    },
+    addFan(state, fans) {
+      state.fans.push(fans);
+    },
+    setFans(state, fans) {
+      state.fans = fans;
     }
   },
   actions: {
@@ -181,7 +189,18 @@ export default new Vuex.Store({
     async editPlayer({ commit, dispatch }, playerData) {
       let res = await api.put("players/" + playerData.id, playerData);
       dispatch("getPlayers");
-    }
+    },
     //#endregion
+
+    //#region Fans
+    async getFans({ commit, dispatch }) {
+      let res = await api.get("fans");
+      commit("setFans", res.data);
+    },
+
+    async createFan({ commit, dispatch }, fanData) {
+      let res = await api.post("fans", fanData);
+      commit("addFan", res.data);
+    }
   }
 });

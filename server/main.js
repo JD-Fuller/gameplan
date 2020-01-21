@@ -41,12 +41,14 @@ import PlayerController from "./controllers/PlayerController";
 import EventController from "./controllers/EventController";
 import NoteController from "./controllers/NoteController";
 import TeamController from "./controllers/TeamController";
+import FanController from "./controllers/FanController";
 
 server.use("/api/posts", new PostController().router);
 server.use("/api/events", new EventController().router);
 server.use("/api/players", new PlayerController().router);
 server.use("/api/notes", new NoteController().router);
 server.use("/api/teams", new TeamController().router);
+server.use("/api/fans", new FanController().router);
 
 //NOTE Default error handler, catches all routes with an error attached
 server.use((error, req, res, next) => {

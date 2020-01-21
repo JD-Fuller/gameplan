@@ -40,6 +40,11 @@
                 <button class="btn btn-sm">Roster</button>
               </router-link>
             </li>
+            <li class="nav-item mx-auto">
+              <router-link :to="{ name: 'fans' }">
+                <button class="btn btn-sm">Fans</button>
+              </router-link>
+            </li>
             <li>
               <button class="btn btn-sm mx-auto" @click="logout()">
                 Logout
