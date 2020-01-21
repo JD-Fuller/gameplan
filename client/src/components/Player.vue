@@ -88,7 +88,7 @@ export default {
   width: 20px;
 }
 i:hover {
-  color: red;
+  color: white;
   cursor: pointer;
 }
 </style>

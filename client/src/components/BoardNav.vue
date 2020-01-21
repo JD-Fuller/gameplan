@@ -22,21 +22,21 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <button class="btn btn-none" @click="createTeam()">
+              <button class="btn btn-sm" @click="createTeam()">
                 <i class="fa fas-plus">+</i>
               </button>
             </li>
             <li class="nav-item active">
               <router-link :to="{ name: 'events' }">
-                <button class="btn btn-none">Events</button>
+                <button class="btn btn-sm">Events</button>
               </router-link>
             </li>
             <li class="nav-item ml-4">
-              <button class="btn btn-none">Notes</button>
+              <button class="btn btn-sm">Notes</button>
             </li>
             <li class="nav-item ml-4">
               <router-link :to="{ name: 'team' }">
-                <button class="btn btn-none">Roster</button>
+                <button class="btn btn-sm">Roster</button>
               </router-link>
             </li>
             <li>
@@ -75,7 +75,8 @@ export default {
 
 <style>
 .btn:hover {
-  background-color: red;
+  background-color: purple;
+  color: white;
   cursor: pointer;
 }
 </style>

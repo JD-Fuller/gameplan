@@ -9,7 +9,8 @@
           <div class="d-flex">
             <h1>TEAM ROSTER</h1>
             <button
-              class="btn bg-info addButton py-0"
+              class="btn btn-sm text-light 
+               addButton shadow py-0"
               data-toggle="modal"
               data-target="#addPlayerForm"
               @click="show = !show"
@@ -230,12 +231,13 @@ export default {
   margin-left: auto;
   display: inline-block;
   max-height: 45px;
+  background-color: purple;
+}
+.addButton:hover {
+  box-shadow: 10px;
+  background-color: #a9059e;
 }
 .addHeader {
   background-color: #3e3f3a;
-}
-.playerForm {
-  position: absolute;
-  z-index: -1;
 }
 </style>
