@@ -11,7 +11,6 @@
             <h1 class="text-light">TEAM ROSTER</h1>
             <button
               class="btn btn-sm text-light addButton py-0"
-              data-toggle="modal"
               data-target="#addPlayerForm"
               @click="show = !show"
             >
@@ -43,10 +42,10 @@
           v-if="show"
           class="playerForm bg-light formPad justify-content-center"
         >
-          <div class="text-center addHeader text-light">
+          <div class="addHeader text-light pt-3 d-flex justify-content-center">
             <h1>Add Player</h1>
           </div>
-          <div class="form-row">
+          <div class="form-row mt-4 mr-4 ml-4">
             <div class="form-group col-md-6">
               <label for="inputEmail4">First Name</label>
               <input
@@ -70,7 +69,7 @@
               />
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row mr-4 ml-4">
             <div class="form-group col-md-4">
               <label for="inputCity">Position</label>
               <input
@@ -103,7 +102,7 @@
               />
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row mr-4 ml-4">
             <div class="form-group col-md-6">
               <label for="inputCity">City</label>
               <input
@@ -124,7 +123,7 @@
               />
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row mr-4 ml-4">
             <div class="form-group col-md-6">
               <label for="inputCity">Email</label>
               <input
@@ -156,7 +155,7 @@
               <label class="form-check-label" for="gridCheck">Player</label>
             </div>
           </div>-->
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary mb-4">Submit</button>
         </form>
       </div>
     </div>
@@ -196,7 +195,7 @@ export default {
         lastName: "",
         position: "",
         grade: "",
-        jerseyNumber: Number,
+        jerseyNumber: "",
         homeCity: "",
         homeState: "",
         email: "",
@@ -248,5 +247,8 @@ export default {
 }
 .formPad {
   margin-bottom: 20px;
+}
+.playerForm {
+  position: absolute;
 }
 </style>
