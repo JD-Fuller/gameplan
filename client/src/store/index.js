@@ -39,6 +39,10 @@ export default new Vuex.Store({
       state.user = {};
       state.posts = [];
       state.activePost = {};
+      state.events = [];
+      state.players = [];
+      state.notes = [];
+      state.teams = [];
     },
     addPost(state, post) {
       state.posts.push(post);
@@ -69,7 +73,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Register(creds);
         commit("setUser", user);
-        router.push({ name: "events" });
+        router.push({ name: "login" });
       } catch (e) {
         console.warn(e.message);
       }
@@ -78,7 +82,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds);
         commit("setUser", user);
-        router.push({ name: "events" });
+        router.push({ name: "boards" });
       } catch (e) {
         console.warn(e.message);
       }

@@ -25,7 +25,7 @@ export default class EventController {
   async getAll(req, res, next) {
     try {
       //only gets events by user who is logged in
-      let data = await _eventService.getAllEvents();
+      let data = await _eventService.getAllEvents(req.session.uid);
       return res.send(data);
     } catch (err) {
       next(err);
