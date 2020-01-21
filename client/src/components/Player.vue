@@ -1,6 +1,6 @@
 <template>
   <div class="table shadow">
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped bg-light">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Attendance</th>

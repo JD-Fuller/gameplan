@@ -4,13 +4,14 @@
       <div class="col-md-12">
         <navbar />
       </div>
-      <div class="row container-fluid mt-5 ml-5 justify-content-center">
+      <div class="container-fluid mt-5 ml-4 d-flex justify-content-center">
+        <div class="row"></div>
         <div class="col-md-9">
           <div class="d-flex">
             <h1>TEAM ROSTER</h1>
             <button
               class="btn btn-sm text-light 
-               addButton shadow py-0"
+               addButton py-0"
               data-toggle="modal"
               data-target="#addPlayerForm"
               @click="show = !show"
@@ -40,7 +41,7 @@
           id="addPlayerForm"
           @submit.prevent="addPlayer"
           v-if="show"
-          class="playerForm"
+          class="playerForm bg-light formPad"
         >
           <div class="text-center addHeader text-light">
             <h1>Add Player</h1>
@@ -234,10 +235,18 @@ export default {
   background-color: purple;
 }
 .addButton:hover {
-  box-shadow: 10px;
+  text-shadow: 10px;
   background-color: #a9059e;
 }
 .addHeader {
   background-color: #3e3f3a;
+}
+.team {
+  background-image: url(https://images.pexels.com/photos/54567/pexels-photo-54567.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  background-size: cover;
+  min-height: 950px;
+}
+.formPad {
+  margin-bottom: 20px;
 }
 </style>
