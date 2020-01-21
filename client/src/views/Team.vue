@@ -8,24 +8,24 @@
         <div class="row"></div>
         <div class="col-md-9">
           <div class="d-flex">
-            <h1>TEAM ROSTER</h1>
+            <h1 class="text-light">TEAM ROSTER</h1>
             <button
-              class="btn btn-sm text-light 
-               addButton py-0"
+              class="btn btn-sm text-light addButton py-0"
               data-toggle="modal"
               data-target="#addPlayerForm"
               @click="show = !show"
             >
-              <i class="fas fa-user-plus"> Add Player</i>
+              <span class="mx-1">Add Player</span>
+              <i class="fas fa-user-plus"></i>
             </button>
           </div>
         </div>
       </div>
       <div class="row container-fluid">
         <div class="col-md-12 d-flex justify-content-center mt-4">
-          <p>Team(s):</p>
+          <p class="text-light">Team(s):</p>
           <dl v-for="team in teams" :key="team._id" class="text-center">
-            <dt class="text-center li mx-1">{{ team.title }} |</dt>
+            <dt class="text-center li mx-1 text-light">{{ team.title }} |</dt>
           </dl>
         </div>
       </div>
