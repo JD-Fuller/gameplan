@@ -4,7 +4,6 @@
       <div class="col" style=" margin-bottom: 50px;">
         <boardnav />
         <h1>FAN PAGE</h1>
-
         <form @submit.prevent="createFan">
           <input
             type="text"
@@ -43,7 +42,7 @@ export default {
     createFan() {
       // TODO PUSH FAN INFO TO TEAM GROUP ARRAY
       let fan = { ...this.newFan };
-      this.store.dispatch("createFan", fan);
+      this.store.dispatch("updateTeamGroup", fan);
       this.newFan = { name: "", email: "" };
     }
   },

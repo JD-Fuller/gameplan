@@ -17,6 +17,17 @@ class PostService {
     return data;
   }
 
+  async getPostsByTeamId(teamId) {
+    let data = await _repository.find({ teamId: teamId });
+    if (!data) {
+      throw new ApiError(
+        "Invalid ID or you do not have access to this team",
+        400
+      );
+    }
+    return data;
+  }
+
   async create(rawData) {
     let data = await _repository.create(rawData);
     return data;

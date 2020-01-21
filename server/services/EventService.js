@@ -16,6 +16,14 @@ class EventService {
     return data;
   }
 
+  async getEventsByTeamId(teamId) {
+    let data = await _repository.find({ teamId: teamId });
+    if (!data) {
+      throw new ApiError("Invalid ID or no access to this team", 400);
+    }
+    return data;
+  }
+
   async create(eventData) {
     let data = await _repository.create(eventData);
     return data;
