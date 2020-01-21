@@ -101,10 +101,7 @@ export default {
       this.activeTeam =
         event.target.options[event.target.options.selectedIndex].value;
       this.$store.commit("setActiveTeam", this.activeTeam);
-      console.log(
-        "Congrats`${this.activeTeam}`is now the activeTeam",
-        this.activeTeam
-      );
+      console.log("Congrats, we now have an activeTeam", this.activeTeam);
     }
   },
   computed: {

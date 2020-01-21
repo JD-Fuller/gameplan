@@ -63,6 +63,9 @@ export default new Vuex.Store({
     setTeams(state, teams) {
       state.teams = teams;
     },
+    setActiveTeam(state, team) {
+      state.activeTeam = team;
+    },
     allPlayers(state, data) {
       state.players = data;
     },
