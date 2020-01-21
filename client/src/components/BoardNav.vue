@@ -46,6 +46,23 @@
               </router-link>
             </li>
             <li>
+              <div>
+                <select
+                  class="form-control"
+                  style="mx-2"
+                  @change="setActiveTeam($event)"
+                >
+                  <option value selected disabled>Select Team</option>
+                  <option
+                    v-for="team in teams"
+                    :value="team._id"
+                    :key="team._id"
+                    >{{ team.title }}</option
+                  >
+                </select>
+              </div>
+            </li>
+            <li>
               <button class="btn btn-sm mx-auto" @click="logout()">
                 Logout
               </button>
@@ -61,6 +78,9 @@
 import NotificationService from "../NotificationService.js";
 export default {
   name: "boardnav",
+  mounted() {
+    this.$store.dispatch("getTeams");
+  },
   methods: {
     logout() {
       this.$store.dispatch("logout");
@@ -76,6 +96,20 @@ export default {
     },
     logout() {
       this.$store.dispatch("logout");
+    },
+    async setActiveTeam() {
+      this.activeTeam =
+        event.target.options[event.target.options.selectedIndex].value;
+      this.$store.commit("setActiveTeam", this.activeTeam);
+      console.log(
+        "Congrats`${this.activeTeam}`is now the activeTeam",
+        this.activeTeam
+      );
+    }
+  },
+  computed: {
+    teams() {
+      return this.$store.state.teams;
     }
   }
 };

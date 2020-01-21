@@ -22,6 +22,7 @@ export default new Vuex.Store({
     user: {},
     posts: [],
     teams: [],
+    activeTeam: {},
     notes: [],
     activePost: {},
     events: [],
@@ -45,6 +46,7 @@ export default new Vuex.Store({
       state.notes = [];
       state.teams = [];
       state.fans = [];
+      state.activeTeam = {};
     },
     addPost(state, post) {
       state.posts.push(post);
@@ -58,7 +60,6 @@ export default new Vuex.Store({
     putEvent(state, event) {
       state.events.push(event);
     },
-
     setTeams(state, teams) {
       state.teams = teams;
     },
