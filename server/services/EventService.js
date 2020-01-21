@@ -5,8 +5,8 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("Event", Event);
 
 class EventService {
-  async getAllEvents() {
-    return await _repository.find({});
+  async getAllEvents(adminId) {
+    return await _repository.find({ authorId: adminId });
   }
   async getById(id, userId) {
     let data = await _repository.findOne({ _id: id, authorId: userId });
