@@ -4,26 +4,28 @@
       <div class="col-md-12">
         <navbar />
       </div>
-      <div class="row container-fluid mt-5 ml-5 justify-content-center">
+      <div class="container-fluid mt-5 ml-4 d-flex justify-content-center">
+        <div class="row"></div>
         <div class="col-md-9">
           <div class="d-flex">
-            <h1>TEAM ROSTER</h1>
+            <h1 class="text-light">TEAM ROSTER</h1>
             <button
-              class="btn bg-info addButton py-0"
+              class="btn btn-sm text-light addButton py-0"
               data-toggle="modal"
               data-target="#addPlayerForm"
               @click="show = !show"
             >
-              <i class="fas fa-user-plus"> Add Player</i>
+              <span class="mx-1">Add Player</span>
+              <i class="fas fa-user-plus"></i>
             </button>
           </div>
         </div>
       </div>
       <div class="row container-fluid">
         <div class="col-md-12 d-flex justify-content-center mt-4">
-          <p>Team(s):</p>
+          <p class="text-light">Team(s):</p>
           <dl v-for="team in teams" :key="team._id" class="text-center">
-            <dt class="text-center li mx-1">{{ team.title }} |</dt>
+            <dt class="text-center li mx-1 text-light">{{ team.title }} |</dt>
           </dl>
         </div>
       </div>
@@ -39,7 +41,7 @@
           id="addPlayerForm"
           @submit.prevent="addPlayer"
           v-if="show"
-          class="playerForm"
+          class="playerForm bg-light formPad justify-content-center"
         >
           <div class="text-center addHeader text-light">
             <h1>Add Player</h1>
@@ -230,12 +232,21 @@ export default {
   margin-left: auto;
   display: inline-block;
   max-height: 45px;
+  background-color: purple;
+}
+.addButton:hover {
+  text-shadow: 10px;
+  background-color: #a9059e;
 }
 .addHeader {
   background-color: #3e3f3a;
 }
-.playerForm {
-  position: absolute;
-  z-index: -1;
+.team {
+  background-image: url(https://images.pexels.com/photos/54567/pexels-photo-54567.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  background-size: cover;
+  min-height: 950px;
+}
+.formPad {
+  margin-bottom: 20px;
 }
 </style>

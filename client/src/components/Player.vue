@@ -1,6 +1,6 @@
 <template>
   <div class="table shadow">
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped bg-light">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Attendance</th>
@@ -11,7 +11,7 @@
           <th scope="col">Grade</th>
           <th scope="col">Home Town</th>
           <th scope="col">Contact Info</th>
-          <th scope="col">Actions</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -26,13 +26,13 @@
           <td>{{ player.grade }}</td>
           <td>{{ player.homeCity }}, {{ player.homeState }}</td>
           <td>{{ player.email }} / {{ player.phoneNumber }}</td>
-          <td class="d-flex justify-content-between">
+          <td class="d-flex">
             <i
-              class="far fa-edit text-success"
+              class="far fa-edit text-success px-1 py-1"
               @click="editPlayer(player._id)"
             ></i>
             <i
-              class="fas fa-trash-alt text-danger"
+              class="fas fa-trash-alt text-danger px-1 py-1"
               @click="deletePlayer(player._id)"
             ></i>
           </td>
@@ -88,7 +88,7 @@ export default {
   width: 20px;
 }
 i:hover {
-  color: red;
+  color: white;
   cursor: pointer;
 }
 </style>
