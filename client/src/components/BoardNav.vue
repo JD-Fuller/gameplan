@@ -97,15 +97,17 @@ export default {
     logout() {
       this.$store.dispatch("logout");
     },
-    async setActiveTeam() {
-      this.activeTeam =
+    setActiveTeam(event) {
+      this.activeTeamId =
         event.target.options[event.target.options.selectedIndex].value;
-      this.$store.commit("setActiveTeam", this.activeTeam);
-      console.log("Congrats, we now have an activeTeam", this.activeTeam);
+      debugger;
+      this.$store.commit("setActiveTeamId", this.activeTeamId);
+      console.log("Congrats, we now have an activeTeam", this.activeTeamId);
     }
   },
   computed: {
     teams() {
+      debugger;
       return this.$store.state.teams;
     }
   }

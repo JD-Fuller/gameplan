@@ -61,9 +61,11 @@ export default new Vuex.Store({
       state.events.push(event);
     },
     setTeams(state, teams) {
+      debugger;
       state.teams = teams;
     },
     setActiveTeam(state, team) {
+      debugger;
       state.activeTeam = team;
     },
     allPlayers(state, data) {
@@ -162,6 +164,7 @@ export default new Vuex.Store({
 
     // #region Teams
     async getTeams({ commit, dispatch }) {
+      debugger;
       let res = await api.get("teams");
       commit("setTeams", res.data);
     },
