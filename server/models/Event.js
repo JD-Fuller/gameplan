@@ -7,10 +7,10 @@ const Event = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     date: { type: Date, required: true || "TBA" },
+    teamId: { type: ObjectId, ref: "Team" },
     // time: { type: Date, required: true},
     location: { type: String || "TBA" },
-    authorId: { type: ObjectId, ref: "Admin", required: true },
-    fanGroup: [{ type: ObjectId, ref: "Admin" }]
+    authorId: { type: ObjectId, ref: "Admin", required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
