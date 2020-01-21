@@ -196,11 +196,11 @@ export default new Vuex.Store({
     async getFans({ commit, dispatch }) {
       let res = await api.get("fans");
       commit("setFans", res.data);
-    },
-
-    async createFan({ commit, dispatch }, fanData) {
-      let res = await api.post("fans", fanData);
-      commit("addFan", res.data);
     }
+
+    // async createFan({ commit, dispatch }, fanData) {
+    //   let res = await api.put("events/" + fanData.);
+    //   commit("addFan", res.data);
+    // }
   }
 });

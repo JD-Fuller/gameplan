@@ -9,7 +9,8 @@ const Event = new Schema(
     date: { type: Date, required: true || "TBA" },
     // time: { type: Date, required: true},
     location: { type: String || "TBA" },
-    authorId: { type: ObjectId, ref: "Admin", required: true }
+    authorId: { type: ObjectId, ref: "Admin", required: true },
+    fanGroup: [{ type: ObjectId, ref: "Admin" }]
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
