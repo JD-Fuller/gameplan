@@ -8,9 +8,10 @@ import Event from "../views/Event.vue";
 import Login from "../views/Login.vue";
 // @ts-ignore
 import Team from "../views/Team.vue";
-
 // @ts-ignore
 import Register from "../views/Register.vue";
+// @ts-ignore
+import Fans from "../views/Fans.vue";
 
 Vue.use(Router);
 
@@ -45,6 +46,11 @@ export default new Router({
       path: "/register",
       name: "register",
       component: Register
+    },
+    {
+      path: "/fans",
+      name: "fans",
+      component: Fans
     }
   ]
 });
