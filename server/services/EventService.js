@@ -15,6 +15,9 @@ class EventService {
     }
     return data;
   }
+  async getEventsByTeamId(teamId) {
+    return await _repository.find({ teamId: teamId });
+  }
 
   async create(eventData) {
     let data = await _repository.create(eventData);

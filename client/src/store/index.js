@@ -26,7 +26,8 @@ export default new Vuex.Store({
     activePost: {},
     events: [],
     activeAdmin: {},
-    players: []
+    players: [],
+    activeTeamId: {}
   },
   mutations: {
     setUser(state, user) {
@@ -43,6 +44,7 @@ export default new Vuex.Store({
       state.players = [];
       state.notes = [];
       state.teams = [];
+      state.activeTeamId = {};
     },
     addPost(state, post) {
       state.posts.push(post);
@@ -65,6 +67,9 @@ export default new Vuex.Store({
     },
     createPlayer(state, players) {
       state.players.push(players);
+    },
+    setActiveTeamId(state, teamId) {
+      state.activeTeamId = teamId;
     }
   },
   actions: {
@@ -116,10 +121,15 @@ export default new Vuex.Store({
       let res = await api.get("posts");
       commit("allPosts", res.data);
     },
+    async getPostsByTeamId({ commit, dispatch }) {
+      let res = await api.get("posts", );
+      commit("allPosts", res.data);
+    },
     async deletePost({ commit, dispatch }, id) {
       let res = await api.delete(`posts/${id}`);
       dispatch("getPosts");
     },
+
     async editPost({ commit, dispatch }, postData) {
       let res = await api.put("posts/" + postData.id, postData);
       dispatch("getPosts");
@@ -133,6 +143,24 @@ export default new Vuex.Store({
 
       commit("setEvents", res.data);
     },
+    async getEventsByTeamId({ commit, dispatch}, teamId){
+      let res = await api.get("teams/" + teamId + "/events");
+      commit("setEvents", res.data)
+    },
+
+    ,
+
+    getListsByBoardId({ commit, dispatch }, boardId) {
+      api.get("boards/" + boardId + "/lists").then(res => {
+        commit("setResource", { resource: "lists", data: res.data });
+      });
+
+
+
+
+
+
+
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
       commit("putEvent", res.data);

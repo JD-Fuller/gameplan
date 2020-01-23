@@ -1,5 +1,7 @@
 import _teamService from "../services/TeamService";
 import express from "express";
+import _eventService from "../services/EventService";
+import _postService from "../services/PostService";
 import { Authorize } from "../middleware/authorize.js";
 
 //PUBLIC
@@ -7,9 +9,10 @@ export default class TeamController {
   constructor() {
     this.router = express
       .Router()
-      .use(Authorize.authenticated)
       .get("", this.getAll)
       .get("/:id", this.getById)
+      .get("/:id/events", this.getEventsByTeamId)
+      .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -33,6 +36,15 @@ export default class TeamController {
   async getById(req, res, next) {
     try {
       let data = await _teamService.getById(req.params.id, req.session.uid);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getEventsByTeamId(req, res, next) {
+    try {
+      let data = await _eventService.getEventsByTeamId(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);

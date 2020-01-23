@@ -5,7 +5,6 @@ let ObjectId = Schema.Types.ObjectId;
 const Team = new Schema(
   {
     title: { type: String, required: true },
-
     authorId: { type: ObjectId, ref: "Admin" }
   },
   { timestamps: true }

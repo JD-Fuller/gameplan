@@ -27,6 +27,23 @@
                 <i class="fa fas-plus">+</i>
               </button>
             </li>
+            <li>
+              <div>
+                <select
+                  class="form-control"
+                  style="mx-2"
+                  @change="setActiveTeam($event)"
+                >
+                  <option value selected disabled>Select Team</option>
+                  <option
+                    v-for="team in teams"
+                    :value="team._id"
+                    :key="team._id"
+                    >{{ team.title }} {{ team._id }}</option
+                  >
+                </select>
+              </div>
+            </li>
             <li class="nav-item active mx-auto">
               <router-link :to="{ name: 'events' }">
                 <button class="btn btn-sm">Events</button>
@@ -56,12 +73,22 @@
 import NotificationService from "../NotificationService.js";
 export default {
   name: "boardnav",
-  methods: {
-    logout() {
-      this.$store.dispatch("logout");
-    }
+  mounted() {
+    this.$store.dispatch("getTeams");
   },
+
   methods: {
+    setActiveTeam(event) {
+      this.activeTeamId =
+        event.target.options[event.target.options.selectedIndex].value;
+      debugger;
+      this.$store.commit("setActiveTeamId", this.activeTeamId);
+      console.log(
+        "Congrats, we now have an activeTeam",
+        this.activeTeamId,
+        this.$store.state.activeTeam
+      );
+    },
     async createTeam() {
       let taskInfo = await NotificationService.inputData("Create a new Team");
       if (taskInfo) {
@@ -71,6 +98,11 @@ export default {
     },
     logout() {
       this.$store.dispatch("logout");
+    }
+  },
+  computed: {
+    teams() {
+      return this.$store.state.teams;
     }
   }
 };

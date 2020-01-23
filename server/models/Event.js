@@ -7,7 +7,7 @@ const Event = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     date: { type: Date, required: true || "TBA" },
-    // time: { type: Date, required: true},
+    teamId: { type: String },
     location: { type: String || "TBA" },
     authorId: { type: ObjectId, ref: "Admin", required: true }
   },
