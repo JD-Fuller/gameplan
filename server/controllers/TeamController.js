@@ -11,7 +11,7 @@ export default class TeamController {
       .Router()
       .get("", this.getAll)
       .get("/:id", this.getById)
-      .get("/:id/events", this.getEventsByTeamId)
+      .get("/:id", this.getEventsByTeamId)
       .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)

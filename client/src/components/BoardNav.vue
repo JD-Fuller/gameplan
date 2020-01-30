@@ -31,15 +31,16 @@
               <div>
                 <select
                   class="form-control"
+                  v-model="selected"
                   style="mx-2"
                   @change="setActiveTeam($event)"
                 >
                   <option value selected disabled>Select Team</option>
                   <option
                     v-for="team in teams"
-                    :value="team._id"
+                    v-bind:value="team._id"
                     :key="team._id"
-                    >{{ team.title }} {{ team._id }}</option
+                    >{{ team.title }}</option
                   >
                 </select>
               </div>
@@ -82,7 +83,7 @@ export default {
       this.activeTeamId =
         event.target.options[event.target.options.selectedIndex].value;
       debugger;
-      this.$store.commit("setActiveTeamId", this.activeTeamId);
+      this.$store.dispatch("getEventsByTeamId", this.activeTeamId);
       console.log(
         "Congrats, we now have an activeTeam",
         this.activeTeamId,

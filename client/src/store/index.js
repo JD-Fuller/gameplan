@@ -69,6 +69,7 @@ export default new Vuex.Store({
       state.players.push(players);
     },
     setActiveTeamId(state, teamId) {
+      debugger;
       state.activeTeamId = teamId;
     }
   },
@@ -122,7 +123,7 @@ export default new Vuex.Store({
       commit("allPosts", res.data);
     },
     async getPostsByTeamId({ commit, dispatch }) {
-      let res = await api.get("posts", );
+      let res = await api.get("posts");
       commit("allPosts", res.data);
     },
     async deletePost({ commit, dispatch }, id) {
@@ -143,23 +144,18 @@ export default new Vuex.Store({
 
       commit("setEvents", res.data);
     },
-    async getEventsByTeamId({ commit, dispatch}, teamId){
+    async getEventsByTeamId({ commit, dispatch }, teamId) {
+      debugger;
       let res = await api.get("teams/" + teamId + "/events");
-      commit("setEvents", res.data)
+      debugger;
+      commit("setEvents", res.data);
     },
 
-    ,
-
-    getListsByBoardId({ commit, dispatch }, boardId) {
-      api.get("boards/" + boardId + "/lists").then(res => {
-        commit("setResource", { resource: "lists", data: res.data });
-      });
-
-
-
-
-
-
+    // getListsByBoardId({ commit, dispatch }, boardId) {
+    //   api.get("boards/" + boardId + "/lists").then(res => {
+    //     commit("setResource", { resource: "lists", data: res.data });
+    //   });
+    // },
 
     async createEvent({ commit, dispatch }, eventData) {
       let res = await api.post("events", eventData);
