@@ -75,6 +75,7 @@ import NotificationService from "../NotificationService.js";
 export default {
   name: "boardnav",
   mounted() {
+    debugger;
     this.$store.dispatch("getTeams");
   },
 
@@ -82,12 +83,13 @@ export default {
     setActiveTeam(event) {
       this.activeTeamId =
         event.target.options[event.target.options.selectedIndex].value;
-      debugger;
+
       this.$store.dispatch("getEventsByTeamId", this.activeTeamId);
       console.log(
         "Congrats, we now have an activeTeam",
         this.activeTeamId,
-        this.$store.state.activeTeam
+        "Here is the active team id in the store",
+        this.$store.state.activeTeamId
       );
     },
     async createTeam() {
@@ -103,6 +105,7 @@ export default {
   },
   computed: {
     teams() {
+      debugger;
       return this.$store.state.teams;
     }
   }

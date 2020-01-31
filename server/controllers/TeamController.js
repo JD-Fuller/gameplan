@@ -53,9 +53,9 @@ export default class TeamController {
 
   async create(req, res, next) {
     try {
-      req.body.teamId = Math.random()
-        .toString(36)
-        .substring(7);
+      // req.body.teamId = Math.random()
+      //   .toString(36)
+      //   .substring(7);
       req.body.authorId = req.session.uid;
       let data = await _teamService.create(req.body);
       return res.status(201).send(data);

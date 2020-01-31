@@ -7,9 +7,9 @@ export default class EventController {
   constructor() {
     this.router = express
       .Router()
-      .use(Authorize.authenticated)
       .get("", this.getAll)
       .get("/:id", this.getById)
+      .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -34,7 +34,8 @@ export default class EventController {
 
   async getById(req, res, next) {
     try {
-      let data = await _eventService.getById(req.params.id, req.session.uid);
+      let data = await _eventService.getById(req.params.teamId);
+      // let data = await _eventService.getById(req.params.id, req.session.uid);
       return res.send(data);
     } catch (error) {
       next(error);

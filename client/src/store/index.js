@@ -69,7 +69,6 @@ export default new Vuex.Store({
       state.players.push(players);
     },
     setActiveTeamId(state, teamId) {
-      debugger;
       state.activeTeamId = teamId;
     }
   },
@@ -145,9 +144,8 @@ export default new Vuex.Store({
       commit("setEvents", res.data);
     },
     async getEventsByTeamId({ commit, dispatch }, teamId) {
-      debugger;
       let res = await api.get("teams/" + teamId + "/events");
-      debugger;
+
       commit("setEvents", res.data);
     },
 
@@ -158,11 +156,15 @@ export default new Vuex.Store({
     // },
 
     async createEvent({ commit, dispatch }, eventData) {
+      // console.log("activeTeamID", this.activeTeamId);
+      // eventData.teamId = this.activeTeamId;
+
       let res = await api.post("events", eventData);
+
       commit("putEvent", res.data);
+      // dispatch("getEventsByTeamId", res.data.teamId);
     },
     async editEvent({ commit, dispatch }, eventData) {
-      debugger;
       let res = await api.put("events/" + eventData._id, eventData);
       dispatch("getEvents");
     },
@@ -178,6 +180,9 @@ export default new Vuex.Store({
       commit("setTeams", res.data);
     },
     async createTeam({ commit, dispatch }, teamData) {
+      // teamData.teamId = Math.random()
+      //   .toString(36)
+      //   .substring(7);
       let res = await api.post("/teams", teamData);
       commit("setTeams", res.data);
       console.log(teamData);
@@ -192,9 +197,8 @@ export default new Vuex.Store({
       console.log("players in store", res.data);
     },
     async addPlayer({ commit, dispatch }, playerData) {
-      debugger;
       let res = await api.post("players", playerData);
-      debugger;
+
       commit("createPlayer", res.data);
       console.log(playerData);
     },

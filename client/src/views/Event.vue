@@ -3,7 +3,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col" style=" margin-bottom: 50px;">
-          <boardnav />
+          <keep-alive>
+            <boardnav />
+          </keep-alive>
           <h1>EVENTS PAGE</h1>
           <div>
             <form @submit.prevent="createEvent">
@@ -35,6 +37,20 @@
                 placeholder="Location..."
                 v-model="newEvent.location"
               />
+              <select
+                class="form-control"
+                v-model="selected"
+                style="mx-2"
+                @change="setActiveTeam($event)"
+              >
+                <option value selected disabled>Select Team</option>
+                <option
+                  v-for="team in teams"
+                  v-bind:value="team._id"
+                  :key="team._id"
+                  >{{ team.title }}</option
+                >
+              </select>
               <button class="btn btn-primary" style="margin:5px;">
                 Submit
               </button>
@@ -142,18 +158,26 @@ export default {
         title: "",
         description: "",
         date: "",
-        location: ""
+        location: "",
+        teamId: this.$store.state.activeTeamId
       }
     };
   },
   mounted() {
-    this.$store.dispatch("getEvents");
+    this.$store.dispatch("getTeams");
+    this.$store.dispatch("getEventsByTeamId", this.$store.state.activeTeamId);
   },
   methods: {
     createEvent() {
       let event = { ...this.newEvent };
       this.$store.dispatch("createEvent", event);
-      this.newEvent = { title: "", description: "", date: "", location: "" };
+      this.newEvent = {
+        title: "",
+        description: "",
+        date: "",
+        location: "",
+        teamId: this.$store.state.activeTeamId
+      };
     },
     deleteEvent(eventId) {
       Swal.fire({
@@ -171,14 +195,21 @@ export default {
         }
       });
     },
+    setActiveTeam(event) {
+      let activeTeamId =
+        event.target.options[event.target.options.selectedIndex].value;
+      this.$store.commit("setActiveTeamId", activeTeamId);
+    },
     async editEvent(event) {
       let eventInfo = await NotificationService.editEvent(event);
       // eventInfo.id = eventId;
-      debugger;
       this.$store.dispatch("editEvent", eventInfo);
     }
   },
   computed: {
+    teams() {
+      return this.$store.state.teams;
+    },
     events() {
       return this.$store.state.events;
     }
