@@ -169,7 +169,8 @@ import Swal from "sweetalert2";
 export default {
   name: "boards",
   mounted() {
-    this.$store.dispatch("getPosts");
+    // this.$store.dispatch("getPosts");
+    this.$store.dispatch("getPostsByTeamId");
     this.$store.dispatch("getEvents");
   },
   data() {

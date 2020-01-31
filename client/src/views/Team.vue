@@ -242,7 +242,7 @@ export default {
   background-color: #3e3f3a;
 }
 .team {
-  background-image: url(https://images.pexels.com/photos/54567/pexels-photo-54567.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  background-image: url("../assets/grass.jpg");
   background-size: cover;
   min-height: 950px;
 }

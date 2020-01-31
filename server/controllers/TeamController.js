@@ -11,7 +11,7 @@ export default class TeamController {
       .Router()
       .get("", this.getAll)
       .get("/:id", this.getById)
-      .get("/:id", this.getEventsByTeamId)
+      .get("/:id/events", this.getEventsByTeamId)
       .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)
@@ -53,6 +53,9 @@ export default class TeamController {
 
   async create(req, res, next) {
     try {
+      req.body.teamId = Math.random()
+        .toString(36)
+        .substring(7);
       req.body.authorId = req.session.uid;
       let data = await _teamService.create(req.body);
       return res.status(201).send(data);
