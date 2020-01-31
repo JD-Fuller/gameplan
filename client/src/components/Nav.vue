@@ -32,5 +32,10 @@ export default {
 <style>
 .navbar-style {
   background-color: #696969;
+  min-height: 150px;
+  min-width: 150%;
+  position: relative;
 }
+/* .video{
+} */
 </style>

@@ -4,9 +4,15 @@
       <navbar />
 
       <div
-        class="login row-container d-flex align-items-center justify-content-center login-background"
+        class="login row-container d-flex align-items-center justify-content-center"
       >
-        <div class="col-lg-4 login-form pr-0 ml-4">
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/9YffrCViTVk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+<!-- <video autoplay loop muted role="presentation"> <source src="//videos.ctfassets.net/u860i9c783wb/2n0DUCAebiSoM74GCZyedW/d981293f74c04b945b207f20f3c87ce1/SC_HomePage_V2.mp4" type="video/mp4"> </video> -->
+
+ <video class="stretch" autoplay loop muted role="presentation">
+        <source src="https://media.cdn-equinox.com/website/impossiblehappens/30Sec_MASTERMix_Fit_1920x1080_20190521_WithoutTextOverlays1.mp4" type="video/mp4">
+      </video>
+        <div class="col-lg-4 login-form pr-0 ml-4 signIn">
           <!-- Default form login -->
           <form
             @submit.prevent="loginUser"
@@ -88,11 +94,11 @@
           </form>
         </div>
         <div class="col-lg-4 d-flex align-items-center pl-0">
-          <img
+          <!-- <img
             src="https://images.unsplash.com/photo-1557512367-660ba857c399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
             alt="Stadium with fans and shooting fireworks"
             class="login-picture d-none d-lg-block"
-          />
+          />   -->
         </div>
       </div>
     </div>
@@ -127,15 +133,22 @@ export default {
 </script>
 
 <style>
+/* .video{
+min-height: 200px;
+} */
+.stretch{
+  min-width: 225%;
+}
 .action {
   cursor: pointer;
 }
-.login-background {
+/* .login-background {
   background-color: #696969;
   background-size: cover;
   background-repeat: no-repeat;
   height: 663px;
-}
+  z-index: -1000;
+} */
 .login-picture {
   padding-right: 53px;
   max-height: 485px;
@@ -162,5 +175,11 @@ export default {
 }
 .login {
   font-family: "Montserrat", sans-serif;
+}
+/* .video{
+  position:absolute
+} */
+.signIn{
+  position: absolute;
 }
 </style>
