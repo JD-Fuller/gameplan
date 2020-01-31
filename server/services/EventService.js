@@ -15,6 +15,18 @@ class EventService {
     }
     return data;
   }
+  // async getEventsByTeamId(teamId) {
+  //   let data = await _repository.find({ teamId: teamId }, Option, {
+  //     new: true
+  //   });
+  //   if (!data) {
+  //     throw new ApiError("Unable to edit event", 420);
+  //   }
+  // }
+
+  async getEventsByTeamId(teamId) {
+    return await _repository.find({ teamId: teamId });
+  }
 
   async create(eventData) {
     let data = await _repository.create(eventData);

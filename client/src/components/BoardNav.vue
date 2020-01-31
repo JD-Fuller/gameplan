@@ -27,6 +27,24 @@
                 <i class="fa fas-plus">+</i>
               </button>
             </li>
+            <li>
+              <div>
+                <select
+                  class="form-control"
+                  v-model="selected"
+                  style="mx-2"
+                  @change="setActiveTeam($event)"
+                >
+                  <option value selected disabled>Select Team</option>
+                  <option
+                    v-for="team in teams"
+                    v-bind:value="team._id"
+                    :key="team._id"
+                    >{{ team.title }}</option
+                  >
+                </select>
+              </div>
+            </li>
             <li class="nav-item active mx-auto">
               <router-link :to="{ name: 'events' }">
                 <button class="btn btn-sm">Events</button>
@@ -56,12 +74,24 @@
 import NotificationService from "../NotificationService.js";
 export default {
   name: "boardnav",
-  methods: {
-    logout() {
-      this.$store.dispatch("logout");
-    }
+  mounted() {
+    debugger;
+    this.$store.dispatch("getTeams");
   },
+
   methods: {
+    setActiveTeam(event) {
+      this.activeTeamId =
+        event.target.options[event.target.options.selectedIndex].value;
+
+      this.$store.dispatch("getEventsByTeamId", this.activeTeamId);
+      console.log(
+        "Congrats, we now have an activeTeam",
+        this.activeTeamId,
+        "Here is the active team id in the store",
+        this.$store.state.activeTeamId
+      );
+    },
     async createTeam() {
       let taskInfo = await NotificationService.inputData("Create a new Team");
       if (taskInfo) {
@@ -71,6 +101,12 @@ export default {
     },
     logout() {
       this.$store.dispatch("logout");
+    }
+  },
+  computed: {
+    teams() {
+      debugger;
+      return this.$store.state.teams;
     }
   }
 };

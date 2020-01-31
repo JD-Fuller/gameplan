@@ -1,6 +1,8 @@
 <template>
   <div class="boards">
-    <boardnav />
+    <keep-alive>
+      <boardnav />
+    </keep-alive>
     <div class="container-fluid row">
       <div class="col-md-4">
         <h2>Upcoming Events</h2>
@@ -169,8 +171,9 @@ import Swal from "sweetalert2";
 export default {
   name: "boards",
   mounted() {
-    this.$store.dispatch("getPosts");
-    this.$store.dispatch("getEvents");
+    // this.$store.dispatch("getPosts");
+    this.$store.dispatch("getPostsByTeamId");
+    this.$store.dispatch("getEventsByTeamId", this.$store.state.activeTeamId);
   },
   data() {
     return {
