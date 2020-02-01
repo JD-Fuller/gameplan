@@ -1,41 +1,45 @@
 <template>
-  <div class="register">
-    <div class="row container-fluid register-background pb-5 m-0">
-      <div class="col-md-12 pr-5 m-0">
-        <navbar />
-        <div class="row container-fluid d-flex justify-content-center mt-4">
-          <div class="col-md-5">
-            <form
-              @submit.prevent="register"
-              class="text-center border border-light p-5 form-for-login"
-            >
-              <p class="h4 mb-4 sign-login">Register</p>
-              <input
-                type="userName"
-                v-model="newUser.name"
-                id="defaultRegisterFormName"
-                class="form-control mb-4"
-                placeholder="User Name"
-              />
-              <!-- Email -->
-              <input
-                type="email"
-                v-model="newUser.email"
-                id="defaultLoginFormEmail"
-                class="form-control mb-4"
-                placeholder="E-mail"
-              />
+  <body class="register container-fluid pr-0 pl-0">
+    
 
-              <!-- Password -->
-              <input
-                type="password"
-                v-model="newUser.password"
-                id="defaultLoginFormPassword"
-                class="form-control mb-4"
-                placeholder="Password"
-              />
+      <!-- <div
+        class="login row-container d-flex align-items-center justify-content-center"
+      > -->
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/9YffrCViTVk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+<!-- <video autoplay loop muted role="presentation"> <source src="//videos.ctfassets.net/u860i9c783wb/2n0DUCAebiSoM74GCZyedW/d981293f74c04b945b207f20f3c87ce1/SC_HomePage_V2.mp4" type="video/mp4"> </video> -->
 
-              <div class="d-flex justify-content-around">
+        <video autoplay loop muted id="myVideo">
+        <source src="https://media.cdn-equinox.com/website/impossiblehappens/30Sec_MASTERMix_Fit_1920x1080_20190521_WithoutTextOverlays1.mp4" type="video/mp4">
+        </video>
+
+        <div class="content">
+          <router-link :to="{ name: 'boards' }">
+          <h1 class="d-flex justify-content-center"><i class="fas fa-running mr-3"></i>GamePlan</h1>
+          </router-link>
+          <form @submit.prevent="register">
+            <div class="d-flex justify-content-center">
+            <div class="md-form">
+              <i class="fas fa-envelope prefix"></i>
+              <input type="userName" v-model="newUser.name" id="defaultRegisterFormName" class="form-control mb-4" placeholder="User Name">
+              <label for="defaultRegisterFormName" data-error="wrong" data-success="right">Register</label>
+            </div>
+            </div>
+            <div class="d-flex justify-content-center">
+            <div class="md-form">
+              <i class="fas fa-envelope prefix"></i>
+              <input type="email" v-model="newUser.email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+              <label for="defaultLoginFormPassword" data-error="wrong" data-success="right">Email</label>
+            </div>
+            </div>
+            <div class="d-flex justify-content-center">
+            <div class="md-form">
+              <i class="fas fa-envelope prefix"></i>
+              <input type="password" v-model="newUser.password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+              <label for="defaultLoginFormPassword" data-error="wrong" data-success="right">Password</label>
+              <button class="btn btn-danger my-4 d-flex justify-content-center" type="submit">Register</button>
+            </div>
+        </div>
+            <div class="d-flex justify-content-around">
                 <div>
                   <!-- Remember me -->
                   <div class="custom-control custom-checkbox">
@@ -58,9 +62,9 @@
               </div>
 
               <!-- Sign in button -->
-              <button class="btn btn-danger btn-block my-4" type="submit">
+              <!-- <button class="btn btn-danger btn-block my-4" type="submit">
                 Register
-              </button>
+              </button> -->
 
               <!-- Register -->
               <div>
@@ -70,30 +74,37 @@
                     <router-link to="/login">here to login</router-link>
                   </p>
                 </div>
-                <!-- Social login -->
-                <p class="login-link d-lg-block d-none">or sign in with:</p>
-
-                <a href="https://www.facebook.com" class="mx-2" role="button">
-                  <i class="fab fa-facebook-f text-primary"></i>
-                </a>
-                <a href="https://www.twitter.com" class="mx-2" role="button">
-                  <i class="fab fa-twitter text-primary"></i>
-                </a>
-                <a href="https://www.linkedin.com" class="mx-2" role="button">
-                  <i class="fab fa-linkedin-in text-primary"></i>
-                </a>
-                <a href="https://www.github.com" class="mx-2" role="button">
-                  <i class="fab fa-github text-dark"></i>
-                </a>
               </div>
+          </form>
+          <div class="d-flex justify-content-center">
+          <p class="login-link d-lg-block d-none">Or sign in with:</p>
 
-              <!-- Default form login -->
-            </form>
-          </div>
+              <a href="https://www.facebook.com" class="mx-2" role="button">
+                <i class="fab fa-facebook-f text-primary"></i>
+              </a>
+              <a href="https://www.twitter.com" class="mx-2" role="button">
+                <i class="fab fa-twitter text-primary"></i>
+              </a>
+              <!-- <a href="https://www.linkedin.com" class="mx-2" role="button">
+                <i class="fab fa-linkedin-in text-danger"></i>
+              </a> -->
+              <a href="https://www.github.com" class="mx-2" role="button">
+                <i class="fab fa-github text-dark"></i>
+              </a>
+              </div>            
         </div>
-      </div>
-    </div>
-  </div>
+        
+        <!-- <div class="col-lg-4 d-flex align-items-center pl-0"> -->
+          <!-- <img
+            src="https://images.unsplash.com/photo-1557512367-660ba857c399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
+            alt="Stadium with fans and shooting fireworks"
+            class="login-picture d-none d-lg-block"
+          />   -->
+        <!-- </div> -->
+      <!-- </div> -->
+    
+    
+  </body>
 </template>
 
 <script>
@@ -126,13 +137,48 @@ export default {
 </script>
 
 <style>
-.register-background {
-  background: url("https://images.unsplash.com/photo-1578134260566-d4083893996a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
-  padding-left: 0px;
-  margin-right: 0px;
+* {
+  box-sizing: border-box;
+}
+.md-form {
+  min-width: 45%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.content {
+  position: fixed;
+  top: 250px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  min-width: 100%;
+  padding: 20px;
+}
+
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+}
+
+ #myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
 }
 </style>

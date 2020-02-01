@@ -13,7 +13,9 @@
         </video>
 
         <div class="content">
+          <router-link :to="{ name: 'boards' }">
           <h1 class="d-flex justify-content-center"><i class="fas fa-running mr-3"></i>GamePlan</h1>
+          </router-link>
           <form @submit.prevent="loginUser">
             <div class="d-flex justify-content-center">
             <div class="md-form">
@@ -28,11 +30,29 @@
               <input type="password" v-model="creds.password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
               <label for="defaultLoginFormPassword" data-error="wrong" data-success="right">Type your password</label>
             <button class="btn btn-danger my-4 d-flex justify-content-center" type="submit">
-              Sign in
+              Sign In
             </button>
             </div>
-            </div>
-          </form>        
+          </div>
+
+
+          </form>
+          <div class="d-flex justify-content-center">
+          <p class="login-link d-lg-block d-none">Or sign in with:</p>
+
+              <a href="https://www.facebook.com" class="mx-2" role="button">
+                <i class="fab fa-facebook-f text-primary"></i>
+              </a>
+              <a href="https://www.twitter.com" class="mx-2" role="button">
+                <i class="fab fa-twitter text-primary"></i>
+              </a>
+              <!-- <a href="https://www.linkedin.com" class="mx-2" role="button">
+                <i class="fab fa-linkedin-in text-danger"></i>
+              </a> -->
+              <a href="https://www.github.com" class="mx-2" role="button">
+                <i class="fab fa-github text-dark"></i>
+              </a>
+              </div>        
         </div>
         
         <!-- <div class="col-lg-4 d-flex align-items-center pl-0"> -->

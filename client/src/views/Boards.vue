@@ -2,6 +2,8 @@
   <div class="boards">
     <boardnav />
     <div class="container-fluid row">
+
+      
       <div class="col-md-4">
         <h2>Upcoming Events</h2>
         <div

@@ -34,7 +34,7 @@ async function init() {
   if (user) {
     store.commit("setUser", user);
   } else {
-    router.push({ name: "login" });
+    router.push({ name: "boards" });
   }
   new Vue({
     router,

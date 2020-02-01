@@ -27,6 +27,16 @@
                 <i class="fa fas-plus">+</i>
               </button>
             </li>
+            <li class="nav-item mx-auto">
+              <router-link :to="{ name: 'login' }">
+                <button class="btn btn-sm">Login</button>
+              </router-link>
+            </li>
+            <li class="nav-item mx-auto">
+              <router-link :to="{ name: 'register' }">
+                <button class="btn btn-sm">Register</button>
+              </router-link>
+            </li>
             <li class="nav-item active mx-auto">
               <router-link :to="{ name: 'events' }">
                 <button class="btn btn-sm">Events</button>
