@@ -146,14 +146,18 @@
             </div>
             <div class="container-fluid row">
               <div class="col-md-12 d-flex justify-content-center">
-                <input
-                  v-model="newPost.content"
-                  type="text"
-                  class="d-block chat-row mr-3"
-                  placeholder="Add post here..."
-                  required
-                />
-                <button @click="addPost()"><i class="fas fa-plus"></i></button>
+                <form @submit.prevent="addPost">
+                  <input
+                    v-model="newPost.content"
+                    type="text"
+                    class="d-block chat-row mr-3"
+                    placeholder="Add post here..."
+                    required
+                  />
+                  <button class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -171,23 +175,27 @@ import Swal from "sweetalert2";
 export default {
   name: "boards",
   mounted() {
-    // this.$store.dispatch("getPosts");
-    this.$store.dispatch("getPostsByTeamId");
+    this.$store.dispatch("getPostsByTeamId", this.$store.state.activeTeamId);
     this.$store.dispatch("getEventsByTeamId", this.$store.state.activeTeamId);
   },
   data() {
     return {
+      selected: "Select Team",
       newPost: {
-        content: ""
+        content: "",
+        teamId: ""
       }
     };
   },
   methods: {
     addPost() {
       let post = { ...this.newPost };
+      post.teamId = this.$store.state.activeTeamId;
       this.$store.dispatch("addPost", post);
+
       this.newPost = {
-        content: ""
+        content: "",
+        teamId: this.$store.state.activeTeamId
       };
     },
     deletePost(postId) {

@@ -9,6 +9,10 @@ class PostService {
     return await _repository.find({ authorId: adminId });
   }
 
+  async getPostsByTeamId(teamId) {
+    return await _repository.find({ teamId: teamId });
+  }
+
   async getById(id, adminId) {
     let data = await _repository.findOne({ _id: id, authorId: adminId });
     if (!data) {

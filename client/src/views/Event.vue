@@ -27,11 +27,6 @@
                 placeholder="Date..."
                 v-model="newEvent.date"
               />
-              <!-- <input
-                type="time"
-                placeholder="Time..."
-                v-model="newEvent.time"
-              />-->
               <input
                 type="text"
                 placeholder="Location..."
@@ -74,30 +69,19 @@
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <!-- <th>
-                    <span class="custom-checkbox">
-                      <input type="checkbox" id="selectAll">
-                      <label for="selectAll"></label>
-                    </span
-                  </th>-->
                   <th>Title</th>
                   <th>Description</th>
                   <th>Location</th>
                   <th>Date</th>
-                  <!-- <th>Time</th> -->
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="event in events" :key="event._id">
-                  <!-- <td><span class="custom-checkbox">
-            <input type="checkbox">
-                  </span></td>-->
                   <td>{{ event.title }}</td>
                   <td>{{ event.description }}</td>
                   <td>{{ event.location }}</td>
                   <td>{{ event.date | formatDate }}</td>
-                  <!-- <td>{{ event.time | formatTime }}</td> -->
                   <td>
                     <div class="dropdown">
                       <button
@@ -154,6 +138,7 @@ export default {
   name: "Events",
   data() {
     return {
+      selected: "Select Team",
       newEvent: {
         title: "",
         description: "",

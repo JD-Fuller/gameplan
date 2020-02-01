@@ -121,8 +121,8 @@ export default new Vuex.Store({
       let res = await api.get("posts");
       commit("allPosts", res.data);
     },
-    async getPostsByTeamId({ commit, dispatch }) {
-      let res = await api.get("posts");
+    async getPostsByTeamId({ commit, dispatch }, teamId) {
+      let res = await api.get("teams/" + teamId + "/posts");
       commit("allPosts", res.data);
     },
     async deletePost({ commit, dispatch }, id) {

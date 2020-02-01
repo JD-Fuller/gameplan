@@ -5,6 +5,7 @@ let ObjectId = Schema.Types.ObjectId;
 const Post = new Schema(
   {
     content: { type: String, required: true },
+    teamId: { type: String, required: true },
     authorId: { type: ObjectId, ref: "Admin", required: true }
   },
   { timestamps: true }
