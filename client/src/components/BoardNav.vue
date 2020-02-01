@@ -12,7 +12,7 @@
         </router-link>
         <div class="active-team ml-5">
           <h1
-            style="font-variant: all-small-caps; font-family: montserrat; color: darkgreen;"
+            style="font-variant: all-small-caps; font-family: montserrat; color: black"
             v-for="team in activeTeam"
             v-bind:value="team._id"
             :key="team._id"
@@ -46,13 +46,15 @@
                   style="mx-2"
                   @change="setActiveTeam($event)"
                 >
-                  <option value="" disabled>Select Team</option>
-                  <option
-                    v-for="team in teams"
-                    v-bind:value="team._id"
-                    :key="team._id"
-                    >{{ team.title }}</option
-                  >
+                  <optgroup>
+                    <option value="" disabled>Select Team</option>
+                    <option
+                      v-for="team in teams"
+                      v-bind:value="team._id"
+                      :key="team._id"
+                      >{{ team.title }}</option
+                    >
+                  </optgroup>
                 </select>
               </div>
             </li>
@@ -141,9 +143,13 @@ export default {
   cursor: pointer;
 }
 .navColor {
-  background: #a29164;
+  background: #98a1af;
 }
 .logo {
   font-size: 2rem;
+}
+
+optgroup {
+  font-size: 3rem;
 }
 </style>
