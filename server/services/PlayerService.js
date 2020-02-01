@@ -16,6 +16,9 @@ class PlayerService {
     }
     return data;
   }
+  async getPlayersByTeamId(teamId) {
+    return await _repository.find({ teamId: teamId });
+  }
 
   async create(rawData) {
     let data = await _repository.create(rawData);

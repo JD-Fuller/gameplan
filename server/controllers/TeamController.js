@@ -2,6 +2,7 @@ import _teamService from "../services/TeamService";
 import express from "express";
 import _eventService from "../services/EventService";
 import _postService from "../services/PostService";
+import _playerService from "../services/PlayerService";
 import { Authorize } from "../middleware/authorize.js";
 
 //PUBLIC
@@ -12,6 +13,8 @@ export default class TeamController {
       .get("", this.getAll)
       .get("/:id", this.getById)
       .get("/:id/events", this.getEventsByTeamId)
+      .get("/:id/posts", this.getPostsByTeamId)
+      .get("/:id/players", this.getPlayersByTeamId)
       .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)
@@ -45,6 +48,22 @@ export default class TeamController {
   async getEventsByTeamId(req, res, next) {
     try {
       let data = await _eventService.getEventsByTeamId(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getPostsByTeamId(req, res, next) {
+    try {
+      let data = await _postService.getPostsByTeamId(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getPlayersByTeamId(req, res, next) {
+    try {
+      let data = await _playerService.getPlayersByTeamId(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);

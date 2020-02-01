@@ -3,12 +3,23 @@
     <div class="col-12">
       <nav class="navbar navbar-expand-lg navbar-light navColor mb-3">
         <router-link :to="{ name: 'boards' }">
-          <a class="navbar-brand" href="#">
-            <i class="fas fa-running logo"> GamePlan</i>
-            <!-- <h3 class="">GamePlan</h3> -->
+          <a class="navbar-brand" href="#" style="display: inline-flex">
+            <i class="fas fa-running fa-3x"></i>
+            <h2 style="font-variant: all-small-caps; font-size: 3.5rem;">
+              GamePlan
+            </h2>
           </a>
         </router-link>
-
+        <div class="active-team ml-5">
+          <h1
+            style="font-variant: all-small-caps; font-family: montserrat; color: darkgreen;"
+            v-for="team in activeTeam"
+            v-bind:value="team._id"
+            :key="team._id"
+          >
+            <b> Active Team: {{ team.title }} </b>
+          </h1>
+        </div>
         <button
           class="navbar-toggler"
           type="button"
@@ -35,7 +46,7 @@
                   style="mx-2"
                   @change="setActiveTeam($event)"
                 >
-                  <option value selected disabled>Select Team</option>
+                  <option value="" disabled>Select Team</option>
                   <option
                     v-for="team in teams"
                     v-bind:value="team._id"
@@ -74,8 +85,12 @@
 import NotificationService from "../NotificationService.js";
 export default {
   name: "boardnav",
+  data() {
+    return {
+      selected: ""
+    };
+  },
   mounted() {
-    debugger;
     this.$store.dispatch("getTeams");
   },
 
@@ -83,8 +98,10 @@ export default {
     setActiveTeam(event) {
       this.activeTeamId =
         event.target.options[event.target.options.selectedIndex].value;
-
+      this.$store.commit("setActiveTeamId", this.activeTeamId);
+      this.$store.dispatch("getPostsByTeamId", this.activeTeamId);
       this.$store.dispatch("getEventsByTeamId", this.activeTeamId);
+      this.$store.dispatch("getPlayersByTeamId", this.activeTeamId);
       console.log(
         "Congrats, we now have an activeTeam",
         this.activeTeamId,
@@ -105,8 +122,13 @@ export default {
   },
   computed: {
     teams() {
-      debugger;
       return this.$store.state.teams;
+    },
+    activeTeam() {
+      let activeTeam = this.$store.state.teams.filter(
+        t => t._id == this.$store.state.activeTeamId
+      );
+      return activeTeam;
     }
   }
 };

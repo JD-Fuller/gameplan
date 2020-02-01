@@ -134,7 +134,7 @@
                       class="dropdown-item mx-1 float-right"
                       style="color: red;"
                       type="submit"
-                      @click="deletePost(post._id)"
+                      @click="deletePost(post)"
                     >
                       Delete
                       <i class="fas fa-minus-circle"></i>
@@ -142,18 +142,23 @@
                   </div>
                   <br />
                 </div>
+                <hr />
               </div>
             </div>
             <div class="container-fluid row">
-              <div class="col-md-12 d-flex justify-content-center">
-                <input
-                  v-model="newPost.content"
-                  type="text"
-                  class="d-block chat-row mr-3"
-                  placeholder="Add post here..."
-                  required
-                />
-                <button @click="addPost()"><i class="fas fa-plus"></i></button>
+              <div class="col-md-12 d-flex justify-content-end">
+                <form @submit.prevent="addPost" style="display: flex;">
+                  <input
+                    v-model="newPost.content"
+                    type="text"
+                    class="form-control chat-row mr-3"
+                    placeholder="Add post here..."
+                    required
+                  />
+                  <button class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -171,26 +176,30 @@ import Swal from "sweetalert2";
 export default {
   name: "boards",
   mounted() {
-    // this.$store.dispatch("getPosts");
-    this.$store.dispatch("getPostsByTeamId");
+    this.$store.dispatch("getPostsByTeamId", this.$store.state.activeTeamId);
     this.$store.dispatch("getEventsByTeamId", this.$store.state.activeTeamId);
   },
   data() {
     return {
+      selected: "Select Team",
       newPost: {
-        content: ""
+        content: "",
+        teamId: ""
       }
     };
   },
   methods: {
     addPost() {
       let post = { ...this.newPost };
+      post.teamId = this.$store.state.activeTeamId;
       this.$store.dispatch("addPost", post);
+
       this.newPost = {
-        content: ""
+        content: "",
+        teamId: this.$store.state.activeTeamId
       };
     },
-    deletePost(postId) {
+    deletePost(post) {
       Swal.fire({
         title: "Delete this post?",
         text: "You won't be able to undo this delete!",
@@ -201,7 +210,7 @@ export default {
         confirmButtonText: "Yes, delete post!"
       }).then(result => {
         if (result.value) {
-          this.$store.dispatch("deletePost", postId);
+          this.$store.dispatch("deletePost", post);
           Swal.fire("Deleted!", "Your post has been deleted.", "success");
         }
       });

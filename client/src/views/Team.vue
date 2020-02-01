@@ -22,9 +22,20 @@
       </div>
       <div class="row container-fluid">
         <div class="col-md-12 d-flex justify-content-center mt-4">
-          <p class="text-light">Team(s):</p>
+          <h1 class="text-light">Team(s):</h1>
           <dl v-for="team in teams" :key="team._id" class="text-center">
-            <dt class="text-center li mx-1 text-light">{{ team.title }} |</dt>
+            <dt class="text-center li mx-1 text-light">
+              {{ team.title }} |
+              <a
+                @submit.prevent="deleteTeam(team._id)"
+                class="dropdown-item mx-1 float-right"
+                style="color: red;"
+                type="submit"
+                @click="deleteTeam(team._id)"
+              >
+                <i class="fas fa-minus-circle"></i>
+              </a>
+            </dt>
           </dl>
         </div>
       </div>
@@ -145,16 +156,6 @@
               />
             </div>
           </div>
-          <!-- <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck" />
-              <label class="form-check-label" for="gridCheck">Coach</label>
-            </div>
-            <div>
-              <input class="form-check-input" type="checkbox" id="gridCheck" />
-              <label class="form-check-label" for="gridCheck">Player</label>
-            </div>
-          </div>-->
           <button type="submit" class="btn btn-primary mb-4">Submit</button>
         </form>
       </div>
@@ -165,8 +166,13 @@
 <script>
 import player from "@/components/Player.vue";
 import navbar from "@/components/BoardNav.vue";
+import Swal from "sweetalert2";
 export default {
   name: "team",
+  mounted() {
+    this.$store.dispatch("getTeams");
+    this.$store.dispatch("getPlayersByTeamId", this.$store.state.activeTeamId);
+  },
   props: ["teamData", "playerData"],
   data() {
     return {
@@ -181,7 +187,7 @@ export default {
         email: "",
         phoneNumber: "",
         authorId: this.authorId,
-        teamId: this.teamId
+        teamId: ""
       },
       show: false
     };
@@ -189,6 +195,7 @@ export default {
   methods: {
     addPlayer() {
       let player = { ...this.newPlayer };
+      player.teamId = this.$store.state.activeTeamId;
       this.$store.dispatch("addPlayer", player);
       this.newPlayer = {
         firstName: "",
@@ -201,15 +208,27 @@ export default {
         email: "",
         phoneNumber: "",
         authorId: this.authorId,
-        teamId: this.teamId
+        teamId: this.$store.state.activeTeamId
       };
+    },
+    deleteTeam(teamId) {
+      Swal.fire({
+        title: "Delete this team?",
+        text: "You won't be able to undo this delete!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete team!"
+      }).then(result => {
+        if (result.value) {
+          this.$store.dispatch("deleteTeam", teamId);
+          Swal.fire("Deleted!", "Your team has been deleted.", "success");
+        }
+      });
     }
   },
 
-  mounted() {
-    this.$store.dispatch("getTeams");
-    this.$store.dispatch("getPlayers");
-  },
   components: {
     navbar,
     player

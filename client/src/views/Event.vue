@@ -2,13 +2,30 @@
   <div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col" style=" margin-bottom: 50px;">
+        <div class="col-12" style=" margin-bottom: 50px;">
           <keep-alive>
             <boardnav />
           </keep-alive>
           <h1>EVENTS PAGE</h1>
           <div>
-            <form @submit.prevent="createEvent">
+            <form class="event-form" @submit.prevent="createEvent">
+              <h2 class="team-select">
+                Select Team:
+                <select
+                  class="form-control ml-2"
+                  v-model="selected"
+                  style="mx-2"
+                  @change="setActiveTeam($event)"
+                >
+                  <option value selected disabled>Select Team</option>
+                  <option
+                    v-for="team in teams"
+                    v-bind:value="team._id"
+                    :key="team._id"
+                    >{{ team.title }}</option
+                  >
+                </select>
+              </h2>
               <input
                 type="text"
                 placeholder="Title..."
@@ -27,30 +44,11 @@
                 placeholder="Date..."
                 v-model="newEvent.date"
               />
-              <!-- <input
-                type="time"
-                placeholder="Time..."
-                v-model="newEvent.time"
-              />-->
               <input
                 type="text"
                 placeholder="Location..."
                 v-model="newEvent.location"
               />
-              <select
-                class="form-control"
-                v-model="selected"
-                style="mx-2"
-                @change="setActiveTeam($event)"
-              >
-                <option value selected disabled>Select Team</option>
-                <option
-                  v-for="team in teams"
-                  v-bind:value="team._id"
-                  :key="team._id"
-                  >{{ team.title }}</option
-                >
-              </select>
               <button class="btn btn-primary" style="margin:5px;">
                 Submit
               </button>
@@ -74,30 +72,19 @@
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <!-- <th>
-                    <span class="custom-checkbox">
-                      <input type="checkbox" id="selectAll">
-                      <label for="selectAll"></label>
-                    </span
-                  </th>-->
                   <th>Title</th>
                   <th>Description</th>
                   <th>Location</th>
                   <th>Date</th>
-                  <!-- <th>Time</th> -->
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="event in events" :key="event._id">
-                  <!-- <td><span class="custom-checkbox">
-            <input type="checkbox">
-                  </span></td>-->
                   <td>{{ event.title }}</td>
                   <td>{{ event.description }}</td>
                   <td>{{ event.location }}</td>
                   <td>{{ event.date | formatDate }}</td>
-                  <!-- <td>{{ event.time | formatTime }}</td> -->
                   <td>
                     <div class="dropdown">
                       <button
@@ -154,6 +141,7 @@ export default {
   name: "Events",
   data() {
     return {
+      selected: "Select Team",
       newEvent: {
         title: "",
         description: "",
@@ -223,5 +211,17 @@ export default {
 <style>
 .table-wrapper {
   margin-bottom: 50px;
+}
+.form-control {
+  max-width: 26vw;
+  display: flex;
+  align-content: center;
+}
+.event-form {
+  text-align: -webkit-center;
+}
+.team-select {
+  display: flex;
+  justify-content: center;
 }
 </style>

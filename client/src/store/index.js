@@ -18,6 +18,7 @@ let api = Axios.create({
 });
 
 export default new Vuex.Store({
+  //#region -- STATE --
   state: {
     user: {},
     posts: [],
@@ -29,6 +30,8 @@ export default new Vuex.Store({
     players: [],
     activeTeamId: {}
   },
+  //#endregion
+  //#region -- MUTATIONS --
   mutations: {
     setUser(state, user) {
       state.user = user;
@@ -71,6 +74,7 @@ export default new Vuex.Store({
     setActiveTeamId(state, teamId) {
       state.activeTeamId = teamId;
     }
+    //#endregion
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -105,64 +109,43 @@ export default new Vuex.Store({
     },
     //#endregion
 
-    //#region -- BOARDS --
-
-    // //#endregion
-
-    //#region -- LISTS --
+    //#region -- POSTS --
     async addPost({ commit, dispatch }, postData) {
       console.log(postData);
       let res = await api.post("posts", postData);
       commit("addPost", res.data);
-      // dispatch("getPosts")
     },
-
     async getPosts({ commit, dispatch }) {
       let res = await api.get("posts");
       commit("allPosts", res.data);
     },
-    async getPostsByTeamId({ commit, dispatch }) {
-      let res = await api.get("posts");
+    async getPostsByTeamId({ commit, dispatch }, teamId) {
+      let res = await api.get("teams/" + teamId + "/posts");
       commit("allPosts", res.data);
     },
-    async deletePost({ commit, dispatch }, id) {
-      let res = await api.delete(`posts/${id}`);
-      dispatch("getPosts");
+    async deletePost({ commit, dispatch }, postData) {
+      let res = await api.delete(`posts/${postData._id}`);
+      dispatch("getPostsByTeamId", postData.teamId);
     },
 
     async editPost({ commit, dispatch }, postData) {
       let res = await api.put("posts/" + postData.id, postData);
       dispatch("getPosts");
     },
-
     //#endregion
 
-    //#region EVENTS
+    //#region --EVENTS--
     async getEvents({ commit, dispatch }) {
       let res = await api.get("events");
-
       commit("setEvents", res.data);
     },
     async getEventsByTeamId({ commit, dispatch }, teamId) {
       let res = await api.get("teams/" + teamId + "/events");
-
       commit("setEvents", res.data);
     },
-
-    // getListsByBoardId({ commit, dispatch }, boardId) {
-    //   api.get("boards/" + boardId + "/lists").then(res => {
-    //     commit("setResource", { resource: "lists", data: res.data });
-    //   });
-    // },
-
     async createEvent({ commit, dispatch }, eventData) {
-      // console.log("activeTeamID", this.activeTeamId);
-      // eventData.teamId = this.activeTeamId;
-
       let res = await api.post("events", eventData);
-
       commit("putEvent", res.data);
-      // dispatch("getEventsByTeamId", res.data.teamId);
     },
     async editEvent({ commit, dispatch }, eventData) {
       let res = await api.put("events/" + eventData._id, eventData);
@@ -174,31 +157,34 @@ export default new Vuex.Store({
     },
     //#endregion - events
 
-    // #region Teams
+    // #region TEAMS
     async getTeams({ commit, dispatch }) {
       let res = await api.get("teams");
       commit("setTeams", res.data);
     },
     async createTeam({ commit, dispatch }, teamData) {
-      // teamData.teamId = Math.random()
-      //   .toString(36)
-      //   .substring(7);
       let res = await api.post("/teams", teamData);
       commit("setTeams", res.data);
       console.log(teamData);
     },
+    async deleteTeam({ commit, dispatch }, teamId) {
+      let res = await api.delete(`teams/${teamId}`);
+      dispatch("getTeams");
+    },
     // #endregion
 
-    //#region Players
+    //#region PLAYERS
     async getPlayers({ commit, dispatch }) {
       let res = await api.get("players");
-
       commit("allPlayers", res.data);
       console.log("players in store", res.data);
     },
+    async getPlayersByTeamId({ commit, dispatch }, teamId) {
+      let res = await api.get("teams/" + teamId + "/players");
+      commit("allPlayers", res.data);
+    },
     async addPlayer({ commit, dispatch }, playerData) {
       let res = await api.post("players", playerData);
-
       commit("createPlayer", res.data);
       console.log(playerData);
     },
