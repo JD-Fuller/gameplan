@@ -2,13 +2,30 @@
   <div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col" style=" margin-bottom: 50px;">
+        <div class="col-12" style=" margin-bottom: 50px;">
           <keep-alive>
             <boardnav />
           </keep-alive>
           <h1>EVENTS PAGE</h1>
           <div>
-            <form @submit.prevent="createEvent">
+            <form class="event-form" @submit.prevent="createEvent">
+              <h2 class="team-select">
+                Select Team:
+                <select
+                  class="form-control ml-2"
+                  v-model="selected"
+                  style="mx-2"
+                  @change="setActiveTeam($event)"
+                >
+                  <option value selected disabled>Select Team</option>
+                  <option
+                    v-for="team in teams"
+                    v-bind:value="team._id"
+                    :key="team._id"
+                    >{{ team.title }}</option
+                  >
+                </select>
+              </h2>
               <input
                 type="text"
                 placeholder="Title..."
@@ -32,20 +49,6 @@
                 placeholder="Location..."
                 v-model="newEvent.location"
               />
-              <select
-                class="form-control"
-                v-model="selected"
-                style="mx-2"
-                @change="setActiveTeam($event)"
-              >
-                <option value selected disabled>Select Team</option>
-                <option
-                  v-for="team in teams"
-                  v-bind:value="team._id"
-                  :key="team._id"
-                  >{{ team.title }}</option
-                >
-              </select>
               <button class="btn btn-primary" style="margin:5px;">
                 Submit
               </button>
@@ -208,5 +211,17 @@ export default {
 <style>
 .table-wrapper {
   margin-bottom: 50px;
+}
+.form-control {
+  max-width: 26vw;
+  display: flex;
+  align-content: center;
+}
+.event-form {
+  text-align: -webkit-center;
+}
+.team-select {
+  display: flex;
+  justify-content: center;
 }
 </style>

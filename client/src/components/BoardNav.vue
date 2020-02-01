@@ -3,20 +3,23 @@
     <div class="col-12">
       <nav class="navbar navbar-expand-lg navbar-light navColor mb-3">
         <router-link :to="{ name: 'boards' }">
-          <a class="navbar-brand" href="#">
-            <i class="fas fa-running logo"> GamePlan</i>
-            <!-- <h3 class="">GamePlan</h3> -->
+          <a class="navbar-brand" href="#" style="display: inline-flex">
+            <i class="fas fa-running fa-3x"></i>
+            <h2 style="font-variant: all-small-caps; font-size: 3.5rem;">
+              GamePlan
+            </h2>
           </a>
         </router-link>
-
-        <h1
-          style="font-variant: all-small-caps; font-family: montserrat; color: darkgreen"
-          v-for="team in activeTeam"
-          v-bind:value="team._id"
-          :key="team._id"
-        >
-          <b> Active Team: {{ team.title }} </b>
-        </h1>
+        <div class="active-team ml-5">
+          <h1
+            style="font-variant: all-small-caps; font-family: montserrat; color: darkgreen;"
+            v-for="team in activeTeam"
+            v-bind:value="team._id"
+            :key="team._id"
+          >
+            <b> Active Team: {{ team.title }} </b>
+          </h1>
+        </div>
         <button
           class="navbar-toggler"
           type="button"
@@ -98,6 +101,7 @@ export default {
       this.$store.commit("setActiveTeamId", this.activeTeamId);
       this.$store.dispatch("getPostsByTeamId", this.activeTeamId);
       this.$store.dispatch("getEventsByTeamId", this.activeTeamId);
+      this.$store.dispatch("getPlayersByTeamId", this.activeTeamId);
       console.log(
         "Congrats, we now have an activeTeam",
         this.activeTeamId,

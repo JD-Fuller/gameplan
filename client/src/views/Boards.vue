@@ -134,7 +134,7 @@
                       class="dropdown-item mx-1 float-right"
                       style="color: red;"
                       type="submit"
-                      @click="deletePost(post._id)"
+                      @click="deletePost(post)"
                     >
                       Delete
                       <i class="fas fa-minus-circle"></i>
@@ -142,15 +142,16 @@
                   </div>
                   <br />
                 </div>
+                <hr />
               </div>
             </div>
             <div class="container-fluid row">
-              <div class="col-md-12 d-flex justify-content-center">
-                <form @submit.prevent="addPost">
+              <div class="col-md-12 d-flex justify-content-end">
+                <form @submit.prevent="addPost" style="display: flex;">
                   <input
                     v-model="newPost.content"
                     type="text"
-                    class="d-block chat-row mr-3"
+                    class="form-control chat-row mr-3"
                     placeholder="Add post here..."
                     required
                   />
@@ -198,7 +199,7 @@ export default {
         teamId: this.$store.state.activeTeamId
       };
     },
-    deletePost(postId) {
+    deletePost(post) {
       Swal.fire({
         title: "Delete this post?",
         text: "You won't be able to undo this delete!",
@@ -209,7 +210,7 @@ export default {
         confirmButtonText: "Yes, delete post!"
       }).then(result => {
         if (result.value) {
-          this.$store.dispatch("deletePost", postId);
+          this.$store.dispatch("deletePost", post);
           Swal.fire("Deleted!", "Your post has been deleted.", "success");
         }
       });
