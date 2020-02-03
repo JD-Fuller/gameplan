@@ -143,7 +143,7 @@ export default {
   cursor: pointer;
 }
 .navColor {
-  background: #98a1af;
+  background: #738096;
 }
 .logo {
   font-size: 2rem;
