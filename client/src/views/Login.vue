@@ -20,14 +20,14 @@
             <div class="d-flex justify-content-center">
             <div class="md-form">
               <i class="fas fa-envelope prefix"></i>
-              <input type="email" v-model="creds.email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+              <input type="email" v-model="creds.email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" required>
               <label for="defaultLoginFormEmail" data-error="wrong" data-success="right">Type your email</label>
             </div>
             </div>
             <div class="d-flex justify-content-center">
             <div class="md-form"> 
               <i class="fas fa-lock prefix"></i>
-              <input type="password" v-model="creds.password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+              <input type="password" v-model="creds.password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" required>
               <label for="defaultLoginFormPassword" data-error="wrong" data-success="right">Type your password</label>
             <button class="btn btn-danger my-4 d-flex justify-content-center" type="submit">
               Sign In

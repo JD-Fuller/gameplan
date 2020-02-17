@@ -20,21 +20,21 @@
             <div class="d-flex justify-content-center">
             <div class="md-form">
               <i class="fas fa-envelope prefix"></i>
-              <input type="userName" v-model="newUser.name" id="defaultRegisterFormName" class="form-control mb-4" placeholder="User Name">
+              <input type="userName" v-model="newUser.name" id="defaultRegisterFormName" class="form-control mb-4" placeholder="User Name" required>
               <label for="defaultRegisterFormName" data-error="wrong" data-success="right">Register</label>
             </div>
             </div>
             <div class="d-flex justify-content-center">
             <div class="md-form">
               <i class="fas fa-envelope prefix"></i>
-              <input type="email" v-model="newUser.email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+              <input type="email" v-model="newUser.email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" required>
               <label for="defaultLoginFormPassword" data-error="wrong" data-success="right">Email</label>
             </div>
             </div>
             <div class="d-flex justify-content-center">
             <div class="md-form">
-              <i class="fas fa-envelope prefix"></i>
-              <input type="password" v-model="newUser.password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+              <i class="fas fa-lock prefix"></i>
+              <input type="password" v-model="newUser.password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" required> 
               <label for="defaultLoginFormPassword" data-error="wrong" data-success="right">Password</label>
               <button class="btn btn-danger my-4 d-flex justify-content-center" type="submit">Register</button>
             </div>
