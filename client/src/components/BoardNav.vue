@@ -12,7 +12,7 @@
         </router-link>
         <div class="active-team ml-5">
           <h1
-            style="font-variant: all-small-caps; font-family: montserrat; color: black"
+            style="font-variant: all-small-caps; font-family: montserrat; color: white"
             v-for="team in activeTeam"
             v-bind:value="team._id"
             :key="team._id"
@@ -34,8 +34,8 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <button class="btn btn-sm" @click="createTeam()">
-                <i class="fa fas-plus">+</i>
+              <button class="btn" @click="createTeam()">
+                <i class="fa fas-plus-circle" style="font-size: 16px;">+</i>
               </button>
             </li>
             <li>
@@ -43,7 +43,7 @@
                 <select
                   class="form-control"
                   v-model="selected"
-                  style="mx-2"
+                  style="mx-2; color: white; font-size: 12px;"
                   @change="setActiveTeam($event)"
                 >
                   <optgroup>
@@ -64,12 +64,12 @@
               </router-link>
             </li>
             <li class="nav-item mx-auto">
-              <button class="btn btn-sm">Notes</button>
-            </li>
-            <li class="nav-item mx-auto">
               <router-link :to="{ name: 'team' }">
                 <button class="btn btn-sm">Roster</button>
               </router-link>
+            </li>
+            <li class="nav-item mx-auto disabled">
+              <button class="btn btn-sm disabled">Notes</button>
             </li>
             <li>
               <button class="btn btn-sm mx-auto" @click="logout()">
@@ -138,17 +138,25 @@ export default {
 
 <style>
 .btn:hover {
-  background-color: purple;
+  background-color: rgb(123, 125, 126);
   color: white;
   cursor: pointer;
 }
 .navColor {
-  background: #738096;
+  background: rgba(206, 205, 205, 0.5);
+  /* color: #f1f1f1; */
+  /* border-radius: 8px; */
 }
 .logo {
   font-size: 2rem;
 }
-
+.btn.disabled {
+  cursor: not-allowed;
+}
+.btn.disabled:hover {
+  color: transparent;
+  background-color: transparent;
+}
 optgroup {
   font-size: 3rem;
 }

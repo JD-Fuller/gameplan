@@ -91,4 +91,14 @@ i:hover {
   color: white;
   cursor: pointer;
 }
+tbody {
+  background: rgba(77, 76, 76, 0.8);
+  color: #f1f1f1;
+  /* border-radius: 8px; */
+}
+.thead-dark {
+  /* background: rgba(77, 76, 76, 0.5);
+  color: #f1f1f1; */
+  border-radius: 8px;
+}
 </style>

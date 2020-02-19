@@ -1,11 +1,11 @@
 <template>
-  <div class="boards">
+  <div class="boards page">
     <keep-alive>
       <boardnav />
     </keep-alive>
     <div class="container-fluid row">
-      <div class="col-md-4">
-        <h2>Upcoming Events</h2>
+      <div class="col-md-4 upcoming-event">
+        <h2 class="event-heading" style="color: white;">Upcoming Events</h2>
         <div
           v-for="mainEvent in mainEvents"
           :key="mainEvent._id"
@@ -53,7 +53,7 @@
               data-parent="#accordion"
               href="#collapse"
               aria-expanded="false"
-              style="color: red; text-align: left; font-variant: all-small-caps; font-size: 22px"
+              style="text-align: left; font-variant: all-small-caps; font-size: 22px"
             >
               On deck events
               <i class="fa fa-chevron-down float-right"></i>
@@ -91,9 +91,13 @@
         </div>
       </div>
       <div class="col-md-8">
-        <h2 style="font-variant: all-small-caps">Bulletin Board</h2>
+        <h2
+          style="font-variant: all-small-caps; color: white; font-size: 20px;"
+        >
+          Bulletin Board
+        </h2>
         <div class="container-fluid">
-          <div class="row border p-3 shadow">
+          <div class="row p-3 shadow bulletin-board">
             <div class="col-md-12">
               <div v-for="post in posts" :key="post._id">
                 <p class="mr-3" style="text-align: left">
@@ -114,7 +118,7 @@
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="fas fa-ellipsis-h"></i>
+                    <i class="fas fa-ellipsis-h" style="color: grey;"></i>
                   </button>
                   <div
                     class="dropdown-menu"
@@ -151,12 +155,16 @@
                   <input
                     v-model="newPost.content"
                     type="text"
+                    style="color: white; font-size: 12px;"
                     class="form-control chat-row mr-3"
                     placeholder="Add post here..."
                     required
                   />
-                  <button class="btn btn-primary">
-                    <i class="fas fa-plus"></i>
+                  <button class="btn">
+                    <i
+                      class="fas fa-plus-circle"
+                      style="color:green; font-size: 20px;"
+                    ></i>
                   </button>
                 </form>
               </div>
@@ -254,6 +262,27 @@ export default {
 };
 </script>
 <style scoped>
+.page {
+  background-image: url("../assets/grass.jpg");
+  background-size: cover;
+  min-height: 950px;
+}
+.bulletin-board {
+  background: rgba(84, 83, 83, 0.5);
+  color: #f1f1f1;
+  border-radius: 8px;
+  /* text-shadow: -1px 2px 3px #000; */
+}
+.card {
+  background: rgba(67, 66, 66, 0.8);
+  color: #f1f1f1;
+  text-shadow: -0.5px 1px 3px #000;
+}
+.card-header {
+  background: rgba(191, 189, 189, 0.502);
+  color: #f1f1f1;
+  text-shadow: -0.5px 1px 3px #000;
+}
 .card-header .fa {
   transition: 0.3s transform ease-in-out;
 }
