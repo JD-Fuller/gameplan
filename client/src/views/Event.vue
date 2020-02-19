@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="page">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12" style=" margin-bottom: 50px;">
           <keep-alive>
             <boardnav />
           </keep-alive>
-          <h1>EVENTS PAGE</h1>
+          <h1 style="color: #f1f1f1;">EVENTS</h1>
           <div>
             <form class="event-form" @submit.prevent="createEvent">
               <h2 class="team-select">
@@ -50,7 +50,7 @@
                 v-model="newEvent.location"
               />
               <button class="btn btn-primary" style="margin:5px;">
-                Submit
+                Add Event
               </button>
             </form>
           </div>
@@ -64,12 +64,12 @@
             <div class="table-title">
               <div class="row">
                 <div class="col-sm-6" style="text-align: left;">
-                  <h2>Events</h2>
+                  <h2 style="color: #f1f1f1;">Events</h2>
                 </div>
                 <div class="col-sm-6"></div>
               </div>
             </div>
-            <table class="table table-striped table-hover">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -209,13 +209,30 @@ export default {
 </script>
 
 <style>
+.page {
+  background-image: url("../assets/grass.jpg");
+  background-size: cover;
+  min-height: 950px;
+}
 .table-wrapper {
   margin-bottom: 50px;
+}
+.table {
+  background: rgba(106, 105, 105, 0.5);
+  color: #f1f1f1;
+  border-radius: 8px;
+}
+.event-form {
+  /* background: rgba(84, 83, 83, 0.5); */
+  color: #f1f1f1;
+  /* border-radius: 8px; */
 }
 .form-control {
   max-width: 26vw;
   display: flex;
   align-content: center;
+  background: rgba(77, 76, 76, 0.5);
+  background-color: rgba(77, 76, 76, 0.5);
 }
 .event-form {
   text-align: -webkit-center;
@@ -223,5 +240,12 @@ export default {
 .team-select {
   display: flex;
   justify-content: center;
+}
+input,
+select,
+option {
+  background: rgba(77, 76, 76, 0.5);
+  color: #f1f1f1;
+  border-radius: 8px;
 }
 </style>

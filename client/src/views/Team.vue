@@ -1,5 +1,5 @@
 <template>
-  <div class="team">
+  <div class="team page">
     <div class="row">
       <div class="col-md-12">
         <navbar />
@@ -11,10 +11,11 @@
             <h1 class="text-light">TEAM ROSTER</h1>
             <button
               class="btn btn-sm text-light addButton py-0"
+              style="border-radius:8px;"
               data-target="#addPlayerForm"
               @click="show = !show"
             >
-              <span class="mx-1">Add Player</span>
+              <span class="mx-1 add-player">Add</span>
               <i class="fas fa-user-plus"></i>
             </button>
           </div>
@@ -25,16 +26,17 @@
           <h1 class="text-light">Team(s):</h1>
           <dl v-for="team in teams" :key="team._id" class="text-center">
             <dt class="text-center li mx-1 text-light">
-              {{ team.title }} |
-              <a
-                @submit.prevent="deleteTeam(team._id)"
-                class="dropdown-item mx-1 float-right"
-                style="color: red;"
-                type="submit"
-                @click="deleteTeam(team._id)"
-              >
-                <i class="fas fa-minus-circle"></i>
-              </a>
+              {{ team.title }} -
+              <i class="fas fa-minus-circle" style="color: red;"
+                ><a
+                  @submit.prevent="deleteTeam(team._id)"
+                  class="delete-team mx-1 float-right"
+                  style="color: red;"
+                  type="submit"
+                  @click="deleteTeam(team._id)"
+                >
+                </a>
+              </i>
             </dt>
           </dl>
         </div>
@@ -51,9 +53,9 @@
           id="addPlayerForm"
           @submit.prevent="addPlayer"
           v-if="show"
-          class="playerForm bg-light formPad justify-content-center"
+          class="playerForm formPad justify-content-center"
         >
-          <div class="addHeader text-light pt-3 d-flex justify-content-center">
+          <div class="addHeader pt-3 d-flex justify-content-center">
             <h1>Add Player</h1>
           </div>
           <div class="form-row mt-4 mr-4 ml-4">
@@ -250,7 +252,7 @@ export default {
   margin-left: auto;
   display: inline-block;
   max-height: 45px;
-  background-color: purple;
+  background-color: rgb(4, 84, 21);
 }
 .addButton:hover {
   text-shadow: 10px;
@@ -259,7 +261,7 @@ export default {
 .addHeader {
   background-color: #3e3f3a;
 }
-.team {
+.page {
   background-image: url("../assets/grass.jpg");
   background-size: cover;
   min-height: 950px;
