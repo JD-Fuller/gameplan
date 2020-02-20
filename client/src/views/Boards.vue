@@ -155,7 +155,7 @@
                   <input
                     v-model="newPost.content"
                     type="text"
-                    style="color: white; font-size: 12px;"
+                    style="color: black; font-size: 12px;"
                     class="form-control chat-row mr-3"
                     placeholder="Add post here..."
                     required

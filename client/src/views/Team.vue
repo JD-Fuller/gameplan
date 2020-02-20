@@ -271,5 +271,8 @@ export default {
 }
 .playerForm {
   position: absolute;
+  background: rgba(84, 83, 83, 0.5);
+  color: #f1f1f1;
+  border-radius: 8px;
 }
 </style>
