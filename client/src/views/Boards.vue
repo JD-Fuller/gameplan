@@ -1,44 +1,36 @@
 <template>
-  <div class="boards page">
+  <div class="boards page container-fluid">
     <keep-alive>
       <boardnav />
     </keep-alive>
-    <div class="container-fluid row">
+    <div class="row">
       <div class="col-md-4 upcoming-event">
         <h2 class="event-heading" style="color: white;">Upcoming Events</h2>
-        <div
-          v-for="mainEvent in mainEvents"
-          :key="mainEvent._id"
-          class="justify-content-start"
-        >
+        <div v-for="mainEvent in mainEvents" :key="mainEvent._id" class="justify-content-start">
           <div class="card">
             <h5
               class="card-header"
               role="tab"
               id="heading"
               style="text-align: left"
-            >
-              Event: {{ mainEvent.date | eventDate }}
-            </h5>
+            >Event: {{ mainEvent.date | eventDate }}</h5>
             <div>
               <div class="card-body pb-5">
                 <h3
                   class="font-weight-bold"
                   style="text-align: left; font-variant: all-small-caps"
-                >
-                  {{ mainEvent.title }}
-                </h3>
+                >{{ mainEvent.title }}</h3>
                 <p style="text-align: left">
-                  <i class="fas fa-map-marker-alt mr-2"></i
-                  >{{ mainEvent.location }}
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  {{ mainEvent.location }}
                 </p>
                 <p style="text-align: left">
-                  <i class="far fa-calendar-alt mr-2"></i
-                  >{{ mainEvent.date | eventDate }}
+                  <i class="far fa-calendar-alt mr-2"></i>
+                  {{ mainEvent.date | eventDate }}
                 </p>
                 <p class="card-text mb-0 float-left">
-                  <i class="fas fa-info-circle mr-2"></i
-                  >{{ mainEvent.description }}
+                  <i class="fas fa-info-circle mr-2"></i>
+                  {{ mainEvent.description }}
                 </p>
               </div>
             </div>
@@ -72,18 +64,18 @@
                 <h3
                   class="font-weight-bold"
                   style="text-align: left; font-variant: all-small-caps"
-                >
-                  {{ date.title }}
-                </h3>
+                >{{ date.title }}</h3>
                 <p style="text-align: left">
-                  <i class="fas fa-map-marker-alt mr-2"></i>{{ date.location }}
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  {{ date.location }}
                 </p>
                 <p style="text-align: left">
-                  <i class="far fa-calendar-alt mr-2"></i
-                  >{{ date.date | eventDate }}
+                  <i class="far fa-calendar-alt mr-2"></i>
+                  {{ date.date | eventDate }}
                 </p>
                 <p class="card-text mb-0 float-left">
-                  <i class="fas fa-info-circle mr-2"></i>{{ date.description }}
+                  <i class="fas fa-info-circle mr-2"></i>
+                  {{ date.description }}
                 </p>
               </div>
             </div>
@@ -91,23 +83,17 @@
         </div>
       </div>
       <div class="col-md-8">
-        <h2
-          style="font-variant: all-small-caps; color: white; font-size: 20px;"
-        >
-          Bulletin Board
-        </h2>
+        <h2 style="font-variant: all-small-caps; color: white; font-size: 20px;">Bulletin Board</h2>
         <div class="container-fluid">
           <div class="row p-3 shadow bulletin-board">
             <div class="col-md-12">
               <div v-for="post in posts" :key="post._id">
-                <p class="mr-3" style="text-align: left">
-                  {{ post.content }}
-                </p>
+                <p class="mr-3" style="text-align: left">{{ post.content }}</p>
                 <p class="text-secondary float-right">
-                  <i
-                    >Coach {{ user.name }},
-                    <small>{{ post.createdAt | postFormat }}</small></i
-                  >
+                  <i>
+                    Coach {{ user.name }},
+                    <small>{{ post.createdAt | postFormat }}</small>
+                  </i>
                 </p>
                 <div class="dropdown">
                   <button
@@ -120,10 +106,7 @@
                   >
                     <i class="fas fa-ellipsis-h" style="color: grey;"></i>
                   </button>
-                  <div
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
-                  >
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <div
                       @submit.prevent="editPost()"
                       type="submit"
@@ -161,10 +144,7 @@
                     required
                   />
                   <button class="btn">
-                    <i
-                      class="fas fa-plus-circle"
-                      style="color:green; font-size: 20px;"
-                    ></i>
+                    <i class="fas fa-plus-circle" style="color:green; font-size: 20px;"></i>
                   </button>
                 </form>
               </div>
