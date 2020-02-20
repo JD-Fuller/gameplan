@@ -36,7 +36,7 @@
                 for="defaultLoginFormEmail"
                 data-error="wrong"
                 data-success="right"
-                >Enter your email</label
+                >Enter Email Address</label
               >
             </div>
           </div>
