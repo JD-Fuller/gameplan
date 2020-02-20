@@ -9,9 +9,10 @@
           <h1 style="color: #f1f1f1;">EVENTS</h1>
           <div>
             <form class="event-form" @submit.prevent="createEvent">
-              <h2 class="team-select">
-                Select Team:
-                <select
+              <!-- Removed items because we were doubling our code -->
+              <!-- <h2 class="team-select">
+                Select Team: -->
+              <!-- <select
                   class="form-control ml-2"
                   v-model="selected"
                   style="mx-2"
@@ -24,8 +25,8 @@
                     :key="team._id"
                     >{{ team.title }}</option
                   >
-                </select>
-              </h2>
+                </select> -->
+              <!-- </h2> -->
               <input
                 type="text"
                 placeholder="Title..."
