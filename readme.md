@@ -34,4 +34,4 @@ See Trello Board for Phase 2
 
 
 ### Bonus Ideas:
-- Web API integration where events have weather based on location and date, injected into their view. 
+- Web API integration where team events have weather injected into the view, based on location and date.
