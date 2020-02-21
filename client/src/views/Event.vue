@@ -10,9 +10,9 @@
           <div>
             <form class="event-form" @submit.prevent="createEvent">
               <!-- Removed items because we were doubling our code -->
-              <!-- <h2 class="team-select">
-                Select Team: -->
-              <!-- <select
+              <h2 class="team-select">
+                Select Team:
+                <select
                   class="form-control ml-2"
                   v-model="selected"
                   style="mx-2"
@@ -25,8 +25,8 @@
                     :key="team._id"
                     >{{ team.title }}</option
                   >
-                </select> -->
-              <!-- </h2> -->
+                </select>
+              </h2>
               <input
                 type="text"
                 placeholder="Title..."
@@ -157,6 +157,12 @@ export default {
     this.$store.dispatch("getEventsByTeamId", this.$store.state.activeTeamId);
   },
   methods: {
+    setActiveTeam(event) {
+      let activeTeamId =
+        event.target.options[event.target.options.selectedIndex].value;
+      this.$store.commit("setActiveTeamId", activeTeamId);
+      this.$store.dispatch("getEventsByTeamId", this.activeTeamId);
+    },
     createEvent() {
       let event = { ...this.newEvent };
       this.$store.dispatch("createEvent", event);
@@ -183,11 +189,6 @@ export default {
           Swal.fire("Deleted!", "Your post has been deleted.", "Success");
         }
       });
-    },
-    setActiveTeam(event) {
-      let activeTeamId =
-        event.target.options[event.target.options.selectedIndex].value;
-      this.$store.commit("setActiveTeamId", activeTeamId);
     },
     async editEvent(event) {
       let eventInfo = await NotificationService.editEvent(event);

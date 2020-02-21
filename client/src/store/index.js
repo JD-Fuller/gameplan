@@ -153,7 +153,7 @@ export default new Vuex.Store({
     },
     async deleteEvent({ commit, dispatch }, eventId) {
       let res = await api.delete("events/" + eventId);
-      dispatch("getEvents");
+      dispatch("getEventsByTeamId", eventId);
     },
     //#endregion - events
 
