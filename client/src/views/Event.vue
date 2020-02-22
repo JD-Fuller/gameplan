@@ -61,7 +61,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="table-wrapper shadow p-4">
+          <div class="table-wrapper shadow p-4" style="overflow-x:auto;">
             <div class="table-title">
               <div class="row">
                 <div class="col-sm-6" style="text-align: left;">

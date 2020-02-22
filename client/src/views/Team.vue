@@ -191,7 +191,8 @@ export default {
         authorId: this.authorId,
         teamId: ""
       },
-      show: false
+      show: false,
+      mobile: 0
     };
   },
   methods: {
