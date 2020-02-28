@@ -61,7 +61,9 @@ export default new Vuex.Store({
     putEvent(state, event) {
       state.events.push(event);
     },
-
+    addTeam(state, teamData) {
+      state.teams.push(teamData);
+    },
     setTeams(state, teams) {
       state.teams = teams;
     },
@@ -159,12 +161,14 @@ export default new Vuex.Store({
 
     // #region TEAMS
     async getTeams({ commit, dispatch }) {
+      debugger;
       let res = await api.get("teams");
       commit("setTeams", res.data);
     },
     async createTeam({ commit, dispatch }, teamData) {
+      debugger;
       let res = await api.post("/teams", teamData);
-      commit("setTeams", res.data);
+      commit("addTeam", res.data);
       console.log(teamData);
     },
     async deleteTeam({ commit, dispatch }, teamId) {

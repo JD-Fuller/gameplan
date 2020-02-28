@@ -10,7 +10,7 @@
           <div>
             <form class="event-form" @submit.prevent="createEvent">
               <!-- Removed items because we were doubling our code -->
-              <h2 class="team-select">
+              <!-- <h2 class="team-select">
                 Select Team:
                 <select
                   class="form-control ml-2"
@@ -26,7 +26,7 @@
                     >{{ team.title }}</option
                   >
                 </select>
-              </h2>
+              </h2> -->
               <input
                 type="text"
                 placeholder="Title..."
@@ -154,7 +154,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getTeams");
-    this.$store.dispatch("getEventsByTeamId", this.$store.state.activeTeamId);
+    debugger;
+    let activeTeamId = this.$store.state.activeTeamId;
+    this.$store.dispatch("getEventsByTeamId", activeTeamId);
   },
   methods: {
     setActiveTeam(event) {
@@ -163,8 +165,12 @@ export default {
       this.$store.commit("setActiveTeamId", activeTeamId);
       this.$store.dispatch("getEventsByTeamId", this.activeTeamId);
     },
+    activeTeam() {
+      let activeTeam = this.$store.state.activeTeamId;
+    },
     createEvent() {
       let event = { ...this.newEvent };
+      debugger;
       this.$store.dispatch("createEvent", event);
       this.newEvent = {
         title: "",

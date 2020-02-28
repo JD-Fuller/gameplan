@@ -114,6 +114,7 @@ export default {
     async createTeam() {
       let taskInfo = await NotificationService.inputData("Create a new Team");
       if (taskInfo) {
+        debugger;
         this.$store.dispatch("createTeam", taskInfo);
         this.newTask = { title: "" };
       }
