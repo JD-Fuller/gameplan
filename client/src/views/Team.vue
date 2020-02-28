@@ -26,16 +26,17 @@
           <h1 class="text-light">Team(s):</h1>
           <dl v-for="team in teams" :key="team._id" class="text-center">
             <dt class="text-center li mx-1 text-light">
-              {{ team.title }} -
-              <i
-                @submit.prevent="deleteTeam(team._id)"
-                class="fas fa-minus-circle"
-                style="color: red;"
-                type="submit"
-                @click="deleteTeam(team._id)"
-              >
-              </i>
+              {{ team.title }}
             </dt>
+
+            <i
+              @submit.prevent="deleteTeam(team._id)"
+              class="fas fa-minus-circle"
+              style="color: red;"
+              type="submit"
+              @click="deleteTeam(team._id)"
+            >
+            </i>
           </dl>
         </div>
       </div>
