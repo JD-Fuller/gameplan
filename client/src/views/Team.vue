@@ -224,7 +224,6 @@ export default {
         confirmButtonText: "Yes, delete team!"
       }).then(result => {
         if (result.value) {
-          debugger;
           this.$store.dispatch("deleteTeam", teamId);
           Swal.fire("Deleted!", "Your team has been deleted.", "success");
         }

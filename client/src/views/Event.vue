@@ -154,7 +154,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getTeams");
-    debugger;
+
     let activeTeamId = this.$store.state.activeTeamId;
     this.$store.dispatch("getEventsByTeamId", activeTeamId);
   },
@@ -170,7 +170,7 @@ export default {
     },
     createEvent() {
       let event = { ...this.newEvent };
-      debugger;
+
       this.$store.dispatch("createEvent", event);
       this.newEvent = {
         title: "",

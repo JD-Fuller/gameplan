@@ -161,12 +161,10 @@ export default new Vuex.Store({
 
     // #region TEAMS
     async getTeams({ commit, dispatch }) {
-      debugger;
       let res = await api.get("teams");
       commit("setTeams", res.data);
     },
     async createTeam({ commit, dispatch }, teamData) {
-      debugger;
       let res = await api.post("/teams", teamData);
       commit("addTeam", res.data);
       console.log(teamData);
