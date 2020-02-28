@@ -27,15 +27,13 @@
           <dl v-for="team in teams" :key="team._id" class="text-center">
             <dt class="text-center li mx-1 text-light">
               {{ team.title }} -
-              <i class="fas fa-minus-circle" style="color: red;"
-                ><a
-                  @submit.prevent="deleteTeam(team._id)"
-                  class="delete-team mx-1 float-right"
-                  style="color: red;"
-                  type="submit"
-                  @click="deleteTeam(team._id)"
-                >
-                </a>
+              <i
+                @submit.prevent="deleteTeam(team._id)"
+                class="fas fa-minus-circle"
+                style="color: red;"
+                type="submit"
+                @click="deleteTeam(team._id)"
+              >
               </i>
             </dt>
           </dl>
@@ -225,6 +223,7 @@ export default {
         confirmButtonText: "Yes, delete team!"
       }).then(result => {
         if (result.value) {
+          debugger;
           this.$store.dispatch("deleteTeam", teamId);
           Swal.fire("Deleted!", "Your team has been deleted.", "success");
         }
