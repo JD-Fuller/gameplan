@@ -7,7 +7,7 @@ import AuthService from "../AuthService";
 Vue.use(Vuex);
 
 //Allows axios to work locally or live
-let base = window.location.host.includes("localhost:8080")
+let base = window.location.host.includes("localhost")
   ? "//localhost:3000/"
   : "/";
 
