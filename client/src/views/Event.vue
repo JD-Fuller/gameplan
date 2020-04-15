@@ -23,16 +23,10 @@
                     v-for="team in teams"
                     v-bind:value="team._id"
                     :key="team._id"
-                    >{{ team.title }}</option
-                  >
+                  >{{ team.title }}</option>
                 </select>
               </h2>
-              <input
-                type="text"
-                placeholder="Title..."
-                v-model="newEvent.title"
-                required
-              />
+              <input type="text" placeholder="Title..." v-model="newEvent.title" required />
               <input
                 type="text"
                 placeholder="Description..."
@@ -40,19 +34,9 @@
                 required
               />
 
-              <input
-                type="date"
-                placeholder="Date..."
-                v-model="newEvent.date"
-              />
-              <input
-                type="text"
-                placeholder="Location..."
-                v-model="newEvent.location"
-              />
-              <button class="btn btn-primary" style="margin:5px;">
-                Add Event
-              </button>
+              <input type="date" placeholder="Date..." v-model="newEvent.date" />
+              <input type="text" placeholder="Location..." v-model="newEvent.location" />
+              <button class="btn btn-primary" style="margin:5px;">Add Event</button>
             </form>
           </div>
         </div>
@@ -98,10 +82,7 @@
                       >
                         <i class="fas fa-ellipsis-h"></i>
                       </button>
-                      <div
-                        class="dropdown-menu"
-                        aria-labelledby="dropdownMenuButton"
-                      >
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <div
                           class="dropdown-item mx-1 float-right"
                           type="submit"
