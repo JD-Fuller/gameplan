@@ -5,9 +5,7 @@
         <router-link :to="{ name: 'boards' }">
           <a class="navbar-brand" href="#" style="display: inline-flex">
             <i class="fas fa-running fa-3x"></i>
-            <h2 style="font-variant: all-small-caps; font-size: 3.5rem;">
-              GamePlan
-            </h2>
+            <h2 style="font-variant: all-small-caps; font-size: 3.5rem;">GamePlan</h2>
           </a>
         </router-link>
         <div class="active-team ml-5">
@@ -17,7 +15,7 @@
             v-bind:value="team._id"
             :key="team._id"
           >
-            <b> Active Team: {{ team.title }} </b>
+            <b>Active Team: {{ team.title }}</b>
           </h1>
         </div>
         <button
@@ -47,13 +45,12 @@
                   @change="setActiveTeam($event)"
                 >
                   <optgroup>
-                    <option value="" disabled>Select Team</option>
+                    <option value disabled>Select Team</option>
                     <option
                       v-for="team in teams"
                       v-bind:value="team._id"
                       :key="team._id"
-                      >{{ team.title }}</option
-                    >
+                    >{{ team.title }}</option>
                   </optgroup>
                 </select>
               </div>
@@ -72,9 +69,7 @@
               <button class="btn btn-sm disabled">Notes</button>
             </li>
             <li>
-              <button class="btn btn-sm mx-auto" @click="logout()">
-                Logout
-              </button>
+              <button class="btn btn-sm mx-auto" @click="logout()">Logout</button>
             </li>
           </ul>
         </div>
@@ -159,5 +154,8 @@ export default {
 }
 optgroup {
   font-size: 3rem;
+}
+h1 {
+  font-size: 25pt;
 }
 </style>
