@@ -170,6 +170,9 @@
               </div>
             </div>
           </div>
+          <div class="col-12 text-light">
+            {{ weather }}
+          </div>
         </div>
       </div>
     </div>
@@ -184,6 +187,17 @@ import Swal from "sweetalert2";
 export default {
   name: "boards",
   mounted() {
+    axios
+      .get(
+        "https://api.openweathermap.org/data/2.5/weather?q=Boise,us&appid=dc01cfbd8f10d91a05d0da86a4f7f27c"
+      )
+      .then((response) => (this.weather = response.data.main.temp));
+    // .catch((error) => {
+    //   console.log(error);
+    //   this.errored = true;
+    // })
+    // .finally(() => (this.loading = false));
+
     this.$store.dispatch("getPostsByTeamId", this.$store.state.activeTeamId);
     this.$store.dispatch("getEventsByTeamId", this.$store.state.activeTeamId);
   },
@@ -192,10 +206,15 @@ export default {
       selected: "Select Team",
       newPost: {
         content: "",
-        teamId: ""
-      }
+        teamId: "",
+      },
     };
   },
+  // filters: {
+  //   convert(weather) {
+  //     return 9 / 5(weather - 273) + 34;
+  //   },
+  // },
   methods: {
     addPost() {
       let post = { ...this.newPost };
@@ -204,7 +223,7 @@ export default {
 
       this.newPost = {
         content: "",
-        teamId: this.$store.state.activeTeamId
+        teamId: this.$store.state.activeTeamId,
       };
     },
     deletePost(post) {
@@ -215,8 +234,8 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete post!"
-      }).then(result => {
+        confirmButtonText: "Yes, delete post!",
+      }).then((result) => {
         if (result.value) {
           this.$store.dispatch("deletePost", post);
           Swal.fire("Deleted!", "Your post has been deleted.", "success");
@@ -227,7 +246,7 @@ export default {
       let postInfo = await NotificationService.editPost();
       postInfo.id = postId;
       this.$store.dispatch("editPost", postInfo);
-    }
+    },
   },
   computed: {
     posts() {
@@ -253,12 +272,12 @@ export default {
         })
         .slice(0, 1);
       return newArray;
-    }
+    },
   },
 
   components: {
-    boardnav
-  }
+    boardnav,
+  },
 };
 </script>
 <style scoped>
