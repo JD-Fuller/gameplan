@@ -22,10 +22,10 @@ export default class NotificationService {
         preConfirm: () => {
           return [
             // @ts-ignore
-            document.getElementById("swal-input1").value
+            document.getElementById("swal-input1").value,
             // @ts-ignore
           ];
-        }
+        },
       });
       // console.log(formValues)
       // debugger
@@ -45,10 +45,10 @@ export default class NotificationService {
         preConfirm: () => {
           return [
             // @ts-ignore
-            document.getElementById("swal-input1").value
+            document.getElementById("swal-input1").value,
             // @ts-ignore
           ];
-        }
+        },
       });
       // console.log(formValues)
       // debugger
@@ -84,9 +84,9 @@ export default class NotificationService {
             // @ts-ignore
             document.getElementById("location").value,
             // @ts-ignore
-            document.getElementById("date").value
+            document.getElementById("date").value,
           ];
-        }
+        },
       });
 
       if (formValues) {
@@ -95,7 +95,7 @@ export default class NotificationService {
           title: formValues[0],
           description: formValues[1],
           location: formValues[2],
-          date: formValues[3]
+          date: formValues[3],
         };
       } else {
         console.log("formValues is false");
@@ -115,12 +115,12 @@ export default class NotificationService {
         preConfirm: () => {
           // @ts-ignore
           return [document.getElementById("content").value];
-        }
+        },
       });
 
       if (formValues) {
         return {
-          content: formValues[0]
+          content: formValues[0],
         };
       } else {
         console.log("formValues is false");
@@ -184,9 +184,9 @@ export default class NotificationService {
             // @ts-ignore
             document.getElementById("email").value,
             // @ts-ignore
-            document.getElementById("phoneNumber").value
+            document.getElementById("phoneNumber").value,
           ];
-        }
+        },
       });
 
       if (formValues) {
@@ -199,7 +199,7 @@ export default class NotificationService {
           homeCity: formValues[5],
           homeState: formValues[6],
           email: formValues[7],
-          phoneNumber: formValues[8]
+          phoneNumber: formValues[8],
         };
       } else {
         console.log("formValues is false");

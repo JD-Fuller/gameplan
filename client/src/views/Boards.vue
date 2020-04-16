@@ -3,6 +3,7 @@
     <keep-alive>
       <boardnav />
     </keep-alive>
+
     <div class="container-fluid row">
       <div class="col-md-4 upcoming-event">
         <h2 class="event-heading" style="color: white;">Upcoming Events</h2>
@@ -170,11 +171,13 @@
               </div>
             </div>
           </div>
-          <div class="col-12 text-light">
-            {{ weather }}
-          </div>
         </div>
       </div>
+
+      <!-- <div class="col-12 text-light justify-content-">
+        {{ weather }}
+        <div id="openweathermap-widget-22"></div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -191,12 +194,11 @@ export default {
       .get(
         "https://api.openweathermap.org/data/2.5/weather?q=Boise,us&appid=dc01cfbd8f10d91a05d0da86a4f7f27c"
       )
-      .then((response) => (this.weather = response.data.main.temp));
-    // .catch((error) => {
-    //   console.log(error);
-    //   this.errored = true;
-    // })
-    // .finally(() => (this.loading = false));
+      .then((response) =>
+        (this.weather = Math.round(
+          (response.data.main.temp * 9) / 5 - 459.67
+        )).catch((error) => console.log(error))
+      );
 
     this.$store.dispatch("getPostsByTeamId", this.$store.state.activeTeamId);
     this.$store.dispatch("getEventsByTeamId", this.$store.state.activeTeamId);
@@ -204,6 +206,7 @@ export default {
   data() {
     return {
       selected: "Select Team",
+      weather: this.weather,
       newPost: {
         content: "",
         teamId: "",
@@ -307,5 +310,27 @@ export default {
 }
 .card-header .collapsed .fa {
   transform: rotate(90deg);
+}
+.main {
+  margin-top: 50px;
+}
+.weather-panel {
+  background-image: url("https://unsplash.it/600/400?image=1043&blur");
+  background-size: cover;
+  border-radius: 20px;
+  box-shadow: 25px 25px 40px 0px rgba(0, 0, 0, 0.33);
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+.small {
+  color: #fff;
+  font-size: 50%;
+}
+ul.forecast > li {
+  border-top: 1px solid #fff;
+}
+.temperature {
+  font-size: 2em;
 }
 </style>
