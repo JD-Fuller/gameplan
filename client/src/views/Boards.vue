@@ -85,10 +85,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8">
-        <h2 style="font-variant: all-small-caps; color: white; font-size: 20px;">Bulletin Board</h2>
-        <div class="container-fluid">
-          <div class="row p-3 shadow bulletin-board">
+      <div class="container-fluid">
+        <div class="row p-3 shadow bulletin-board">
+          <div class="col-md-8">
+            <h2 style="font-variant: all-small-caps; color: white; font-size: 20px;">Bulletin Board</h2>
             <div class="col-md-12">
               <div v-for="post in posts" :key="post._id">
                 <p class="mr-3" style="text-align: left">{{ post.content }}</p>
@@ -135,7 +135,7 @@
                 <hr />
               </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid row">
               <div class="row">
                 <div class="col-md-12 d-flex justify-content-end">
                   <form @submit.prevent="addPost" style="display: flex;">
