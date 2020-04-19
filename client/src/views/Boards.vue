@@ -4,111 +4,99 @@
       <boardnav />
     </keep-alive>
 
-    <div class="container-fluid row">
-      <div class="col-md-4 upcoming-event">
-        <h2 class="event-heading" style="color: white;">Upcoming Events</h2>
-        <div
-          v-for="mainEvent in mainEvents"
-          :key="mainEvent._id"
-          class="justify-content-start"
-        >
-          <div class="card">
-            <h5
-              class="card-header"
-              role="tab"
-              id="heading"
-              style="text-align: left"
-            >
-              Event: {{ mainEvent.date | eventDate }}
-            </h5>
-            <div>
-              <div class="card-body pb-5">
-                <h3
-                  class="font-weight-bold"
-                  style="text-align: left; font-variant: all-small-caps"
-                >
-                  {{ mainEvent.title }}
-                </h3>
-                <p style="text-align: left">
-                  <i class="fas fa-map-marker-alt mr-2"></i
-                  >{{ mainEvent.location }}
-                </p>
-                <p style="text-align: left">
-                  <i class="far fa-calendar-alt mr-2"></i
-                  >{{ mainEvent.date | eventDate }}
-                </p>
-                <p class="card-text mb-0 float-left">
-                  <i class="fas fa-info-circle mr-2"></i
-                  >{{ mainEvent.description }}
-                </p>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 upcoming-event">
+          <h2 class="event-heading" style="color: white;">Upcoming Events</h2>
+          <div v-for="mainEvent in mainEvents" :key="mainEvent._id" class="justify-content-start">
+            <div class="card">
+              <h5
+                class="card-header"
+                role="tab"
+                id="heading"
+                style="text-align: left"
+              >Event: {{ mainEvent.date | eventDate }}</h5>
+              <div>
+                <div class="card-body pb-5">
+                  <h3
+                    class="font-weight-bold"
+                    style="text-align: left; font-variant: all-small-caps"
+                  >{{ mainEvent.title }}</h3>
+                  <p style="text-align: left">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    {{ mainEvent.location }}
+                  </p>
+                  <p style="text-align: left">
+                    <i class="far fa-calendar-alt mr-2"></i>
+                    {{ mainEvent.date | eventDate }}
+                  </p>
+                  <p class="card-text mb-0 float-left">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    {{ mainEvent.description }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="card">
-          <h5 class="card-header" role="tab" id="heading">
-            <a
-              class="collapsed d-block font-weight-bold"
-              data-toggle="collapse"
-              data-parent="#accordion"
-              href="#collapse"
-              aria-expanded="false"
-              style="text-align: left; font-variant: all-small-caps; font-size: 22px"
-            >
-              On deck events
-              <i class="fa fa-chevron-down float-right"></i>
-            </a>
-          </h5>
-          <div id="collapse" class="collapse" role="tabpanel">
-            <div
-              id="accordion"
-              role="tablist"
-              aria-multiselectable="true"
-              v-for="date in dates"
-              :key="date._id"
-              class="justify-content-start"
-            >
-              <div class="card-body pb-5">
-                <h3
-                  class="font-weight-bold"
-                  style="text-align: left; font-variant: all-small-caps"
-                >
-                  {{ date.title }}
-                </h3>
-                <p style="text-align: left">
-                  <i class="fas fa-map-marker-alt mr-2"></i>{{ date.location }}
-                </p>
-                <p style="text-align: left">
-                  <i class="far fa-calendar-alt mr-2"></i
-                  >{{ date.date | eventDate }}
-                </p>
-                <p class="card-text mb-0 float-left">
-                  <i class="fas fa-info-circle mr-2"></i>{{ date.description }}
-                </p>
+          <div class="card">
+            <h5 class="card-header" role="tab" id="heading">
+              <a
+                class="collapsed d-block font-weight-bold"
+                data-toggle="collapse"
+                data-parent="#accordion"
+                href="#collapse"
+                aria-expanded="false"
+                style="text-align: left; font-variant: all-small-caps; font-size: 22px"
+              >
+                On deck events
+                <i class="fa fa-chevron-down float-right"></i>
+              </a>
+            </h5>
+            <div id="collapse" class="collapse" role="tabpanel">
+              <div
+                id="accordion"
+                role="tablist"
+                aria-multiselectable="true"
+                v-for="date in dates"
+                :key="date._id"
+                class="justify-content-start"
+              >
+                <div class="card-body pb-5">
+                  <h3
+                    class="font-weight-bold"
+                    style="text-align: left; font-variant: all-small-caps"
+                  >{{ date.title }}</h3>
+                  <p style="text-align: left">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    {{ date.location }}
+                  </p>
+                  <p style="text-align: left">
+                    <i class="far fa-calendar-alt mr-2"></i>
+                    {{ date.date | eventDate }}
+                  </p>
+                  <p class="card-text mb-0 float-left">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    {{ date.description }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-8">
-        <h2
-          style="font-variant: all-small-caps; color: white; font-size: 20px;"
-        >
-          Bulletin Board
-        </h2>
+        <h2 style="font-variant: all-small-caps; color: white; font-size: 20px;">Bulletin Board</h2>
         <div class="container-fluid">
           <div class="row p-3 shadow bulletin-board">
             <div class="col-md-12">
               <div v-for="post in posts" :key="post._id">
-                <p class="mr-3" style="text-align: left">
-                  {{ post.content }}
-                </p>
+                <p class="mr-3" style="text-align: left">{{ post.content }}</p>
                 <p class="text-secondary float-right">
-                  <i
-                    >Coach {{ user.name }},
-                    <small>{{ post.createdAt | postFormat }}</small></i
-                  >
+                  <i>
+                    Coach {{ user.name }},
+                    <small>{{ post.createdAt | postFormat }}</small>
+                  </i>
                 </p>
                 <div class="dropdown">
                   <button
@@ -121,10 +109,7 @@
                   >
                     <i class="fas fa-ellipsis-h" style="color: grey;"></i>
                   </button>
-                  <div
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
-                  >
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <div
                       @submit.prevent="editPost()"
                       type="submit"
@@ -162,10 +147,7 @@
                     required
                   />
                   <button class="btn">
-                    <i
-                      class="fas fa-plus-circle"
-                      style="color:green; font-size: 20px;"
-                    ></i>
+                    <i class="fas fa-plus-circle" style="color:green; font-size: 20px;"></i>
                   </button>
                 </form>
               </div>
@@ -177,7 +159,7 @@
       <!-- <div class="col-12 text-light justify-content-">
         {{ weather }}
         <div id="openweathermap-widget-22"></div>
-      </div> -->
+      </div>-->
     </div>
   </div>
 </template>
@@ -194,10 +176,10 @@ export default {
       .get(
         "https://api.openweathermap.org/data/2.5/weather?q=Boise,us&appid=dc01cfbd8f10d91a05d0da86a4f7f27c"
       )
-      .then((response) =>
+      .then(response =>
         (this.weather = Math.round(
           (response.data.main.temp * 9) / 5 - 459.67
-        )).catch((error) => console.log(error))
+        )).catch(error => console.log(error))
       );
 
     this.$store.dispatch("getPostsByTeamId", this.$store.state.activeTeamId);
@@ -209,8 +191,8 @@ export default {
       weather: this.weather,
       newPost: {
         content: "",
-        teamId: "",
-      },
+        teamId: ""
+      }
     };
   },
   // filters: {
@@ -226,7 +208,7 @@ export default {
 
       this.newPost = {
         content: "",
-        teamId: this.$store.state.activeTeamId,
+        teamId: this.$store.state.activeTeamId
       };
     },
     deletePost(post) {
@@ -237,8 +219,8 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete post!",
-      }).then((result) => {
+        confirmButtonText: "Yes, delete post!"
+      }).then(result => {
         if (result.value) {
           this.$store.dispatch("deletePost", post);
           Swal.fire("Deleted!", "Your post has been deleted.", "success");
@@ -249,7 +231,7 @@ export default {
       let postInfo = await NotificationService.editPost();
       postInfo.id = postId;
       this.$store.dispatch("editPost", postInfo);
-    },
+    }
   },
   computed: {
     posts() {
@@ -275,12 +257,12 @@ export default {
         })
         .slice(0, 1);
       return newArray;
-    },
+    }
   },
 
   components: {
-    boardnav,
-  },
+    boardnav
+  }
 };
 </script>
 <style scoped>
