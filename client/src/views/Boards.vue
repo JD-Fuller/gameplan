@@ -135,21 +135,23 @@
                 <hr />
               </div>
             </div>
-            <div class="container-fluid row">
-              <div class="col-md-12 d-flex justify-content-end">
-                <form @submit.prevent="addPost" style="display: flex;">
-                  <input
-                    v-model="newPost.content"
-                    type="text"
-                    style="color: black; font-size: 12px;"
-                    class="form-control chat-row mr-3"
-                    placeholder="Add post here..."
-                    required
-                  />
-                  <button class="btn">
-                    <i class="fas fa-plus-circle" style="color:green; font-size: 20px;"></i>
-                  </button>
-                </form>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <form @submit.prevent="addPost" style="display: flex;">
+                    <input
+                      v-model="newPost.content"
+                      type="text"
+                      style="color: black; font-size: 12px;"
+                      class="form-control chat-row mr-3"
+                      placeholder="Add post here..."
+                      required
+                    />
+                    <button class="btn">
+                      <i class="fas fa-plus-circle" style="color:green; font-size: 20px;"></i>
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
