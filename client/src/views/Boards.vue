@@ -84,86 +84,86 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="container-fluid">
-        <div class="row p-3 shadow bulletin-board">
-          <div class="col-md-8">
-            <h2 style="font-variant: all-small-caps; color: white; font-size: 20px;">Bulletin Board</h2>
+        <div class="col-md-8">
+          <h2 style="font-variant: all-small-caps; color: white; font-size: 20px;">Bulletin Board</h2>
 
-            <div class="col-md-12">
-              <div v-for="post in posts" :key="post._id">
-                <p class="mr-3" style="text-align: left">{{ post.content }}</p>
-                <p class="text-secondary float-right">
-                  <i>
-                    Coach {{ user.name }},
-                    <small>{{ post.createdAt | postFormat }}</small>
-                  </i>
-                </p>
-                <div class="dropdown">
-                  <button
-                    class="btn p-0 mr-1 float-right"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i class="fas fa-ellipsis-h" style="color: grey;"></i>
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div
-                      @submit.prevent="editPost()"
-                      type="submit"
-                      class="dropdown-item mx-1 float-right"
-                      @click="editPost(post._id)"
-                    >
-                      Edit
-                      <i class="far fa-edit" style="color: grey"></i>
-                    </div>
-                    <div
-                      @submit.prevent="deletePost()"
-                      class="dropdown-item mx-1 float-right"
-                      style="color: red;"
-                      type="submit"
-                      @click="deletePost(post)"
-                    >
-                      Delete
-                      <i class="fas fa-minus-circle"></i>
-                    </div>
-                  </div>
-                  <br />
-                </div>
-                <hr />
-              </div>
-            </div>NOTE - end of one coloumn
-            <!-- <div class="container-fluid row"> -->
-            <!-- <div class="row"> -->
-            <div class="col-md-12 d-flex justify-content-end">
-              <form @submit.prevent="addPost" style="display: flex;">
-                <input
-                  v-model="newPost.content"
-                  type="text"
-                  style="color: black; font-size: 12px;"
-                  class="form-control chat-row mr-3"
-                  placeholder="Add post here..."
-                  required
-                />
-                <button class="btn">
-                  <i class="fas fa-plus-circle" style="color:green; font-size: 20px;"></i>
+          <div class="col-md-12">
+            <div v-for="post in posts" :key="post._id">
+              <p class="mr-3" style="text-align: left">{{ post.content }}</p>
+              <p class="text-secondary float-right">
+                <i>
+                  Coach {{ user.name }},
+                  <small>{{ post.createdAt | postFormat }}</small>
+                </i>
+              </p>
+              <div class="dropdown">
+                <button
+                  class="btn p-0 mr-1 float-right"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-ellipsis-h" style="color: grey;"></i>
                 </button>
-              </form>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div
+                    @submit.prevent="editPost()"
+                    type="submit"
+                    class="dropdown-item mx-1 float-right"
+                    @click="editPost(post._id)"
+                  >
+                    Edit
+                    <i class="far fa-edit" style="color: grey"></i>
+                  </div>
+                  <div
+                    @submit.prevent="deletePost()"
+                    class="dropdown-item mx-1 float-right"
+                    style="color: red;"
+                    type="submit"
+                    @click="deletePost(post)"
+                  >
+                    Delete
+                    <i class="fas fa-minus-circle"></i>
+                  </div>
+                </div>
+                <br />
+              </div>
+              <hr />
             </div>
-            <!-- </div> -->
-            <!-- </div> -->
           </div>
+          <!-- end of one coloumn -->
+          <!-- <div class="container-fluid row"> -->
+          <!-- <div class="row"> -->
+          <div class="col-md-12 d-flex justify-content-end">
+            <form @submit.prevent="addPost" style="display: flex;">
+              <input
+                v-model="newPost.content"
+                type="text"
+                style="color: black; font-size: 12px;"
+                class="form-control chat-row mr-3"
+                placeholder="Add post here..."
+                required
+              />
+              <button class="btn">
+                <i class="fas fa-plus-circle" style="color:green; font-size: 20px;"></i>
+              </button>
+            </form>
+          </div>
+          <!-- </div> -->
+          <!-- </div> -->
         </div>
       </div>
+    </div>
+    <!-- <div class="container-fluid"> -->
 
-      <!-- <div class="col-12 text-light justify-content-">
+    <!-- </div> -->
+
+    <!-- <div class="col-12 text-light justify-content-">
         {{ weather }}
         <div id="openweathermap-widget-22"></div>
-      </div>-->
-    </div>
+    </div>-->
   </div>
 </template>
 
