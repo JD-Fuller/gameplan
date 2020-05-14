@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-12 pl-0 pr-0">
         <nav class="navbar navbar-expand-lg navbar-dark pt-0">
-          <a class="navbar-brand" href="#"
-            ><i class="fas fa-running mr-3"></i>GamePlan</a
-          >
+          <a class="navbar-brand" href="#">
+            <i class="fas fa-running mr-3"></i>GamePlan
+          </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -36,6 +36,7 @@ export default {
   min-width: 150%;
   position: relative;
 }
+
 /* .video{
 } */
 </style>

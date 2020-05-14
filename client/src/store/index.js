@@ -14,7 +14,7 @@ let base = window.location.host.includes("localhost:8080")
 let api = Axios.create({
   baseURL: base + "api/",
   timeout: 3000,
-  withCredentials: true
+  withCredentials: true,
 });
 
 export default new Vuex.Store({
@@ -28,7 +28,7 @@ export default new Vuex.Store({
     events: [],
     activeAdmin: {},
     players: [],
-    activeTeamId: {}
+    activeTeamId: {},
   },
   //#endregion
   //#region -- MUTATIONS --
@@ -73,7 +73,7 @@ export default new Vuex.Store({
     },
     setActiveTeamId(state, teamId) {
       state.activeTeamId = teamId;
-    }
+    },
     //#endregion
   },
   actions: {
@@ -195,7 +195,7 @@ export default new Vuex.Store({
     async editPlayer({ commit, dispatch }, playerData) {
       let res = await api.put("players/" + playerData.id, playerData);
       dispatch("getPlayers");
-    }
+    },
     //#endregion
-  }
+  },
 });
