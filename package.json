@@ -10,18 +10,18 @@
     "serve": "npm run --prefix ./client serve"
   },
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.0",
     "connect-mongo": "^3.2.0",
-    "connect-mongodb-session": "^2.2.0",
+    "connect-mongodb-session": "^2.3.1",
     "cors": "^2.8.1",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "express-session": "^1.15.0",
+    "express-session": "^1.17.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.8.4",
+    "mongoose": "^5.9.14",
     "sweetalert2": "^9.6.0"
   },
   "engines": {
