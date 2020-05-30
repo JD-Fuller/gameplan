@@ -27,14 +27,8 @@
           <td>{{ player.homeCity }}, {{ player.homeState }}</td>
           <td>{{ player.email }} / {{ player.phoneNumber }}</td>
           <td class="d-flex">
-            <i
-              class="far fa-edit text-success px-1 py-1"
-              @click="editPlayer(player._id)"
-            ></i>
-            <i
-              class="fas fa-trash-alt text-danger px-1 py-1"
-              @click="deletePlayer(player._id)"
-            ></i>
+            <i class="far fa-edit text-success px-1 py-1" @click="editPlayer(player._id)"></i>
+            <i class="fas fa-trash-alt text-danger px-1 py-1" @click="deletePlayer(player._id)"></i>
           </td>
         </tr>
       </tbody>

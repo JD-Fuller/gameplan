@@ -27,15 +27,14 @@
           <dl v-for="team in teams" :key="team._id" class="text-center">
             <dt class="text-center li mx-1 text-light">
               {{ team.title }} -
-              <i class="fas fa-minus-circle" style="color: red;"
-                ><a
+              <i class="fas fa-minus-circle" style="color: red;">
+                <a
                   @submit.prevent="deleteTeam(team._id)"
                   class="delete-team mx-1 float-right"
                   style="color: red;"
                   type="submit"
                   @click="deleteTeam(team._id)"
-                >
-                </a>
+                ></a>
               </i>
             </dt>
           </dl>
