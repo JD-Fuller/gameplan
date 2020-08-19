@@ -87,7 +87,7 @@
         <div class="col-md-8">
           <h2 style="font-variant: all-small-caps; color: white; font-size: 20px;">Bulletin Board</h2>
 
-          <div class="col-md-12">
+          <div class="col-md-12 bulletin-board">
             <div v-for="post in posts" :key="post._id">
               <p class="mr-3" style="text-align: left">{{ post.content }}</p>
               <p class="text-secondary float-right">
@@ -179,10 +179,10 @@ export default {
       .get(
         "https://api.openweathermap.org/data/2.5/weather?q=Boise,us&appid=dc01cfbd8f10d91a05d0da86a4f7f27c"
       )
-      .then(response =>
+      .then((response) =>
         (this.weather = Math.round(
           (response.data.main.temp * 9) / 5 - 459.67
-        )).catch(error => console.log(error))
+        )).catch((error) => console.log(error))
       );
 
     this.$store.dispatch("getPostsByTeamId", this.$store.state.activeTeamId);
@@ -194,8 +194,8 @@ export default {
       weather: this.weather,
       newPost: {
         content: "",
-        teamId: ""
-      }
+        teamId: "",
+      },
     };
   },
   // filters: {
@@ -211,7 +211,7 @@ export default {
 
       this.newPost = {
         content: "",
-        teamId: this.$store.state.activeTeamId
+        teamId: this.$store.state.activeTeamId,
       };
     },
     deletePost(post) {
@@ -222,8 +222,8 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete post!"
-      }).then(result => {
+        confirmButtonText: "Yes, delete post!",
+      }).then((result) => {
         if (result.value) {
           this.$store.dispatch("deletePost", post);
           Swal.fire("Deleted!", "Your post has been deleted.", "success");
@@ -234,7 +234,7 @@ export default {
       let postInfo = await NotificationService.editPost();
       postInfo.id = postId;
       this.$store.dispatch("editPost", postInfo);
-    }
+    },
   },
   computed: {
     posts() {
@@ -246,7 +246,7 @@ export default {
     dates() {
       let dateArray = this.$store.state.events;
       let newArray = dateArray
-        .sort(function(a, b) {
+        .sort(function (a, b) {
           return new Date(a.date) - new Date(b.date);
         })
         .slice(1, 3);
@@ -255,17 +255,17 @@ export default {
     mainEvents() {
       let dateArray = this.$store.state.events;
       let newArray = dateArray
-        .sort(function(a, b) {
+        .sort(function (a, b) {
           return new Date(a.date) - new Date(b.date);
         })
         .slice(0, 1);
       return newArray;
-    }
+    },
   },
 
   components: {
-    boardnav
-  }
+    boardnav,
+  },
 };
 </script>
 <style scoped>
@@ -278,7 +278,7 @@ export default {
   background: rgba(84, 83, 83, 0.5);
   color: #f1f1f1;
   border-radius: 8px;
-  /* text-shadow: -1px 2px 3px #000; */
+  text-shadow: -1px 2px 3px #000;
 }
 .card {
   background: rgba(67, 66, 66, 0.8);
